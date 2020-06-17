@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  swtoroptimizerdb:
+    image: 'microsoft/mssql-server-linux'
+    container_name: swtoroptimizerdb
+    environment:
+      SA_PASSWORD: 'P@ssw0rd'
+      ACCEPT_EULA: 'Y'
+    volumes:
+      - .\dbdata:/var/opt/mssql
+    ports:
+      - '1433:1433'
+  swtoroptimizer:
+    image: ${DOCKER_REGISTRY-}swtoroptimizer
+    container_name: swtoroptimizer
+    environment:
+      DB_PASSWORD: 'P@ssw0rd'
+      DB_SERVER: 'swtoroptimizerdb'
+      DB_NAME: 'SwtorOptimizer'
+      DB_USER: 'sa'
+    build:
+      context: .
+      dockerfile: ./Dockerfile.Optimizer
+    ports:
+      - '5000:80'
+    depends_on:
+      - swtoroptimizerdb
+  swtorcalculator:
+    image: ${DOCKER_REGISTRY-}swtorcalculator
+    container_name: swtorcalculator
+    environment:
+      APP_ENV: 'Production'
+      DB_PASSWORD: 'P@ssw0rd'
+      DB_SERVER: 'swtoroptimizerdb'
+      DB_NAME: 'SwtorOptimizer'
+      DB_USER: 'sa'
+    build:
+      context: .
+      dockerfile: ./Dockerfile.Calculator
+    depends_on:
+      - swtoroptimizerdb

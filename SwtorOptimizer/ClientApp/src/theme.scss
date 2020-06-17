@@ -1,0 +1,103 @@
+/* DO NOT IMPORT THIS FILE IN OTHER SCSS FILE */
+
+$md-custom-dark: (
+  50: #eee4e4,
+  100: #d5bcbc,
+  200: #b99090,
+  300: #9c6464,
+  400: #874242,
+  500: #722121,
+  600: #6a1d1d,
+  700: #5f1818,
+  800: #551414,
+  900: #420b0b,
+  A100: #ff7a7a,
+  A200: #ff4747,
+  A400: #ff1414,
+  A700: #fa0000,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+$md-custom-light: (
+  50: #e8eaf6,
+  100: #c5cae9,
+  200: #9fa8da,
+  300: #7986cb,
+  400: #5c6bc0,
+  500: #3f51b5,
+  600: #3949ab,
+  700: #303f9f,
+  800: #283593,
+  900: #1a237e,
+  A100: #8c9eff,
+  A200: #536dfe,
+  A400: #3d5afe,
+  A700: #304ffe,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #ffffff,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #ffffff,
+    A400: #ffffff,
+    A700: #ffffff,
+  ),
+);
+
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config($font-family: 'Verdana');
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core($custom-typography);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+$custom-primary-dark: mat-palette($md-custom-dark, 500, 900, A100);
+$custom-accent-dark: mat-palette($md-custom-dark, 500, 900, A100);
+$custom-warn-dark: mat-palette($md-custom-dark, A700);
+
+$dark-theme: mat-dark-theme($custom-primary-dark, $custom-accent-dark, $custom-warn-dark);
+
+// Default theme
+@include angular-material-theme($dark-theme);
+
+.dark-theme {
+  @include angular-material-theme($dark-theme);
+}
+
+$custom-primary-light: mat-palette($md-custom-light, 500, 900, A100);
+$custom-accent-light: mat-palette($md-custom-light, 500, 900, A100);
+$custom-warn-light: mat-palette($md-custom-dark, A700);
+
+$light-theme: mat-light-theme($custom-primary-light, $custom-accent-light, $custom-warn-light);
+
+.light-theme {
+  @include angular-material-theme($light-theme);
+}

@@ -1,0 +1,49 @@
+<div class="container" novalidate>
+  <div>
+    <h1 class="mat-title">Calculer un set de sophistications</h1>
+  </div>
+
+  <form [formGroup]="formGroup" (ngSubmit)="calculateMySets()" class="form">
+
+    <div class="form-element">
+      <mat-radio-group name="statType" aria-label="Type de statistique à calculer" formControlName="stat" class="form-radio">
+        <mat-radio-button value="alacrity">Alacrité</mat-radio-button>
+        <mat-radio-button value="accuracy">Précision</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div class="form-element">
+      <mat-form-field>
+        <input matInput placeholder="Cap à atteindre" type="number" [min]="minThreshold" [max]="maxThreshold" formControlName="rawThreshold">
+        <mat-error *ngIf="!formGroup.controls['rawThreshold'].valid && formGroup.controls['rawThreshold'].touched">
+          {{ getError('rawThreshold') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="isAccuracyThreshold()" class="form-element">
+      <mat-checkbox formControlName="useAccuracyStim">Utiliser un stim précision ?</mat-checkbox>
+    </div>
+
+    <div class="form-element">
+      <mat-form-field>
+        <input matInput type="number" min="0" max="13" [placeholder]="isAccuracyThreshold() ? 'Nombre d\'améliorations précision' : 'Nombre d\'améliorations alacrité'" formControlName="augments">
+      </mat-form-field>
+    </div>
+
+    <div class="form-element">
+      <mat-chip-list class="form-chips">
+        <mat-chip color="primary" selected>{{ displayRealThreshold() }}</mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <div class="form-element">
+      <mat-error *ngIf="isValidateButtonDisabled()" class="centered-text">{{ getFormError() }}</mat-error>
+    </div>
+
+    <div class="form-buttons">
+      <button mat-raised-button [disabled]="isValidateButtonDisabled()" type="submit">Calculer</button>
+    </div>
+  </form>
+</div>
+

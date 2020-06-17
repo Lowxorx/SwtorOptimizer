@@ -1,0 +1,62 @@
+@import '../../../../custom-theme.scss';
+
+.container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  min-width: 150px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.centered-text {
+    text-align: center;
+}
+
+.form-element {
+  padding: 5px 0px 25px 2px;
+  width: 100%;
+}
+
+.form-element > * {
+  width: 100%;
+}
+
+.form-radio {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-radio> * {
+  width: 49%;
+}
+
+.form-chips {
+  display: flex;
+  justify-content: center;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.form-buttons > * {
+  width: 50%;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

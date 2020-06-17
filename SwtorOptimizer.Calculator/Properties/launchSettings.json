@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "SwtorOptimizer.Calculator": {
+      "commandName": "Project",
+      "commandLineArgs": "--environment Development",
+      "environmentVariables": {
+        "APP_ENV": "Development"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

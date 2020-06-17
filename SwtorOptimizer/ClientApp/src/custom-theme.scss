@@ -1,0 +1,7 @@
+@mixin shadow($dp) {
+  $yOffset: $dp/2;
+
+  box-shadow: 0 #{$yOffset}px #{$dp}px rgba(0, 0, 0, 0.5);
+}
+
+$margin: 16px;
