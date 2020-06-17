@@ -11,6 +11,7 @@ using Serilog.Exceptions;
 using Serilog.Sinks.SystemConsole.Themes;
 using System.Text;
 using SwtorOptimizer.Business.Settings;
+using SwtorOptimizer.Calculator.Settings;
 
 namespace SwtorOptimizer.Calculator
 {
@@ -75,6 +76,7 @@ namespace SwtorOptimizer.Calculator
         {
             services.AddHostedService<SetCalculatorWorker>();
             services.Configure<DatabaseSettings>(hostContext.Configuration.GetSection(nameof(DatabaseSettings)));
+            services.Configure<CalculatorSettings>(hostContext.Configuration.GetSection(nameof(CalculatorSettings)));
             services.AddTransient<ISwtorOptimizerDatabaseService>(_ => new SwtorOptimizerDatabaseService(BuildConnectionString(hostContext.Configuration.GetValue<string>("DatabaseSettings:ConnectionString"))));
         })
         .UseSerilog();

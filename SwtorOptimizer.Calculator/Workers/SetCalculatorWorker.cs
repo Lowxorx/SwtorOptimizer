@@ -3,8 +3,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SwtorOptimizer.Business.Database;
 using SwtorOptimizer.Business.Entities;
-using SwtorOptimizer.Business.Settings;
 using SwtorOptimizer.Calculator.Services;
+using SwtorOptimizer.Calculator.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +18,9 @@ namespace SwtorOptimizer.Calculator.Workers
     {
         private readonly ISwtorOptimizerDatabaseService context;
         private readonly ILogger<SetCalculatorWorker> logger;
-        private readonly IOptions<DatabaseSettings> settings;
+        private readonly IOptions<CalculatorSettings> settings;
 
-        public SetCalculatorWorker(ILogger<SetCalculatorWorker> logger, IOptions<DatabaseSettings> settings, ISwtorOptimizerDatabaseService context)
+        public SetCalculatorWorker(ILogger<SetCalculatorWorker> logger, IOptions<CalculatorSettings> settings, ISwtorOptimizerDatabaseService context)
         {
             this.logger = logger;
             this.context = context;
@@ -38,7 +38,7 @@ namespace SwtorOptimizer.Calculator.Workers
             while (!cancellationToken.IsCancellationRequested)
             {
                 await Task.Run(() => this.CheckAndStartTasks());
-                await Task.Delay(TimeSpan.FromSeconds(30), cancellationToken);
+                await Task.Delay(TimeSpan.FromSeconds(this.settings.Value.TaskInterval), cancellationToken);
             }
         }
 
@@ -52,12 +52,22 @@ namespace SwtorOptimizer.Calculator.Workers
 
                 foreach (var task in tasks)
                 {
-                    Task.Run(() => StartTask(task, enhancements));
+                    Task.Run(() => StartTask(task, enhancements)).ContinueWith((result) =>
+                    {
+                        if (result.IsFaulted)
+                        {
+                            this.logger.LogError(result.Exception, $"Task error : {result.Exception.Message}");
+                        }
+                        else
+                        {
+                            this.logger.LogInformation("Task completed successfully.");
+                        }
+                    });
                 }
             }
             else
             {
-                this.logger.LogInformation("Nothing to do here.");
+                this.logger.LogInformation($"Nothing to do here, next check in { this.settings.Value.TaskInterval } seconds");
             }
         }
 
