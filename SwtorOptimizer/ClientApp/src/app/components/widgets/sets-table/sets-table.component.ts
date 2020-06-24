@@ -12,14 +12,14 @@ import { EnhancementSetsService } from '../../../services/enhancement-sets.servi
 })
 export class SetsTableComponent implements OnInit {
   public displayedColumns: string[] = ['setName', 'threshold', 'power'];
-  public dataSource: MatTableDataSource<IEnhancementSet>;
+  public dataSource: MatTableDataSource<IEnhancementSet> = new MatTableDataSource();
 
   @Input()
   public threshold: number;
 
   @ViewChild(MatSort, { static: true })
   public sort: MatSort;
-  @ViewChild(MatPaginator, { static: true })
+  @ViewChild(MatPaginator, { static: false })
   public paginator: MatPaginator;
 
   constructor(private service: EnhancementSetsService) { }

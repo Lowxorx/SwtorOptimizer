@@ -15,12 +15,12 @@ import { Router } from '@angular/router';
 })
 export class FindCombinationTasksComponent implements OnInit {
   public displayedColumns: string[] = ['threshold', 'status', 'duration', 'setsFound', 'action'];
-  public dataSource: MatTableDataSource<IFindCombinationTask>;
+  public dataSource: MatTableDataSource<IFindCombinationTask> = new MatTableDataSource();
   private dataSourceSubscription: Subscription;
 
   @ViewChild(MatSort, { static: true })
   public sort: MatSort;
-  @ViewChild(MatPaginator, { static: true })
+  @ViewChild(MatPaginator, { static: false})
   public paginator: MatPaginator;
 
   constructor(private readonly service: FindCombinationsTasksService, public snackBar: MatSnackBar, private router: Router) { }

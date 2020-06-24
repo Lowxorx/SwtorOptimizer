@@ -12,7 +12,7 @@ services:
     ports:
       - '1433:1433'
   swtoroptimizer:
-    image: ${DOCKER_REGISTRY-}swtoroptimizer
+    image: 'lowxorx/swtoroptimizer'
     container_name: swtoroptimizer
     environment:
       DB_PASSWORD: 'P@ssw0rd'
@@ -27,7 +27,7 @@ services:
     depends_on:
       - swtoroptimizerdb
   swtorcalculator:
-    image: ${DOCKER_REGISTRY-}swtorcalculator
+    image: 'lowxorx/swtorcalculator'
     container_name: swtorcalculator
     environment:
       APP_ENV: 'Production'
