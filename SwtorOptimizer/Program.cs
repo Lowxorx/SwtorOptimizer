@@ -1,5 +1,7 @@
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +30,7 @@ namespace SwtorOptimizer
             try
             {
                 Log.Information("Getting the server running...");
+                Log.Information($"SWTOR Optimizer version { FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion }");
 
                 var host = CreateHostBuilder(args).Build();
                 host.Run();

@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { IFindCombinationTask } from '../models/IFindCombinationTask';
 
 @Injectable({ providedIn: 'root' })
 export class FindCombinationsTasksService {
-  private apiEndpoint = `${environment.apiEndpoint}/FindCombinationsTasks`;
+  private apiEndpoint = `/api/FindCombinationsTasks`;
 
   constructor(private readonly http: HttpClient) { }
 

@@ -8,50 +8,42 @@
       <input matInput (keyup)="applyFilter($event)" placeholder="">
     </mat-form-field>
 
-    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortActive="threshold" matSortDisableClear matSortDirection="asc">
+    <div class="mat-elevation-z8 table-container">
 
-      <ng-container matColumnDef="threshold">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Cap visé </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.threshold }} </mat-cell>
-      </ng-container>
+      <mat-table [dataSource]="dataSource" matSort matSortActive="threshold" matSortDisableClear matSortDirection="asc">
 
-      <ng-container matColumnDef="status">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ getTaskStatus(element) }} </mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="threshold">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Cap visé </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.threshold }} </mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="duration">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Durée d'éxécution </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ getTaskDuration(element) }} </mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ getTaskStatus(element) }} </mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="setsFound">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Combinaisons trouvées </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.foundSets }} </mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="duration">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Durée d'éxécution </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ getTaskDuration(element) }} </mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef class="actions-cell">Détails</mat-header-cell>
-        <mat-cell *matCellDef="let element" class="actions-cell">
-          <button mat-icon-button aria-label="Voir les résultats" (click)="showSets(element)">
-            <mat-icon>launch</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
+        <ng-container matColumnDef="setsFound">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Combinaisons trouvées </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.foundSets }} </mat-cell>
+        </ng-container>
 
-      <ng-container matColumnDef="paginator-footer">
-        <td mat-footer-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">
-          <mat-toolbar>
-            <mat-toolbar-row class="button-paginator-footer">
-              <mat-paginator *ngIf="dataSource" class="button-paginator" [length]="dataSource.data.length" [pageSizeOptions]="[10,20,30]"></mat-paginator>
-            </mat-toolbar-row>
-          </mat-toolbar>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef class="actions-cell">Détails</mat-header-cell>
+          <mat-cell *matCellDef="let element" class="actions-cell">
+            <button mat-icon-button aria-label="Voir les résultats" (click)="showSets(element)">
+              <mat-icon>launch</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      <mat-footer-row *matFooterRowDef="['paginator-footer']; sticky: true"></mat-footer-row>
-    </mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
   </ng-container>
 </div>

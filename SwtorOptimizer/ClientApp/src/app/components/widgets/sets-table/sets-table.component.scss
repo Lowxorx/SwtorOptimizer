@@ -1,10 +1,15 @@
-.ou-filter {
+.filter {
   width: 95%;
   margin: 16px;
 }
 
 .title {
   text-align: center;
+}
+
+.table-container {
+  max-height: 1000px;
+  overflow: auto;
 }
 
 .flat-icon-button {
@@ -20,15 +25,4 @@
 
 .actions-cell {
   max-width: 10%;
-}
-
-.button-paginator-footer {
-  display: flex;
-  align-items: stretch;
-  padding: 0 !important;
-  z-index: 10;
-}
-
-.button-paginator {
-  width: 100%;
 }

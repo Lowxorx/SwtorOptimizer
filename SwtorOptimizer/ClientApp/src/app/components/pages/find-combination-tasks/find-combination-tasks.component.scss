@@ -22,13 +22,7 @@
   max-width: 10%;
 }
 
-.button-paginator-footer {
-  display: flex;
-  align-items: stretch;
-  padding: 0 !important;
-  z-index: 10;
-}
-
-.button-paginator {
-  width: 100%;
+.table-container {
+  max-height: 1000px;
+  overflow: auto;
 }

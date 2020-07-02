@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   swtoroptimizerdb:
-    image: 'microsoft/mssql-server-linux'
+    image: 'mcr.microsoft.com/mssql/server:2019-latest'
     container_name: swtoroptimizerdb
     environment:
       SA_PASSWORD: 'P@ssw0rd'
@@ -19,6 +19,7 @@ services:
       DB_SERVER: 'swtoroptimizerdb'
       DB_NAME: 'SwtorOptimizer'
       DB_USER: 'sa'
+      APP_URL: 'https://swtoroptimizer.lahan.fr'
     build:
       context: .
       dockerfile: ./Dockerfile.Optimizer

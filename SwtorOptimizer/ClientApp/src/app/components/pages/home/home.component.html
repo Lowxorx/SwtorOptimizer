@@ -1,6 +1,8 @@
 <div class="container" novalidate>
   <div>
     <h1 class="mat-title">Calculer un set de sophistications</h1>
+    <h2>Env : {{ appEnv }}</h2>
+    <h2>URL : {{ apiUrl }}</h2>
   </div>
 
   <form [formGroup]="formGroup" (ngSubmit)="calculateMySets()" class="form">
@@ -46,4 +48,3 @@
     </div>
   </form>
 </div>
-

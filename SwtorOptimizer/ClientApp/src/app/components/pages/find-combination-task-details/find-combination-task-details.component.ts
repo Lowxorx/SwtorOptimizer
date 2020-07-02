@@ -40,7 +40,7 @@ export class FindCombinationTaskDetailsComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     try {
-      if (this.timerSub !== null) {
+      if (this.timerSub != null) {
         this.timerSub.unsubscribe();
       }
     } catch (e) {

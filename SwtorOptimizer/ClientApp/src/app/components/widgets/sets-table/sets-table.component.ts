@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { IEnhancementSet } from '../../../models/IEnhancementSet';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { EnhancementSetsService } from '../../../services/enhancement-sets.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { EnhancementSetsService } from '../../../services/enhancement-sets.servi
   styleUrls: ['./sets-table.component.scss'],
 })
 export class SetsTableComponent implements OnInit {
-  public displayedColumns: string[] = ['setName', 'threshold', 'power'];
+  public displayedColumns: string[] = ['threshold', 'setName', 'power'];
   public dataSource: MatTableDataSource<IEnhancementSet> = new MatTableDataSource();
 
   @Input()
@@ -19,8 +18,6 @@ export class SetsTableComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true })
   public sort: MatSort;
-  @ViewChild(MatPaginator, { static: false })
-  public paginator: MatPaginator;
 
   constructor(private service: EnhancementSetsService) { }
 
@@ -39,7 +36,6 @@ export class SetsTableComponent implements OnInit {
   private initDataSource(enhancementSets: IEnhancementSet[]): void {
     this.dataSource = new MatTableDataSource(enhancementSets);
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   public applyFilter(event: Event) {

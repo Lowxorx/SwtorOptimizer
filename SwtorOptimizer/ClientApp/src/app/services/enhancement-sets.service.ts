@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { IEnhancementSet } from '../models/IEnhancementSet';
 
 @Injectable({ providedIn: 'root' })
 export class EnhancementSetsService {
-  private apiEndpoint = `${environment.apiEndpoint}/EnhancementSets`;
+  private apiEndpoint = `/api/EnhancementSets`;
 
   constructor(private readonly http: HttpClient) { }
 

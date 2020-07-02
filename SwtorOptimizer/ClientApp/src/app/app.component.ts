@@ -9,7 +9,7 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 export class AppComponent {
   title = 'app';
 
-  constructor(public overlayContainer: OverlayContainer, private router: Router) {}
+  constructor(public overlayContainer: OverlayContainer, private router: Router) { }
 
   @HostBinding('class') componentCssClass;
 

@@ -8,15 +8,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { FindCombinationTasksComponent } from './find-combination-tasks.component';
 
 export const routes: Routes = [{ path: '', component: FindCombinationTasksComponent }];
 
 @NgModule({
   declarations: [FindCombinationTasksComponent],
-  imports: [RouterModule.forChild(routes), CommonModule, MatTableModule, MatSortModule, MatButtonModule, MatInputModule, MatSnackBarModule, MatFormFieldModule, MatIconModule, MatToolbarModule, MatPaginatorModule],
+  imports: [RouterModule.forChild(routes), CommonModule, MatTableModule, MatSortModule, MatButtonModule, MatInputModule, MatSnackBarModule, MatFormFieldModule, MatIconModule],
   exports: [FindCombinationTasksComponent],
 })
 export class FindCombinationTasksModule { }
