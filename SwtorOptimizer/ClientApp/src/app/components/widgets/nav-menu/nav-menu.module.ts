@@ -6,6 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterModule } from '@angular/router';
 import { TopbarModule } from '../topbar/topbar.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [NavMenuComponent],
@@ -15,7 +16,8 @@ import { TopbarModule } from '../topbar/topbar.module';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    RouterModule
+    RouterModule,
+    MatButtonModule
   ],
   exports: [NavMenuComponent],
 })
