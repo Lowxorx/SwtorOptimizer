@@ -1,10 +1,12 @@
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SwtorOptimizer.Business.Database;
 using SwtorOptimizer.Business.Entities;
+using SwtorOptimizer.Models;
 using SwtorOptimizer.Models.Convertors;
 
 namespace SwtorOptimizer.API.Controllers
@@ -49,12 +51,9 @@ namespace SwtorOptimizer.API.Controllers
             if (!this.context.EnhancementSetRepository.All().Any(e => e.Threshold == threshold))
             {
                 var newTask = await this.context.FindCombinationTaskRepository.AddAsync(new FindCombinationTask { Threshold = threshold, IsRunning = false, IsFaulted = false, IsEnded = false, IsStarted = false, FoundSets = 0 }, true);
-                return this.Accepted();
+                return this.Accepted(new ResultObject<string> { StatusCode = StatusCodes.Status202Accepted, Message = "Une tâche a été crée." });
             }
-            else
-            {
-                return this.Ok();
-            }
+            return this.Ok(new ResultObject<string> { StatusCode = StatusCodes.Status200OK, Message = "Le calcul a déjà été effectué." });
         }
     }
 }

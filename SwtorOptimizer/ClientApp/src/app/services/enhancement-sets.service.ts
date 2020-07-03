@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { IEnhancementSet } from '../models/IEnhancementSet';
+import { IResultObject } from '../models/IResultObject';
 
 @Injectable({ providedIn: 'root' })
 export class EnhancementSetsService {
@@ -9,8 +10,8 @@ export class EnhancementSetsService {
 
   constructor(private readonly http: HttpClient) { }
 
-  public getNewEnhancementSet(threshold: number): Observable<HttpResponse<IEnhancementSet[]>> {
-    return this.http.get<IEnhancementSet[]>(`${this.apiEndpoint}/GetNewEnhancementSet?threshold=${threshold}`, { observe: 'response' });
+  public getNewEnhancementSet(threshold: number): Observable<IResultObject> {
+    return this.http.get<IResultObject>(`${this.apiEndpoint}/GetNewEnhancementSet?threshold=${threshold}`);
   }
 
   public getEnhancementSetsForThreshold(threshold: number): Observable<IEnhancementSet[]> {
