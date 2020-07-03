@@ -1,32 +1,31 @@
 <mat-sidenav-container class="container">
-  <mat-sidenav #drawer class="sidemenu-container" mode="over" (closedStart)="OnClose()" [opened]="IsSideMenuOpen">
+  <mat-sidenav #drawer class="sidemenu-container" mode="push" (closedStart)="onClose()" [opened]="isSideMenuOpen">
     <div class="side-menu">
-      <app-theme-toggle (ToggleTheme)="OnToggleTheme($event)"></app-theme-toggle>
+      <app-theme-toggle (ToggleTheme)="onToggleTheme($event)"></app-theme-toggle>
       <header></header>
-      <section>
-        <mat-nav-list color="primary" (click)="OnItemClick()">
+      <section class="menu-lists">
+        <mat-nav-list color="primary" (click)="toggleMenu()">
           <a mat-list-item [routerLink]="['/']"> Calcul de set</a>
           <a mat-list-item [routerLink]="['/sets']"> Résultats</a>
           <a mat-list-item [routerLink]="['/tasks']"> Liste des calculs</a>
+        </mat-nav-list>
+
+        <mat-nav-list color="primary" (click)="toggleMenu()" class="bottom-list">
+          <mat-list-item>
+            <mat-icon mat-list-icon svgIcon="github"></mat-icon>
+            <a mat-line href="https://github.com/" target="_blank"> Code source</a>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>info</mat-icon>
+            <p mat-line>v.{{ appVersion }}</p>
+          </mat-list-item>
         </mat-nav-list>
       </section>
     </div>
   </mat-sidenav>
 
   <mat-sidenav-content class="content">
-    <mat-toolbar class="topbar" color="primary">
-      <button (click)="OnPrincipalButtonClick()" mat-icon-button aria-label="Button to toggle menu">
-        <mat-icon>menu</mat-icon>
-      </button>
-
-      <a [routerLink]="['/']">
-        <h1 class="app-title">SWTOR Optimizer</h1>
-      </a>
-
-      <button mat-icon-button aria-label="Button to toggle menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-    </mat-toolbar>
+    <app-topbar [IsSideMenuOpen]="isSideMenuOpen" (PrincipalButtonClick)="toggleMenu()"></app-topbar>
 
     <div class="body">
       <ng-content></ng-content>

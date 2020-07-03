@@ -22,12 +22,12 @@
     </div>
 
     <div *ngIf="isAccuracyThreshold()" class="form-element">
-      <mat-checkbox formControlName="useAccuracyStim">Utiliser un stim précision ?</mat-checkbox>
+      <mat-checkbox formControlName="useAccuracyStim">Utiliser un stim précision (+ 264) ?</mat-checkbox>
     </div>
 
     <div class="form-element">
       <mat-form-field>
-        <input matInput type="number" min="0" max="13" [placeholder]="isAccuracyThreshold() ? 'Nombre d\'améliorations précision' : 'Nombre d\'améliorations alacrité'" formControlName="augments">
+        <input matInput type="number" min="0" max="13" [placeholder]="isAccuracyThreshold() ? 'Nombre d\'améliorations précision (+ 108)' : 'Nombre d\'améliorations alacrité (+ 108)'" formControlName="augments">
       </mat-form-field>
     </div>
 

@@ -1,31 +1,5 @@
 @import '../../../../custom-theme.scss';
 
-.topbar {
-  box-sizing: border-box;
-  position: fixed;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 64px;
-  padding: 0 16px;
-  z-index: 99;
-  @include shadow(4);
-
-  a {
-    cursor: pointer;
-    text-decoration: inherit;
-  }
-
-  h1 {
-    font-size: 24px;
-  }
-}
-
-.app-title {
-  color: white;
-}
-
 .container {
   position: absolute;
   top: 0;
@@ -42,4 +16,16 @@
     padding-top: 64px;
     margin: $margin;
   }
+}
+
+.menu-lists {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bottom-list {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

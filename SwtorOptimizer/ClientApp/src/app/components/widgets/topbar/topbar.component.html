@@ -1,0 +1,20 @@
+<mat-toolbar class="topbar" color="primary">
+  <!--<button (click)="toggleMenu()" mat-icon-button aria-label="Ouvrir le menu latéral">
+    <mat-icon>menu</mat-icon>
+  </button>-->
+  <div class="menu">
+    <div id="nav-container" [className]="IsSideMenuOpen ? 'pushed' : ''">
+      <div class="starwars-toggle" (click)="toggleMenu()">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </div>
+
+  <a [routerLink]="['/']">
+    <h1 class="app-title">SWTOR Optimizer</h1>
+  </a>
+
+<span></span>
+</mat-toolbar>

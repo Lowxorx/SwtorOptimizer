@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\components\widgets\theme-toggle\theme-toggle.module.ts" />
+    <None Remove="ClientApp\src\app\components\widgets\topbar\topbar.module.ts" />
     <None Remove="ClientApp\src\app\models\IEnhancement.ts" />
     <None Remove="ClientApp\src\app\models\IEnhancementSet.ts" />
     <None Remove="ClientApp\src\app\models\IFindCombinationTask.ts" />
@@ -53,6 +54,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\components\widgets\theme-toggle\theme-toggle.module.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\widgets\topbar\topbar.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\IEnhancement.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
