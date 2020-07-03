@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { version } from '../../../../../package.json';
 
@@ -9,8 +9,7 @@ import { version } from '../../../../../package.json';
 })
 export class NavMenuComponent {
   @ViewChild('drawer', {static: true}) drawer: MatSidenav;
-
-  @Output() ToggleTheme = new EventEmitter<string>();
+  @Output() OnToggleTheme = new EventEmitter<string>();
 
   public isSideMenuOpen: boolean;
   public appVersion: string = version;
@@ -19,11 +18,11 @@ export class NavMenuComponent {
     this.isSideMenuOpen = !this.isSideMenuOpen;
   }
 
-  public onClose(): void {
-    this.isSideMenuOpen = false;
+  public onToggleTheme(event: string): void {
+    this.OnToggleTheme.emit(event);
   }
 
-  public onToggleTheme(event: string): void {
-    this.ToggleTheme.emit(event);
+  public onClose(): void {
+    this.isSideMenuOpen = false;
   }
 }

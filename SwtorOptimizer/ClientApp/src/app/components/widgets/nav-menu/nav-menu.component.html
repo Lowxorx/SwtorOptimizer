@@ -1,13 +1,23 @@
 <mat-sidenav-container class="container">
   <mat-sidenav #drawer class="sidemenu-container" mode="push" (closedStart)="onClose()" [opened]="isSideMenuOpen">
     <div class="side-menu">
-      <app-theme-toggle (ToggleTheme)="onToggleTheme($event)"></app-theme-toggle>
-      <header></header>
+      <header>
+        <img src="../../../../assets/images/header.jpg" class="header-image"/>
+      </header>
       <section class="menu-lists">
         <mat-nav-list color="primary" (click)="toggleMenu()">
-          <a mat-list-item [routerLink]="['/']"> Calcul de set</a>
-          <a mat-list-item [routerLink]="['/sets']"> Résultats</a>
-          <a mat-list-item [routerLink]="['/tasks']"> Liste des calculs</a>
+          <mat-list-item>
+            <mat-icon mat-list-icon>calculate</mat-icon>
+            <a mat-line [routerLink]="['/']"> Calculer un cap</a>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>list_alt</mat-icon>
+            <a mat-line [routerLink]="['/sets']"> Résultats</a>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>memory</mat-icon>
+            <a mat-line [routerLink]="['/tasks']"> Liste des calculs</a>
+          </mat-list-item>
         </mat-nav-list>
 
         <mat-nav-list color="primary" (click)="toggleMenu()" class="bottom-list">
@@ -25,8 +35,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="content">
-    <app-topbar [IsSideMenuOpen]="isSideMenuOpen" (PrincipalButtonClick)="toggleMenu()"></app-topbar>
-
+    <app-topbar [IsSideMenuOpen]="isSideMenuOpen" (PrincipalButtonClick)="toggleMenu()" (OnToggleTheme)="onToggleTheme($event)"></app-topbar>
     <div class="body">
       <ng-content></ng-content>
     </div>

@@ -20,7 +20,7 @@ export class AppComponent {
 
   @HostBinding('class') componentCssClass;
 
-  OnToggleTheme(theme: string) {
+  public onToggleTheme(theme: string) {
     this.overlayContainer.getContainerElement().classList.add(theme);
     this.componentCssClass = theme;
   }

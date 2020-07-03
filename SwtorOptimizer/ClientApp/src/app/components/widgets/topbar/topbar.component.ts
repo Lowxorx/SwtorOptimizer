@@ -8,10 +8,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class TopbarComponent {
   @Input() IsSideMenuOpen: boolean;
   @Output() PrincipalButtonClick = new EventEmitter<void>();
+  @Output() OnToggleTheme = new EventEmitter<string>();
 
   constructor() { }
 
   public toggleMenu(): void {
     this.PrincipalButtonClick.emit();
+  }
+
+  public onToggleTheme(event: string): void {
+    this.OnToggleTheme.emit(event);
   }
 }

@@ -6,15 +6,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./theme-toggle.component.scss'],
 })
 export class ThemeToggleComponent {
-  @Output() ToggleTheme = new EventEmitter<string>();
+  @Output() OnToggleTheme = new EventEmitter<string>();
 
   constructor() {}
 
-  OnToggleTheme(event: any): void {
+  public onToggleTheme(event: any): void {
     if (event.target.checked === true) {
-      this.ToggleTheme.emit('light-theme');
+      this.OnToggleTheme.emit('light-theme');
     } else {
-      this.ToggleTheme.emit('dark-theme');
+      this.OnToggleTheme.emit('dark-theme');
     }
   }
 }

@@ -1,4 +1,4 @@
-$toggle-height: 30px;
+$toggle-size: 25px;
 
 * {
   margin: 0;
@@ -20,7 +20,7 @@ input[type='checkbox'] {
 }
 
 input[type='checkbox']:checked + span.circle {
-  left: $toggle-height;
+  left: $toggle-size;
   background-color: #fabc62;
   box-shadow: 0 0 40px 0 #fabc62;
 }
@@ -31,11 +31,11 @@ input[type='checkbox']:checked + span.circle::after {
 }
 
 label.slider {
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   border: 6px solid #06121c;
   border-radius: 100px;
-  width: $toggle-height * 2;
-  height: $toggle-height;
+  width: $toggle-size * 2;
+  height: $toggle-size;
   position: relative;
   background-color: #06121c;
   box-sizing: content-box;
@@ -55,8 +55,8 @@ label.slider:hover {
 
 span.circle {
   position: absolute;
-  width: $toggle-height;
-  height: $toggle-height;
+  width: $toggle-size;
+  height: $toggle-size;
   background-color: #fefaf4;
   border-radius: 50%;
   top: 0;
@@ -77,13 +77,13 @@ span.circle::after {
 span.circle::before {
   height: 6px;
   width: 6px;
-  bottom: 10px;
-  right: 20px;
+  bottom: 8px;
+  right: 18px;
 }
 
 span.circle::after {
   height: 10px;
   width: 10px;
-  bottom: 20px;
+  bottom: 14px;
   right: 10px;
 }
