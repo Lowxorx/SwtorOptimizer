@@ -53,7 +53,7 @@ namespace SwtorOptimizer.API.Controllers
             }
             else
             {
-                return this.Ok("Le calcul a déjà été effectué pour ce cap.");
+                return this.Ok();
             }
         }
     }

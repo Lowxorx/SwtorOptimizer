@@ -1,13 +1,13 @@
 <mat-sidenav-container class="container">
-  <mat-sidenav class="sidemenu-container" mode="over" (closedStart)="OnClose()" [opened]="IsSideMenuOpen">
+  <mat-sidenav #drawer class="sidemenu-container" mode="over" (closedStart)="OnClose()" [opened]="IsSideMenuOpen">
     <div class="side-menu">
       <app-theme-toggle (ToggleTheme)="OnToggleTheme($event)"></app-theme-toggle>
       <header></header>
       <section>
-        <mat-nav-list color="primary">
-          <a mat-list-item [routerLink]="['/']"> Home</a>
-          <a mat-list-item [routerLink]="['/sets']"> Sets</a>
-          <a mat-list-item [routerLink]="['/tasks']"> Calculs</a>
+        <mat-nav-list color="primary" (click)="OnItemClick()">
+          <a mat-list-item [routerLink]="['/']"> Calcul de set</a>
+          <a mat-list-item [routerLink]="['/sets']"> Résultats</a>
+          <a mat-list-item [routerLink]="['/tasks']"> Liste des calculs</a>
         </mat-nav-list>
       </section>
     </div>

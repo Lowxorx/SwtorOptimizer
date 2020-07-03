@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-nav-menu',
@@ -6,8 +7,15 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./nav-menu.component.scss'],
 })
 export class NavMenuComponent {
-  public IsSideMenuOpen: boolean;
+  @ViewChild('drawer', {static: true}) drawer: MatSidenav;
+
   @Output() ToggleTheme = new EventEmitter<string>();
+
+  public IsSideMenuOpen: boolean;
+
+  public OnItemClick(): void {
+    this.IsSideMenuOpen = !this.IsSideMenuOpen;
+  }
 
   public OnPrincipalButtonClick(): void {
     this.IsSideMenuOpen = !this.IsSideMenuOpen;

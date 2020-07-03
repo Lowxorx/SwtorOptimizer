@@ -72,7 +72,7 @@ export class FindCombinationTasksComponent implements OnInit {
     }
 
     if (duration > 60000 && duration < 3600000) {
-      return `${duration / 60000}  minutes`
+      return `${Math.round(duration / 60000)}  minutes`
     }
 
     return "Plus d'une heure";

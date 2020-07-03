@@ -44,7 +44,7 @@ namespace SwtorOptimizer.Calculator.Workers
 
         private void CheckAndStartTasks()
         {
-            var tasks = this.context.FindCombinationTaskRepository.All().Where(e => e.EndDate == default && !e.IsEnded).ToList();
+            var tasks = this.context.FindCombinationTaskRepository.All().Where(e => e.EndDate == default && !e.IsEnded && !e.IsStarted).ToList();
             if (tasks.Count > 0)
             {
                 this.logger.LogInformation($"We have a job to do. Let's launch {tasks.Count} job");

@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
       switch (e.status) {
         case 200:
           this.snackBar.open("Le résultat pour ce cap a déjà été calculé, redirection vers les résultats dans 3 secondes...", null, { duration: 3000 });
-          this.router.navigate(['/threshold', realThreshold])
+          this.router.navigate(['/task', realThreshold])
           break;
         case 202:
           this.snackBar.open("Le résultat pour ce cap n'a pas encore été calculé. Une tâche a été créée, redirection vers les détails...", null, { duration: 5000 });

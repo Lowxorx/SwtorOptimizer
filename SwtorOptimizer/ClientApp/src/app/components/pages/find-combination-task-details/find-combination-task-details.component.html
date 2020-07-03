@@ -8,7 +8,7 @@
     <h4 *ngIf="task.isEnded">Nombre de combinaisons trouvées : {{ task.foundSets }}</h4>
   </div>
   <button *ngIf="task && task.isEnded && task.foundSets > 0" mat-raised-button color="primary" (click)="toggleDetails()">{{ isDetailsVisible ? 'Masquer les détails' : 'Afficher les détails' }}</button>
-  <div *ngIf="task && (task.isRunning || !task.isStarted)">
+  <div *ngIf="task && (task.isRunning || !task.isStarted)" class="centered">
     <h3>Le calcul est toujours en cours. Selon le nombre de possibilités, cela peut prendre un moment. Merci de patienter.</h3>
     <mat-progress-spinner mode="indeterminate" color="primary">
     </mat-progress-spinner>
