@@ -11,8 +11,9 @@
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
     <UserSecretsId>5ce5350d-50d0-468c-8ef9-506e257fff0a</UserSecretsId>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
+    <AssemblyVersion>1.1.0.1</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
