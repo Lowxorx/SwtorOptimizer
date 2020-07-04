@@ -65,10 +65,6 @@ namespace SwtorOptimizer.Calculator.Workers
                     });
                 }
             }
-            else
-            {
-                this.logger.LogInformation($"Nothing to do here, next check in { this.settings.Value.TaskInterval } seconds");
-            }
         }
 
         private void StartTask(FindCombinationTask task, List<Enhancement> enhancements)
