@@ -30,7 +30,7 @@ namespace SwtorOptimizer
             try
             {
                 Log.Information("Getting the server running...");
-                Log.Information($"SWTOR Optimizer version { FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion }");
+                LogComponentVersions();
 
                 var host = CreateHostBuilder(args).Build();
                 host.Run();
@@ -45,11 +45,26 @@ namespace SwtorOptimizer
             }
         }
 
-        private static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args)
-            .UseSerilog()
-            .ConfigureWebHostDefaults(webBuilder =>
+        private static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args).UseSerilog().ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+
+        private static void LogComponentVersions()
+        {
+            var businessDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SwtorOptimizer.Business.dll");
+            var databaseDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SwtorOptimizer.Database.dll");
+
+            Log.Information($"SWTOR Optimizer version { FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion }");
+
+            if (File.Exists(businessDllPath))
             {
-                webBuilder.UseStartup<Startup>();
-            });
+                var fileVersion = FileVersionInfo.GetVersionInfo(businessDllPath);
+                Log.Information($"SWTOR Business component version: {fileVersion.FileVersion}");
+            }
+
+            if (File.Exists(databaseDllPath))
+            {
+                var fileVersion = FileVersionInfo.GetVersionInfo(databaseDllPath);
+                Log.Information($"SWTOR Database component version: {fileVersion.FileVersion}");
+            }
+        }
     }
 }

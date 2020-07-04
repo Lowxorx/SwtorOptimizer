@@ -12,6 +12,7 @@ using Serilog.Sinks.SystemConsole.Themes;
 using System.Text;
 using SwtorOptimizer.Business.Settings;
 using SwtorOptimizer.Calculator.Settings;
+using System.Diagnostics;
 
 namespace SwtorOptimizer.Calculator
 {
@@ -44,7 +45,8 @@ namespace SwtorOptimizer.Calculator
             try
             {
                 Log.Information("====================================================================");
-                Log.Information($"SWTOR OPTIMIZER Calculator service is starting. Version: {System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version}");
+                Log.Information("SWTOR OPTIMIZER Calculator service is starting.");
+                LogComponentVersions();
                 Log.Information($"Service location : {AppDomain.CurrentDomain.BaseDirectory}");
 
                 CreateHostBuilder(args).Build().Run();
@@ -80,5 +82,25 @@ namespace SwtorOptimizer.Calculator
             services.AddTransient<ISwtorOptimizerDatabaseService>(_ => new SwtorOptimizerDatabaseService(BuildConnectionString(hostContext.Configuration.GetValue<string>("DatabaseSettings:ConnectionString"))));
         })
         .UseSerilog();
+
+        private static void LogComponentVersions()
+        {
+            var businessDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SwtorOptimizer.Business.dll");
+            var databaseDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SwtorOptimizer.Database.dll");
+
+            Log.Information($"SWTOR Calculator service version: {System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version}");
+
+            if (File.Exists(businessDllPath))
+            {
+                var fileVersion = FileVersionInfo.GetVersionInfo(businessDllPath);
+                Log.Information($"SWTOR Business component version: {fileVersion.FileVersion}");
+            }
+
+            if (File.Exists(databaseDllPath))
+            {
+                var fileVersion = FileVersionInfo.GetVersionInfo(databaseDllPath);
+                Log.Information($"SWTOR Database component version: {fileVersion.FileVersion}");
+            }
+        }
     }
 }

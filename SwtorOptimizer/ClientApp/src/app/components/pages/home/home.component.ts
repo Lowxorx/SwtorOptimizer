@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   public thresholdData: IThresholdData = { stat: "alacrity", rawThreshold: 389, useAccuracyStim: false, augments: 0 };
 
-  constructor(public enhancementSetsService: EnhancementSetsService, private readonly formBuilder: FormBuilder, private snackBar: MatSnackBar, private router: Router) { }
+  constructor(private enhancementSetsService: EnhancementSetsService, private formBuilder: FormBuilder, private snackBar: MatSnackBar, private router: Router) { }
 
   public ngOnInit() {
     this.createForm();

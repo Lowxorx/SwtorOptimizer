@@ -44,6 +44,7 @@
     <None Remove="ClientApp\src\app\models\IFindCombinationTask.ts" />
     <None Remove="ClientApp\src\app\models\IResultObject.ts" />
     <None Remove="ClientApp\src\app\models\IThresholdData.ts" />
+    <None Remove="ClientApp\src\app\services\app.service.ts" />
     <None Remove="ClientApp\src\app\services\enhancement-sets.service.ts" />
     <None Remove="ClientApp\src\app\services\find-combinations-tasks.service.ts" />
   </ItemGroup>
@@ -63,6 +64,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\IFindCombinationTask.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\IResultObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\IThresholdData.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\app.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\enhancement-sets.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\find-combinations-tasks.service.ts" />
   </ItemGroup>

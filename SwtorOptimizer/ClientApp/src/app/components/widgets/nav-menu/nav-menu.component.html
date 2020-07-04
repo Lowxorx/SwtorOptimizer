@@ -9,18 +9,14 @@
           <a mat-list-item [routerLink]="['/']" class="nav-link-item"> <mat-icon>calculate</mat-icon> Calculer un cap</a>
           <a mat-list-item [routerLink]="['/sets']" class="nav-link-item"> <mat-icon>list_alt</mat-icon> Résultats</a>
           <a mat-list-item [routerLink]="['/tasks']" class="nav-link-item"> <mat-icon>memory</mat-icon> Liste des calculs</a>
+          <a mat-list-item href="https://github.com/Lowxorx/SwtorOptimizer" target="_blank" class="nav-link-item"> <mat-icon svgIcon="github"></mat-icon> Code source</a>
         </mat-nav-list>
 
-        <mat-nav-list color="primary" (click)="toggleMenu()" class="bottom-list">
-          <mat-list-item>
-            <mat-icon mat-list-icon svgIcon="github"></mat-icon>
-            <a mat-line href="https://github.com/Lowxorx/SwtorOptimizer" target="_blank"> Code source</a>
+        <mat-list dense class="bottom-list">
+          <mat-list-item *ngFor="let version of appVersions">
+            <p mat-line>{{ version }}</p>
           </mat-list-item>
-          <mat-list-item>
-            <mat-icon mat-list-icon>info</mat-icon>
-            <p mat-line>v.{{ appVersion }}</p>
-          </mat-list-item>
-        </mat-nav-list>
+        </mat-list>
       </section>
     </div>
   </mat-sidenav>
