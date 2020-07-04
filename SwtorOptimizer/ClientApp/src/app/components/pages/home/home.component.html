@@ -1,5 +1,5 @@
 <div class="container" novalidate>
-  <div class="form">
+  <div class="form-title">
     <h1 class="mat-title">Calculer un set de sophistications</h1>
   </div>
 
@@ -12,6 +12,10 @@
       </mat-radio-group>
     </div>
 
+    <div *ngIf="isAccuracyThreshold()" class="form-element">
+      <mat-checkbox formControlName="useAccuracyStim">Utiliser un stim précision (+ 264) ?</mat-checkbox>
+    </div>
+
     <div class="form-element">
       <mat-form-field>
         <input matInput placeholder="Cap à atteindre" type="number" [min]="minThreshold" [max]="maxThreshold" formControlName="rawThreshold">
@@ -19,10 +23,6 @@
           {{ getError('rawThreshold') }}
         </mat-error>
       </mat-form-field>
-    </div>
-
-    <div *ngIf="isAccuracyThreshold()" class="form-element">
-      <mat-checkbox formControlName="useAccuracyStim">Utiliser un stim précision (+ 264) ?</mat-checkbox>
     </div>
 
     <div class="form-element">
