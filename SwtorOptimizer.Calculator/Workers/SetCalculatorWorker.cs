@@ -45,25 +45,27 @@ namespace SwtorOptimizer.Calculator.Workers
         private void CheckAndStartTasks()
         {
             var tasks = this.context.FindCombinationTaskRepository.All().Where(e => e.EndDate == default && e.Status == FindCombinationTaskStatus.Idle).ToList();
-            if (tasks.Count > 0)
-            {
-                this.logger.LogInformation($"We have a job to do. Let's launch {tasks.Count} job");
-                var enhancements = this.context.EnhancementRepository.All().ToList();
+            if (tasks.Count == 0) return;
 
-                foreach (var task in tasks)
+            this.logger.LogInformation($"We have a job to do. Let's launch {tasks.Count} job");
+            var enhancements = this.context.EnhancementRepository.All().ToList();
+
+            foreach (var task in tasks)
+            {
+                Task.Run(() => this.StartTask(task, enhancements)).ContinueWith((result) =>
                 {
-                    Task.Run(() => this.StartTask(task, enhancements)).ContinueWith((result) =>
+                    if (result.IsFaulted)
                     {
-                        if (result.IsFaulted)
+                        if (result.Exception != null)
                         {
                             this.logger.LogError(result.Exception, $"Task error : {result.Exception.Message}");
                         }
-                        else
-                        {
-                            this.logger.LogInformation("Task completed successfully.");
-                        }
-                    });
-                }
+                    }
+                    else
+                    {
+                        this.logger.LogInformation("Task completed successfully.");
+                    }
+                });
             }
         }
 
@@ -83,7 +85,7 @@ namespace SwtorOptimizer.Calculator.Workers
 
             if (combinations.Count == 0)
             {
-                var newSet = this.context.EnhancementSetRepository.Add(new EnhancementSet { SetName = "Invalid", Threshold = task.Threshold, IsInvalid = true }, true);
+                this.context.EnhancementSetRepository.Add(new EnhancementSet { SetName = "Invalid", Threshold = task.Threshold, IsInvalid = true }, true);
             }
             else
             {
@@ -91,23 +93,16 @@ namespace SwtorOptimizer.Calculator.Workers
 
                 foreach (var combination in combinations)
                 {
-                    var newSetFound = new List<Enhancement>();
-                    foreach (var result in combination.Split(' '))
-                    {
-                        newSetFound.Add(enhancements.First(e => e.Id.Equals(Convert.ToInt32(result))));
-                    }
+                    var newSetFound = combination.Split(' ').Select(result => enhancements.First(e => e.Id.Equals(Convert.ToInt32(result)))).ToList();
 
                     var setName = string.Join(';', newSetFound.OrderBy(e => e.Name).Select(e => e.Name).ToArray());
-                    if (this.context.EnhancementSetRepository.All().FirstOrDefault(es => es.SetName.Equals(setName)) == null)
-                    {
-                        var newSet = this.context.EnhancementSetRepository.Add(new EnhancementSet { SetName = setName, Threshold = task.Threshold, IsInvalid = false }, true);
-                        task.FoundSets++;
 
-                        foreach (var e in newSetFound)
-                        {
-                            enhancementSetEnhancements.Add(new EnhancementSetEnhancement { EnhancementSetId = newSet.Id, EnhancementId = e.Id });
-                        }
-                    }
+                    if (this.context.EnhancementSetRepository.All().FirstOrDefault(es => es.SetName.Equals(setName)) != null) continue;
+
+                    var newSet = this.context.EnhancementSetRepository.Add(new EnhancementSet { SetName = setName, Threshold = task.Threshold, IsInvalid = false }, true);
+                    task.FoundSets++;
+
+                    enhancementSetEnhancements.AddRange(newSetFound.Select(e => new EnhancementSetEnhancement { EnhancementSetId = newSet.Id, EnhancementId = e.Id }));
                 }
                 this.context.FindCombinationTaskRepository.Update(task.Id, task, true);
 

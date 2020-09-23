@@ -21,12 +21,12 @@ namespace SwtorOptimizer.Calculator
         private static readonly Action<IConfigurationBuilder> BuildConfiguration = builder => builder
         .SetBasePath(Directory.GetCurrentDirectory())
         .AddEnvironmentVariables()
-        .AddJsonFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"appsettings.{Environment.GetEnvironmentVariable("APP_ENV")}.json"), false, true);
+        .AddJsonFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory ?? string.Empty, $"appsettings.{Environment.GetEnvironmentVariable("APP_ENV")}.json"), false, true);
 
         public static void Main(string[] args)
         {
             const string loggerTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u4}]<{ThreadId}> [{SourceContext:l}] {Message:lj}{NewLine}{Exception}";
-            var logfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "SwtorOptimizer.Calculator.log");
+            var logfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory ?? string.Empty, "logs", "SwtorOptimizer.Calculator.log");
 
             var builder = new ConfigurationBuilder();
             builder.AddCommandLine(args);
@@ -85,8 +85,8 @@ namespace SwtorOptimizer.Calculator
 
         private static void LogComponentVersions()
         {
-            var businessDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SwtorOptimizer.Business.dll");
-            var databaseDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SwtorOptimizer.Database.dll");
+            var businessDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory ?? string.Empty, "SwtorOptimizer.Business.dll");
+            var databaseDllPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory ?? string.Empty, "SwtorOptimizer.Database.dll");
 
             Log.Information($"SWTOR Calculator service version: {System.Reflection.Assembly.GetEntryAssembly()?.GetName().Version}");
 
@@ -96,11 +96,8 @@ namespace SwtorOptimizer.Calculator
                 Log.Information($"SWTOR Business component version: {fileVersion.FileVersion}");
             }
 
-            if (File.Exists(databaseDllPath))
-            {
-                var fileVersion = FileVersionInfo.GetVersionInfo(databaseDllPath);
-                Log.Information($"SWTOR Database component version: {fileVersion.FileVersion}");
-            }
+            if (!File.Exists(databaseDllPath)) return;
+            Log.Information($"SWTOR Database component version: {FileVersionInfo.GetVersionInfo(databaseDllPath).FileVersion}");
         }
     }
 }
