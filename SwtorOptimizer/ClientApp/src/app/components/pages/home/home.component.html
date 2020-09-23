@@ -4,21 +4,9 @@
   </div>
 
   <form [formGroup]="formGroup" (ngSubmit)="calculateMySets()" class="form">
-
-    <div class="form-element">
-      <mat-radio-group name="statType" aria-label="Type de statistique à calculer" formControlName="stat" class="form-radio">
-        <mat-radio-button value="alacrity">Alacrité</mat-radio-button>
-        <mat-radio-button value="accuracy">Précision</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <div *ngIf="isAccuracyThreshold()" class="form-element">
-      <mat-checkbox formControlName="useAccuracyStim">Utiliser un stim précision (+ 264) ?</mat-checkbox>
-    </div>
-
     <div class="form-element">
       <mat-form-field>
-        <input matInput placeholder="Cap à atteindre" type="number" [min]="minThreshold" [max]="maxThreshold" formControlName="rawThreshold">
+        <input matInput placeholder="Cap à atteindre" type="number" [min]="minThreshold" [max]="maxThreshold" formControlName="rawThreshold" />
         <mat-error *ngIf="!formGroup.controls['rawThreshold'].valid && formGroup.controls['rawThreshold'].touched">
           {{ getError('rawThreshold') }}
         </mat-error>
@@ -27,8 +15,12 @@
 
     <div class="form-element">
       <mat-form-field>
-        <input matInput type="number" min="0" max="13" [placeholder]="isAccuracyThreshold() ? 'Nombre d\'améliorations précision (+ 108)' : 'Nombre d\'améliorations alacrité (+ 108)'" formControlName="augments">
+        <input matInput type="number" min="0" max="13" [placeholder]="'Nombre d\'améliorations (+ 108)'" formControlName="augments" />
       </mat-form-field>
+    </div>
+
+    <div class="form-element">
+      <mat-checkbox formControlName="useAccuracyStim">Stim (+ 264) ?</mat-checkbox>
     </div>
 
     <div class="form-element">
@@ -49,27 +41,24 @@
   <div class="mini-doc">
     <h3>A propos</h3>
     <p>
-      Je suis Lowxorx, un joueur de SWTOR depuis les premiers jours de sa sortie. J'ai commencé sur le serveur RP Battle Meditation, et aujourd'hui je suis sur le serveur français The Leviathan. J'ai toujours apprécié
-      optimiser mes personnages, et pour cela j'ai décidé d'allier mon métier à l'un de mes jeux favoris pour me faciliter la tâche dans mes recherches de l'équipement optimal.
+      Je suis Lowxorx, un joueur de SWTOR depuis les premiers jours de sa sortie. J'ai commencé sur le serveur RP Battle Meditation, et aujourd'hui je suis sur le serveur français The Leviathan. J'ai toujours apprécié optimiser mes personnages, et pour cela j'ai décidé d'allier
+      mon métier à l'un de mes jeux favoris pour me faciliter la tâche dans mes recherches de l'équipement optimal.
     </p>
     <p>
-      SWTOR Optimizer est une application permettant de calculer, en fonction d'un cap de statistique tertiaire à atteindre (alacrité, précision),
-      le meilleur set de sophistications disponnible, cela afin de maximiser la puissance tout en supprimant le surplus de statistique tertaire.
+      SWTOR Optimizer est une application permettant de calculer, en fonction d'un cap de statistique tertiaire à atteindre (alacrité, précision), le meilleur set de sophistications disponnible, cela afin de maximiser la puissance tout en supprimant le surplus de statistique
+      tertaire.
     </p>
     <p>L'application calcule uniquement des sets de sophistications pour les DPS, en se basant sur sophistications <b>Initiative</b> (pour la précision) ou <b>Aisance</b> (pour l'alacrité).</p>
 
     <h3>Comment on s'en sert ?</h3>
-    <p>Pour calculer un cap, vous êtes sur la bonne page ! Entrez les détails  du cap que vous souhaitez atteindre, appuyez sur le bouton <b>Calculer</b> et patientez.</p>
+    <p>Pour calculer un cap, vous êtes sur la bonne page ! Entrez les détails du cap que vous souhaitez atteindre, appuyez sur le bouton <b>Calculer</b> et patientez.</p>
     <p>Pour voir tout les résultats des calculs déjà effectués, rendez-vous dans le menu latéral, et cliquez sur <b>Résultats</b>.</p>
     <p>Pour voir les tâches de calcul en cours ou terminées, rendez-vous dans le menu latéral et cliquez sur <b>Liste des calculs</b>.</p>
     <h3>Comment ça marche ?</h3>
     <p>Si vous êtes un développeur (ou curieux), rendez-vous sur <a href="https://github.com/Lowxorx/SwtorOptimizer" target="_blank">GitHub</a> et jetez un oeil au code !</p>
     <p>Sinon, voici un petit résumé :</p>
     <p>Lorsqu'un utilisateur lance un calcul, l'application vérifie si elle n'a pas déjà calculé les possibilités de set pour le cap demandé. Si c'est le cas, elle redirige le demandeur sur la page des résultats.</p>
-    <p>
-      Si ce n'est pas le cas, elle lance une tâche de calcul qui va être effectuée en arrière plan. Selon le nombre de possibilité
-      (7 sophistications au maximum sur le set, 20 possibilités par emplacement, le nombre de possibilités à tester peut aller jusqu'à 20^7 (1 280 000 000) combinaisons), le calcul peut prendre un moment !
-    </p>
+    <p>Si ce n'est pas le cas, elle lance une tâche de calcul qui va être effectuée en arrière plan. Selon le nombre de possibilité, le calcul peut prendre un moment !</p>
     <p>Une fois la tâche de calcul terminée, les résultats sont disponibles pour tout les utilisateurs.</p>
   </div>
 </div>

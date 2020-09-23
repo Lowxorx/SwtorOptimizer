@@ -1,4 +1,5 @@
-﻿using SwtorOptimizer.Business.Entities;
+﻿using System;
+using SwtorOptimizer.Business.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,17 +18,17 @@ namespace SwtorOptimizer.Calculator.Services
 
         public List<string> Calculate()
         {
-            var tertiaryDataList = this.Enhancements.Select(e => e.Tertiary).ToArray();
-            var mergedDataList = tertiaryDataList;
+            var tertiaryDataList = new List<Enhancement>();
+            tertiaryDataList.AddRange(this.Enhancements);
 
-            for (var i = 1; i < 7; i++)
-            {
-                mergedDataList = mergedDataList.Concat(tertiaryDataList).ToArray();
-            }
+            //for (var i = 1; i < 7; i++)
+            //{
+            //    tertiaryDataList.AddRange(this.Enhancements);
+            //}
 
             var combinations = new List<string>();
 
-            foreach (var s in this.GetCombinations(mergedDataList, this.Threshold, ""))
+            foreach (var s in this.GetCombinations(tertiaryDataList.ToArray(), this.Threshold, string.Empty))
             {
                 combinations.Add(s);
             }
@@ -35,26 +36,30 @@ namespace SwtorOptimizer.Calculator.Services
             return combinations;
         }
 
-        private IEnumerable<string> GetCombinations(int[] set, int sum, string values)
+        private IEnumerable<string> GetCombinations(Enhancement[] enhancements, int threshold, string values)
         {
-            for (var i = 0; i < set.Length; i++)
+            for (int i = 0; i < enhancements.Length; i++)
             {
-                var left = sum - set[i];
-                var vals = set[i] + " " + values;
+                int left = threshold - enhancements[i].Tertiary;
+                if (left < 0)
+                {
+                    break;
+                }
+                string vals = enhancements[i].Id + " " + values;
                 if (left == 0)
                 {
                     yield return vals.Trim();
                 }
                 else
                 {
-                    var possible = set.Take(i).Where(n => n <= sum).ToArray();
-                    if (possible.Length > 0)
+                    //var possible = enhancements.Take(i).Where(n => n.Tertiary <= threshold).ToArray();
+                    //     if (possible.Length > 0)
+                    //     {
+                    foreach (string s in GetCombinations(enhancements, left, vals))
                     {
-                        foreach (var s in this.GetCombinations(set, left, vals))
-                        {
-                            yield return s.Trim();
-                        }
+                        yield return s.Trim();
                     }
+                    // }
                 }
             }
         }

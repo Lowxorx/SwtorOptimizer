@@ -14,13 +14,13 @@ export class HomeComponent implements OnInit {
   public formGroup: FormGroup;
 
   public minThreshold = 389;
-  public maxThreshold = 3017 + (13 * 108);
+  public maxThreshold = 3017 + 13 * 108;
 
   public isCalculating = false;
 
-  public thresholdData: IThresholdData = { stat: "alacrity", rawThreshold: 389, useAccuracyStim: false, augments: 0 };
+  public thresholdData: IThresholdData = { rawThreshold: 389, useAccuracyStim: false, augments: 0 };
 
-  constructor(private enhancementSetsService: EnhancementSetsService, private formBuilder: FormBuilder, private snackBar: MatSnackBar, private router: Router) { }
+  constructor(private enhancementSetsService: EnhancementSetsService, private formBuilder: FormBuilder, private snackBar: MatSnackBar, private router: Router) {}
 
   public ngOnInit() {
     this.createForm();
@@ -29,15 +29,15 @@ export class HomeComponent implements OnInit {
   public calculateMySets(): void {
     this.isCalculating = true;
     const realThreshold = this.getRealThreshold();
-    this.enhancementSetsService.getNewEnhancementSet(realThreshold).subscribe(e => {
+    this.enhancementSetsService.getNewEnhancementSet(realThreshold).subscribe((e) => {
       switch (e.statusCode) {
         case 200:
-          this.snackBar.open("Le résultat pour ce cap a déjà été calculé, redirection vers les résultats dans 3 secondes...", null, { duration: 3000 });
-          this.router.navigate(['/task', realThreshold])
+          this.snackBar.open('Le résultat pour ce cap a déjà été calculé, redirection vers les résultats dans 3 secondes...', null, { duration: 3000 });
+          this.router.navigate(['/task', realThreshold]);
           break;
         case 202:
           this.snackBar.open("Le résultat pour ce cap n'a pas encore été calculé. Une tâche a été créée, redirection vers les détails...", null, { duration: 5000 });
-          this.router.navigate(['/task', realThreshold])
+          this.router.navigate(['/task', realThreshold]);
           break;
         default:
       }
@@ -50,18 +50,16 @@ export class HomeComponent implements OnInit {
   }
 
   public getError(formControlName: string): string {
-    return this.formGroup.get(formControlName).hasError('required') ? 'Ce champ est obligatoire.' :
-      this.formGroup.get(formControlName).hasError('min') || this.formGroup.get(formControlName).hasError('max') ? `La valeur doit être comprise entre ${this.minThreshold} et ${this.maxThreshold}` :
-        'Le formulaire est invalide.';
-  }
-
-  public isAccuracyThreshold(): boolean {
-    return this.formGroup.get('stat').value === 'accuracy';
+    return this.formGroup.get(formControlName).hasError('required')
+      ? 'Ce champ est obligatoire.'
+      : this.formGroup.get(formControlName).hasError('min') || this.formGroup.get(formControlName).hasError('max')
+      ? `La valeur doit être comprise entre ${this.minThreshold} et ${this.maxThreshold}`
+      : 'Le formulaire est invalide.';
   }
 
   public displayRealThreshold(): string {
     const thresholdDataForm = this.formGroup.value as IThresholdData;
-    return `Cap réel à atteindre : ${this.getRealThreshold()} ${thresholdDataForm.stat === "accuracy" ? 'précision' : 'alacrité'}`;
+    return `Cap réel à atteindre : ${this.getRealThreshold()}`;
   }
 
   public getFormError(): string {
@@ -78,7 +76,7 @@ export class HomeComponent implements OnInit {
 
     let realThreshold = thresholdDataForm.rawThreshold;
 
-    if (thresholdDataForm.stat === "accuracy" && thresholdDataForm.useAccuracyStim) {
+    if (thresholdDataForm.useAccuracyStim) {
       realThreshold -= 264;
     }
 
@@ -90,10 +88,9 @@ export class HomeComponent implements OnInit {
 
   private createForm() {
     this.formGroup = this.formBuilder.group({
-      'stat': [this.thresholdData.stat, [Validators.required]],
-      'rawThreshold': [this.thresholdData.rawThreshold, [Validators.required, Validators.min(this.minThreshold), Validators.max(this.maxThreshold)]],
-      'useAccuracyStim': [this.thresholdData.useAccuracyStim],
-      'augments': [this.thresholdData.augments, [Validators.required, Validators.min(0), Validators.max(13)]]
+      rawThreshold: [this.thresholdData.rawThreshold, [Validators.required, Validators.min(this.minThreshold), Validators.max(this.maxThreshold)]],
+      useAccuracyStim: [this.thresholdData.useAccuracyStim],
+      augments: [this.thresholdData.augments, [Validators.required, Validators.min(0), Validators.max(13)]],
     });
   }
 }

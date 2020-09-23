@@ -94,7 +94,7 @@ namespace SwtorOptimizer.Calculator.Workers
                     var newSetFound = new List<Enhancement>();
                     foreach (var result in combination.Split(' '))
                     {
-                        newSetFound.Add(enhancements.First(e => e.Tertiary.Equals(Convert.ToInt32(result))));
+                        newSetFound.Add(enhancements.First(e => e.Id.Equals(Convert.ToInt32(result))));
                     }
 
                     var setName = string.Join(';', newSetFound.OrderBy(e => e.Name).Select(e => e.Name).ToArray());
