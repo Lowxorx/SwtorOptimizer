@@ -46,19 +46,11 @@ namespace SwtorOptimizer.Database.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Enhancement>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-            });
-            modelBuilder.Entity<EnhancementSet>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-            });
+            modelBuilder.Entity<Enhancement>(entity => entity.HasKey(e => e.Id));
 
-            modelBuilder.Entity<FindCombinationTask>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-            });
+            modelBuilder.Entity<EnhancementSet>(entity => entity.HasKey(e => e.Id));
+
+            modelBuilder.Entity<FindCombinationTask>(entity => entity.HasKey(e => e.Id));
 
             modelBuilder.Entity<EnhancementSetEnhancement>().HasKey(e => e.Id);
 

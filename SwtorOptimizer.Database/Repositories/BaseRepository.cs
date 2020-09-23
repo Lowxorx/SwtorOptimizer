@@ -7,49 +7,49 @@ namespace SwtorOptimizer.Database.Repositories
 {
     internal class BaseRespository<T> : IRepository<T> where T : class
     {
-        protected readonly SwtorOptimizerContext DbContext;
+        private readonly SwtorOptimizerContext dbContext;
 
-        internal BaseRespository(SwtorOptimizerContext dbContext) => this.DbContext = dbContext;
+        internal BaseRespository(SwtorOptimizerContext dbContext) => this.dbContext = dbContext;
 
         public virtual T Add(T entity, bool saveChanges)
         {
-            this.DbContext.Set<T>().Add(entity);
-            if (saveChanges) this.DbContext.SaveChanges();
+            this.dbContext.Set<T>().Add(entity);
+            if (saveChanges) this.dbContext.SaveChanges();
             return entity;
         }
 
         public async Task<T> AddAsync(T entity, bool saveChanges)
         {
-            await this.DbContext.Set<T>().AddAsync(entity);
-            if (saveChanges) await this.DbContext.SaveChangesAsync();
+            await this.dbContext.Set<T>().AddAsync(entity);
+            if (saveChanges) await this.dbContext.SaveChangesAsync();
             return entity;
         }
 
         public virtual IQueryable<T> All()
         {
-            return this.DbContext.Set<T>();
+            return this.dbContext.Set<T>();
         }
 
         public void Delete(object id)
         {
-            var existing = this.DbContext.Set<T>().Find(id);
-            this.DbContext.Set<T>().Remove(existing);
-            this.DbContext.SaveChanges();
+            var existing = this.dbContext.Set<T>().Find(id);
+            this.dbContext.Set<T>().Remove(existing);
+            this.dbContext.SaveChanges();
         }
 
         public virtual T Exists(object id)
         {
-            return this.DbContext.Set<T>().Find(id);
+            return this.dbContext.Set<T>().Find(id);
         }
 
         public virtual T Get(object id)
         {
-            return this.DbContext.Set<T>().Find(id);
+            return this.dbContext.Set<T>().Find(id);
         }
 
         public virtual void SaveChanges()
         {
-            this.DbContext.SaveChanges();
+            this.dbContext.SaveChanges();
         }
 
         public virtual T Update(object id, T entity, bool saveChanges)
@@ -63,9 +63,9 @@ namespace SwtorOptimizer.Database.Repositories
 
             if (existing == null) return null;
 
-            this.DbContext.Entry(existing).CurrentValues.SetValues(entity);
+            this.dbContext.Entry(existing).CurrentValues.SetValues(entity);
 
-            if (saveChanges) this.DbContext.SaveChanges();
+            if (saveChanges) this.dbContext.SaveChanges();
 
             return existing;
         }
@@ -77,9 +77,9 @@ namespace SwtorOptimizer.Database.Repositories
                 return null;
             }
 
-            this.DbContext.Entry(entity).CurrentValues.SetValues(entity);
+            this.dbContext.Entry(entity).CurrentValues.SetValues(entity);
 
-            this.DbContext.SaveChanges();
+            this.dbContext.SaveChanges();
 
             return entity;
         }
