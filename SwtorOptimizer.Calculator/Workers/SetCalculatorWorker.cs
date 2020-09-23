@@ -79,10 +79,6 @@ namespace SwtorOptimizer.Calculator.Workers
             var calculator = new SetCalculatorService(task.Threshold, enhancements);
             var combinations = calculator.Calculate();
 
-            task.Status = FindCombinationTaskStatus.Ended;
-            task.EndDate = DateTime.Now;
-            this.context.FindCombinationTaskRepository.Update(task.Id, task, true);
-
             if (combinations.Count == 0)
             {
                 this.context.EnhancementSetRepository.Add(new EnhancementSet { SetName = "Invalid", Threshold = task.Threshold, IsInvalid = true }, true);
@@ -112,6 +108,10 @@ namespace SwtorOptimizer.Calculator.Workers
                 }
                 this.context.EnhancementSetEnhancementRepository.SaveChanges();
             }
+
+            task.Status = FindCombinationTaskStatus.Ended;
+            task.EndDate = DateTime.Now;
+            this.context.FindCombinationTaskRepository.Update(task.Id, task, true);
         }
     }
 }
