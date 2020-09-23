@@ -18,15 +18,16 @@ namespace SwtorOptimizer.Calculator.Services
         public List<string> Calculate()
         {
             var tertiaryDataList = this.Enhancements.Select(e => e.Tertiary).ToArray();
+            var mergedDataList = tertiaryDataList;
 
             for (var i = 1; i < 7; i++)
             {
-                tertiaryDataList.Concat(this.Enhancements.Select(e => e.Tertiary).ToArray());
+                mergedDataList = mergedDataList.Concat(tertiaryDataList).ToArray();
             }
 
             var combinations = new List<string>();
 
-            foreach (string s in GetCombinations(tertiaryDataList, this.Threshold, ""))
+            foreach (var s in this.GetCombinations(mergedDataList, this.Threshold, ""))
             {
                 combinations.Add(s);
             }
@@ -36,20 +37,20 @@ namespace SwtorOptimizer.Calculator.Services
 
         private IEnumerable<string> GetCombinations(int[] set, int sum, string values)
         {
-            for (int i = 0; i < set.Length; i++)
+            for (var i = 0; i < set.Length; i++)
             {
-                int left = sum - set[i];
-                string vals = set[i] + " " + values;
+                var left = sum - set[i];
+                var vals = set[i] + " " + values;
                 if (left == 0)
                 {
                     yield return vals.Trim();
                 }
                 else
                 {
-                    int[] possible = set.Take(i).Where(n => n <= sum).ToArray();
+                    var possible = set.Take(i).Where(n => n <= sum).ToArray();
                     if (possible.Length > 0)
                     {
-                        foreach (string s in GetCombinations(set, left, vals))
+                        foreach (var s in this.GetCombinations(set, left, vals))
                         {
                             yield return s.Trim();
                         }

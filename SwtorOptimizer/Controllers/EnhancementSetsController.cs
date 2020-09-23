@@ -9,7 +9,7 @@ using SwtorOptimizer.Business.Entities;
 using SwtorOptimizer.Models;
 using SwtorOptimizer.Models.Convertors;
 
-namespace SwtorOptimizer.API.Controllers
+namespace SwtorOptimizer.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -28,7 +28,7 @@ namespace SwtorOptimizer.API.Controllers
         public async Task<IActionResult> GetEnhancementSets()
         {
             var enhancementSets = await this.context.EnhancementSetRepository.All().Include(e => e.EnhancementSetEnhancements).ThenInclude(e => e.Enhancement).ToListAsync();
-            return Ok(enhancementSets.Select(e => EnhancementSetDtoConvertor.FromEntityToDto(e, e.EnhancementSetEnhancements.Select(e => e.Enhancement).ToList())).ToList());
+            return this.Ok(enhancementSets.Select(e => EnhancementSetDtoConvertor.FromEntityToDto(e, e.EnhancementSetEnhancements.Select(e => e.Enhancement).ToList())).ToList());
         }
 
         [HttpGet]
@@ -50,7 +50,7 @@ namespace SwtorOptimizer.API.Controllers
         {
             if (!this.context.EnhancementSetRepository.All().Any(e => e.Threshold == threshold))
             {
-                var newTask = await this.context.FindCombinationTaskRepository.AddAsync(new FindCombinationTask { Threshold = threshold, IsRunning = false, IsFaulted = false, IsEnded = false, IsStarted = false, FoundSets = 0 }, true);
+                await this.context.FindCombinationTaskRepository.AddAsync(new FindCombinationTask { Threshold = threshold, Status = FindCombinationTaskStatus.Idle, FoundSets = 0 }, true);
                 return this.Accepted(new ResultObject<string> { StatusCode = StatusCodes.Status202Accepted, Message = "Une tâche a été crée." });
             }
             return this.Ok(new ResultObject<string> { StatusCode = StatusCodes.Status200OK, Message = "Le calcul a déjà été effectué." });

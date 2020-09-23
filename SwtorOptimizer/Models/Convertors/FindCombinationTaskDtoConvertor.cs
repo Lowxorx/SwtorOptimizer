@@ -13,10 +13,7 @@ namespace SwtorOptimizer.Models.Convertors
             {
                 Id = dto.Id,
                 EndDate = dto.EndDate,
-                IsFaulted = dto.IsFaulted,
-                IsRunning = dto.IsRunning,
-                IsStarted = dto.IsStarted,
-                IsEnded = dto.IsEnded,
+                Status = (FindCombinationTaskStatus)dto.Status,
                 StartDate = dto.StartDate,
                 Threshold = dto.Threshold,
                 FoundSets = dto.FoundSets
@@ -29,10 +26,7 @@ namespace SwtorOptimizer.Models.Convertors
             {
                 Id = entity.Id,
                 EndDate = entity.EndDate,
-                IsFaulted = entity.IsFaulted,
-                IsRunning = entity.IsRunning,
-                IsStarted = entity.IsStarted,
-                IsEnded = entity.IsEnded,
+                Status = (int)entity.Status,
                 StartDate = entity.StartDate,
                 Threshold = entity.Threshold,
                 FoundSets = entity.FoundSets,

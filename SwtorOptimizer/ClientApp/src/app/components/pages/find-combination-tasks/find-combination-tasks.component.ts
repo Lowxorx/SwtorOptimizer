@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { IFindCombinationTask } from '../../../models/IFindCombinationTask';
 import { FindCombinationsTasksService } from '../../../services/find-combinations-tasks.service';
 import { Router } from '@angular/router';
+import { FindCombinationTaskStatus } from 'src/app/models/FindCombinationTaskStatus';
 
 @Component({
   selector: 'app-find-combination-tasks',
@@ -20,13 +21,13 @@ export class FindCombinationTasksComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true })
   public sort: MatSort;
-  @ViewChild(MatPaginator, { static: false})
+  @ViewChild(MatPaginator, { static: false })
   public paginator: MatPaginator;
 
-  constructor(private readonly service: FindCombinationsTasksService, public snackBar: MatSnackBar, private router: Router) { }
+  constructor(private service: FindCombinationsTasksService, public snackBar: MatSnackBar, private router: Router) {}
 
   public ngOnInit() {
-    this.dataSourceSubscription = this.service.getAllTasks().subscribe(tasks => {
+    this.dataSourceSubscription = this.service.getAllTasks().subscribe((tasks) => {
       this.dataSource = new MatTableDataSource(tasks);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -43,39 +44,42 @@ export class FindCombinationTasksComponent implements OnInit {
   }
 
   public getTaskStatus(task: IFindCombinationTask): string {
-    if (task.isFaulted) {
-      return "Erreur";
+    const status = task.status as FindCombinationTaskStatus;
+    switch (status) {
+      case FindCombinationTaskStatus.Idle:
+        return 'En attente de lancement';
+      case FindCombinationTaskStatus.Ended:
+        return 'Terminée';
+      case FindCombinationTaskStatus.Started:
+        return 'Calcul en cours';
+      case FindCombinationTaskStatus.Faulted:
+        return 'Erreur';
+      default:
+        return 'Statut inconnu';
     }
-
-    if (!task.isStarted) {
-      return "En attente de lancement";
-    }
-
-    if (task.isEnded) {
-      return "Terminée";
-    }
-
-    if (task.isRunning) {
-      return "Calcul en cours";
-    }
-
-    return "Terminée";
   }
 
   public getTaskDuration(task: IFindCombinationTask): string {
     const startDate = new Date(task.startDate);
-    const endDate = task.isRunning ? new Date() : new Date(task.endDate);
+    const endDate =
+      (task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Started ||
+      (task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Idle
+        ? new Date()
+        : new Date(task.endDate);
     const duration = endDate.valueOf() - startDate.valueOf();
+    const seconds = (duration / 1000).toFixed(1);
+    const minutes = (duration / (1000 * 60)).toFixed(1);
+    const hours = (duration / (1000 * 60 * 60)).toFixed(1);
 
-    if (duration < 60000) {
+    if (Number(seconds) < 60) {
       return "Moins d'une minute";
+    } else if (Number(minutes) < 60) {
+      return minutes + ' minutes';
+    } else if (Number(minutes) > 120 && Number(hours) < 12) {
+      return hours + ' heures';
+    } else {
+      return "Plus d'une journée !";
     }
-
-    if (duration > 60000 && duration < 3600000) {
-      return `${Math.round(duration / 60000)}  minutes`
-    }
-
-    return "Plus d'une heure";
   }
 
   public showSets(task: IFindCombinationTask): void {

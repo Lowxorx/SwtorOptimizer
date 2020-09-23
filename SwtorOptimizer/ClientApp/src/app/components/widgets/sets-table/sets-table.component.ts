@@ -3,6 +3,8 @@ import { IEnhancementSet } from '../../../models/IEnhancementSet';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EnhancementSetsService } from '../../../services/enhancement-sets.service';
+import { MatDialog } from '@angular/material';
+import { SetDetailsDialogComponent } from '../../dialogs/set-details-dialog/set-details-dialog.component';
 
 @Component({
   selector: 'app-sets-table',
@@ -10,7 +12,7 @@ import { EnhancementSetsService } from '../../../services/enhancement-sets.servi
   styleUrls: ['./sets-table.component.scss'],
 })
 export class SetsTableComponent implements OnInit {
-  public displayedColumns: string[] = ['threshold', 'setName', 'power'];
+  public displayedColumns: string[] = ['threshold', 'setName', 'power', 'details'];
   public dataSource: MatTableDataSource<IEnhancementSet> = new MatTableDataSource();
 
   @Input()
@@ -19,18 +21,22 @@ export class SetsTableComponent implements OnInit {
   @ViewChild(MatSort, { static: true })
   public sort: MatSort;
 
-  constructor(private service: EnhancementSetsService) { }
+  constructor(private service: EnhancementSetsService, private dialog: MatDialog) {}
 
   public ngOnInit() {
     if (this.threshold != null) {
-      this.service.getEnhancementSetsForThreshold(this.threshold).subscribe(e => {
+      this.service.getEnhancementSetsForThreshold(this.threshold).subscribe((e) => {
         this.initDataSource(e);
       });
     } else {
-      this.service.getEnhancementSets().subscribe(e => {
+      this.service.getEnhancementSets().subscribe((e) => {
         this.initDataSource(e);
       });
     }
+  }
+
+  public showSetDetails(element: IEnhancementSet): void {
+    this.dialog.open(SetDetailsDialogComponent, { data: element });
   }
 
   private initDataSource(enhancementSets: IEnhancementSet[]): void {

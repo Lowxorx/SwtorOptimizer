@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SwtorOptimizer.Models.Dto
+﻿namespace SwtorOptimizer.Models.Dto
 {
     public class EnhancementDto
     {
+        public string AccuracyName { get; set; }
+        public string AlacrityName { get; set; }
+        public string CriticalName { get; set; }
         public int Endurance { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }

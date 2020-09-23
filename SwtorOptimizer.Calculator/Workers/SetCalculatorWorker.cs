@@ -34,17 +34,17 @@ namespace SwtorOptimizer.Calculator.Workers
 
         protected async override Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            logger.LogInformation("Starting SetCalculatorWorker service...");
+            this.logger.LogInformation("Starting SetCalculatorWorker service...");
             while (!cancellationToken.IsCancellationRequested)
             {
-                await Task.Run(() => this.CheckAndStartTasks());
+                await Task.Run(this.CheckAndStartTasks, cancellationToken);
                 await Task.Delay(TimeSpan.FromSeconds(this.settings.Value.TaskInterval), cancellationToken);
             }
         }
 
         private void CheckAndStartTasks()
         {
-            var tasks = this.context.FindCombinationTaskRepository.All().Where(e => e.EndDate == default && !e.IsEnded && !e.IsStarted).ToList();
+            var tasks = this.context.FindCombinationTaskRepository.All().Where(e => e.EndDate == default && e.Status == FindCombinationTaskStatus.Idle).ToList();
             if (tasks.Count > 0)
             {
                 this.logger.LogInformation($"We have a job to do. Let's launch {tasks.Count} job");
@@ -52,7 +52,7 @@ namespace SwtorOptimizer.Calculator.Workers
 
                 foreach (var task in tasks)
                 {
-                    Task.Run(() => StartTask(task, enhancements)).ContinueWith((result) =>
+                    Task.Run(() => this.StartTask(task, enhancements)).ContinueWith((result) =>
                     {
                         if (result.IsFaulted)
                         {
@@ -69,8 +69,7 @@ namespace SwtorOptimizer.Calculator.Workers
 
         private void StartTask(FindCombinationTask task, List<Enhancement> enhancements)
         {
-            task.IsStarted = true;
-            task.IsRunning = true;
+            task.Status = FindCombinationTaskStatus.Started;
             task.StartDate = DateTime.Now;
             task.FoundSets = 0;
             this.context.FindCombinationTaskRepository.Update(task.Id, task, true);
@@ -78,8 +77,7 @@ namespace SwtorOptimizer.Calculator.Workers
             var calculator = new SetCalculatorService(task.Threshold, enhancements);
             var combinations = calculator.Calculate();
 
-            task.IsRunning = false;
-            task.IsEnded = true;
+            task.Status = FindCombinationTaskStatus.Ended;
             task.EndDate = DateTime.Now;
             this.context.FindCombinationTaskRepository.Update(task.Id, task, true);
 

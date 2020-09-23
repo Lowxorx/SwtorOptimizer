@@ -13,7 +13,10 @@ namespace SwtorOptimizer.Models.Convertors
                 Name = dto.Name,
                 Endurance = dto.Endurance,
                 Power = dto.Power,
-                Tertiary = dto.Tertiary
+                Tertiary = dto.Tertiary,
+                CriticalName = dto.CriticalName,
+                AccuracyName = dto.AccuracyName,
+                AlacrityName = dto.AlacrityName
             };
         }
 
@@ -25,7 +28,10 @@ namespace SwtorOptimizer.Models.Convertors
                 Name = entity.Name,
                 Endurance = entity.Endurance,
                 Power = entity.Power,
-                Tertiary = entity.Tertiary
+                Tertiary = entity.Tertiary,
+                CriticalName = entity.CriticalName,
+                AccuracyName = entity.AccuracyName,
+                AlacrityName = entity.AlacrityName
             };
         }
     }

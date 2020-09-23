@@ -4,4 +4,7 @@ export interface IEnhancement {
   name: string;
   power: number;
   tertiary: number;
+  accuracyName: string;
+  alacrityName: string;
+  criticalName: string;
 }

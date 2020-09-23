@@ -1,12 +1,12 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SwtorOptimizer.Business.Database;
-using System;
-using System.Threading.Tasks;
 
-namespace SwtorOptimizer.API.Controllers
+namespace SwtorOptimizer.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

@@ -26,6 +26,7 @@ namespace SwtorOptimizer.Models.Convertors
                 SetName = entity.SetName,
                 Threshold = entity.Threshold,
                 Power = enhancements?.Count > 0 ? enhancements.Sum(e => e.Power) : 0,
+                Endurance = enhancements?.Count > 0 ? enhancements.Sum(e => e.Endurance) : 0,
                 IsInvalid = entity.IsInvalid,
                 Enhancements = enhancements?.Count > 0 ? enhancements.Select(EnhancementDtoConvertor.FromEntityToDto).ToList() : null
             };

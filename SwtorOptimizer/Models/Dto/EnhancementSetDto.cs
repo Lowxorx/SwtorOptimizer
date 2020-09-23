@@ -4,6 +4,7 @@ namespace SwtorOptimizer.Models.Dto
 {
     public class EnhancementSetDto
     {
+        public int Endurance { get; set; }
         public List<EnhancementDto> Enhancements { get; set; }
         public int Id { get; set; }
         public bool IsInvalid { get; set; }

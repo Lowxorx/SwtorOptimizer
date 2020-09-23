@@ -11,4 +11,4 @@ export const routes: Routes = [{ path: '', component: EnhancementSetsComponent }
   imports: [RouterModule.forChild(routes), CommonModule, SetsTableModule],
   exports: [EnhancementSetsComponent],
 })
-export class EnhancementSetsModule { }
+export class EnhancementSetsModule {}

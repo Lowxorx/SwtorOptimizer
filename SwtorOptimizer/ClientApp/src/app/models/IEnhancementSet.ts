@@ -6,6 +6,7 @@ export interface IEnhancementSet {
   setName: string;
   threshold: number;
   power: number;
+  endurance: number;
   enhancements: IEnhancement[];
   isInvalid: boolean;
   findCombinationTaskId: number;

@@ -5,7 +5,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SwtorOptimizer.API.Controllers
+namespace SwtorOptimizer.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -14,7 +14,7 @@ namespace SwtorOptimizer.API.Controllers
         [HttpGet]
         public IActionResult GetComponentsVersion()
         {
-            return Ok(LogComponentVersions());
+            return this.Ok(this.LogComponentVersions());
         }
 
         private List<string> LogComponentVersions()

@@ -9,7 +9,7 @@ using SwtorOptimizer.Business.Database;
 using SwtorOptimizer.Models.Convertors;
 using SwtorOptimizer.Models.Dto;
 
-namespace SwtorOptimizer.API.Controllers
+namespace SwtorOptimizer.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -34,7 +34,7 @@ namespace SwtorOptimizer.API.Controllers
                 var sets = await this.context.EnhancementSetRepository.All().Where(e => e.Threshold == task.Threshold).ToListAsync();
                 tasksDto.Add(FindCombinationTaskDtoConvertor.FromEntityToDto(task, sets));
             }
-            return Ok(tasksDto);
+            return this.Ok(tasksDto);
         }
 
         [HttpGet]
@@ -46,7 +46,7 @@ namespace SwtorOptimizer.API.Controllers
             {
                 return this.Ok(FindCombinationTaskDtoConvertor.FromEntityToDto(task, null));
             }
-            return NoContent();
+            return this.NoContent();
         }
 
         [HttpGet]

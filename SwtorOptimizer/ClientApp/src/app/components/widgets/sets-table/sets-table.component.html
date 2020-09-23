@@ -1,12 +1,11 @@
 <ng-container>
   <mat-form-field class="filter">
     <mat-label>Filtre</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Filtrer par cap, sophistication, niveau de puissance...">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filtrer par cap, sophistication, niveau de puissance..." />
   </mat-form-field>
 
   <div class="mat-elevation-z8 table-container">
     <mat-table [dataSource]="dataSource" matSort matSortActive="power" matSortDisableClear matSortDirection="desc">
-
       <ng-container matColumnDef="threshold" sticky>
         <mat-header-cell *matHeaderCellDef mat-sort-header> Cap </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.threshold }} </mat-cell>
@@ -22,9 +21,17 @@
         <mat-cell *matCellDef="let element"> {{ element.power }} </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="details">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Détails </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button aria-label="Voir les détails" (click)="showSetDetails(element)">
+            <mat-icon>launch</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
   </div>
-
 </ng-container>

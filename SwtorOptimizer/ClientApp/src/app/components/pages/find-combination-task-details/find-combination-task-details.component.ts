@@ -4,6 +4,7 @@ import { IFindCombinationTask } from '../../../models/IFindCombinationTask';
 import { FindCombinationsTasksService } from '../../../services/find-combinations-tasks.service';
 import { Subscription, interval } from 'rxjs';
 import { IFindCombinationTaskFront } from '../../../models/IFindCombinationTaskFront';
+import { FindCombinationTaskStatus } from '../../../models/FindCombinationTaskStatus';
 
 @Component({
   selector: 'app-find-combination-task-details',
@@ -23,10 +24,10 @@ export class FindCombinationTaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
-    this.service.getTaskForThreshold(this.threshold).subscribe(response => {
+    this.service.getTaskForThreshold(this.threshold).subscribe((response) => {
       if (response.status === 200) {
-        this.task = { ...response.body, duration: this.getDuration(response.body), status: this.getTaskStatus(response.body) };
-        if (!this.task.isEnded) {
+        this.task = { ...response.body, duration: this.getDuration(response.body), statusDisplayName: this.getTaskStatus(response.body) };
+        if (this.task.status !== FindCombinationTaskStatus.Ended) {
           this.startTimer();
         }
       }
@@ -49,28 +50,43 @@ export class FindCombinationTaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   public getTaskStatus(task: IFindCombinationTask): string {
-    if (!task.isStarted) {
-      return "En attente de lancement";
+    const status = task.status as FindCombinationTaskStatus;
+    switch (status) {
+      case FindCombinationTaskStatus.Idle:
+        return 'En attente de lancement';
+      case FindCombinationTaskStatus.Ended:
+        return 'Terminée';
+      case FindCombinationTaskStatus.Started:
+        return 'Calcul en cours';
+      case FindCombinationTaskStatus.Faulted:
+        return 'Erreur';
+      default:
+        return 'Statut inconnu';
     }
+  }
 
-    if (task.isEnded) {
-      return "Terminée";
-    }
+  public taskIsStarted(): boolean {
+    const status = this.task.status as FindCombinationTaskStatus;
+    return status === FindCombinationTaskStatus.Started;
+  }
 
-    if (task.isFaulted) {
-      return "Erreur";
-    }
+  public taskIsEnded(): boolean {
+    const status = this.task.status as FindCombinationTaskStatus;
+    return status === FindCombinationTaskStatus.Ended;
+  }
 
-    if (task.isRunning) {
-      return "Calcul en cours";
-    }
-
-    return "Terminée";
+  public taskIsFaulted(): boolean {
+    const status = this.task.status as FindCombinationTaskStatus;
+    return status === FindCombinationTaskStatus.Faulted;
   }
 
   public getDuration(task: IFindCombinationTask): string {
     const startDate = new Date(task.startDate);
-    const endDate = task.isRunning ? new Date() : new Date(task.endDate);
+    const endDate =
+      (task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Started ||
+      (task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Idle
+        ? new Date()
+        : new Date(task.endDate);
     const duration = endDate.valueOf() - startDate.valueOf();
     const seconds = (duration / 1000).toFixed(1);
     const minutes = (duration / (1000 * 60)).toFixed(1);
@@ -79,21 +95,24 @@ export class FindCombinationTaskDetailsComponent implements OnInit, OnDestroy {
     if (Number(seconds) < 60) {
       return "Moins d'une minute";
     } else if (Number(minutes) < 60) {
-      return minutes + " minutes";
+      return minutes + ' minutes';
     } else if (Number(minutes) > 120 && Number(hours) < 12) {
-      return hours + " heures";
+      return hours + ' heures';
     } else {
-      return "Plus d'une journée !"
+      return "Plus d'une journée !";
     }
   }
 
   private startTimer(): void {
-    if (this.task.isRunning || !this.task.isStarted) {
+    if ((this.task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Started) {
       this.timerSub = interval(10000).subscribe(() => {
         this.ngZone.run(() => {
           this.refreshTaskStatus();
         });
-        if (this.task.isEnded || this.task.isFaulted) {
+        if (
+          (this.task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Ended ||
+          (this.task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Faulted
+        ) {
           this.timerSub.unsubscribe();
         }
       });
@@ -101,10 +120,10 @@ export class FindCombinationTaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   private refreshTaskStatus() {
-    this.service.getTaskById(this.task.id).subscribe(response => {
+    this.service.getTaskById(this.task.id).subscribe((response) => {
       if (response.status === 200) {
         this.ngZone.run(() => {
-          this.task = { ...response.body, duration: this.getDuration(response.body), status: this.getTaskStatus(response.body) };
+          this.task = { ...response.body, duration: this.getDuration(response.body), statusDisplayName: this.getTaskStatus(response.body) };
         });
       }
     });

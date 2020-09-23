@@ -1,0 +1,17 @@
+.set-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-button {
+    display: flex;
+    justify-content: flex-end !important;
+    margin-top: 16px;
+  }
+}
