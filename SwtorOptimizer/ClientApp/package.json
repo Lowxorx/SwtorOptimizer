@@ -3,7 +3,7 @@
   "version": "1.3.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "echo Starting... && ng serve",
     "build": "ng build",
     "build:ssr": "ng run SwtorOptimizer:server:dev",
     "test": "ng test",
