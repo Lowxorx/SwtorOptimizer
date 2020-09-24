@@ -1,0 +1,37 @@
+version: '2'
+# Don't forget to set the SA_PASSWORD environment variable
+services:
+  swtoroptimizerdb:
+    image: 'mcr.microsoft.com/mssql/server:2019-latest'
+    container_name: swtoroptimizerdb
+    environment:
+      SA_PASSWORD: ${SA_PASSWORD}
+      ACCEPT_EULA: 'Y'
+    volumes:
+      - swtoroptimizer_dbdata:/var/opt/mssql
+    ports:
+      - '1433:1433'
+  swtoroptimizer:
+    image: 'lowxorx/swtoroptimizer'
+    container_name: swtoroptimizer
+    environment:
+      DB_PASSWORD: ${SA_PASSWORD}
+      DB_SERVER: 'swtoroptimizerdb'
+      DB_NAME: 'SwtorOptimizer'
+      DB_USER: 'sa'
+      APP_URL: 'https://swtoroptimizer.lahan.fr'
+    ports:
+      - '5000:80'
+    depends_on:
+      - swtoroptimizerdb
+  swtorcalculator:
+    image: 'lowxorx/swtorcalculator'
+    container_name: swtorcalculator
+    environment:
+      APP_ENV: 'Production'
+      DB_PASSWORD: ${SA_PASSWORD}
+      DB_SERVER: 'swtoroptimizerdb'
+      DB_NAME: 'SwtorOptimizer'
+      DB_USER: 'sa'
+    depends_on:
+      - swtoroptimizerdb
