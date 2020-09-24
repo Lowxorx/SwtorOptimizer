@@ -56,6 +56,11 @@ namespace SwtorOptimizer.Calculator.Workers
                 {
                     if (result.IsFaulted)
                     {
+                        task.Status = FindCombinationTaskStatus.Faulted;
+                        task.EndDate = DateTime.Now;
+                        task.FoundSets = 0;
+                        this.context.FindCombinationTaskRepository.Update(task.Id, task, true);
+
                         if (result.Exception != null)
                         {
                             this.logger.LogError(result.Exception, $"Task error : {result.Exception.Message}");

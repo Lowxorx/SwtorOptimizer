@@ -58,7 +58,6 @@ export class HomeComponent implements OnInit {
   }
 
   public displayRealThreshold(): string {
-    const thresholdDataForm = this.formGroup.value as IThresholdData;
     return `Cap réel à atteindre : ${this.getRealThreshold()}`;
   }
 

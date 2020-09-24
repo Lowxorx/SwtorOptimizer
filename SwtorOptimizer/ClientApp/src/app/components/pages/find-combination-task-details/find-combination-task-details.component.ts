@@ -82,11 +82,7 @@ export class FindCombinationTaskDetailsComponent implements OnInit, OnDestroy {
 
   public getDuration(task: IFindCombinationTask): string {
     const startDate = new Date(task.startDate);
-    const endDate =
-      (task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Started ||
-      (task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Idle
-        ? new Date()
-        : new Date(task.endDate);
+    const endDate = (task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Started || (task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Idle ? new Date() : new Date(task.endDate);
     const duration = endDate.valueOf() - startDate.valueOf();
     const seconds = (duration / 1000).toFixed(1);
     const minutes = (duration / (1000 * 60)).toFixed(1);
@@ -104,15 +100,12 @@ export class FindCombinationTaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   private startTimer(): void {
-    if ((this.task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Started) {
+    if (this.task.status === FindCombinationTaskStatus.Started || this.task.status === FindCombinationTaskStatus.Idle) {
       this.timerSub = interval(10000).subscribe(() => {
         this.ngZone.run(() => {
           this.refreshTaskStatus();
         });
-        if (
-          (this.task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Ended ||
-          (this.task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Faulted
-        ) {
+        if (this.task.status === FindCombinationTaskStatus.Ended || this.task.status === FindCombinationTaskStatus.Faulted) {
           this.timerSub.unsubscribe();
         }
       });
