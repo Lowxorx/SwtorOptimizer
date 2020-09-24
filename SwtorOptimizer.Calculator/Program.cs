@@ -39,7 +39,7 @@ namespace SwtorOptimizer.Calculator
                 .Enrich.WithThreadName()
                 .Enrich.WithExceptionDetails()
                 .WriteTo.Console(outputTemplate: loggerTemplate, theme: AnsiConsoleTheme.Literate)
-                .WriteTo.File(logfile, outputTemplate: loggerTemplate, rollingInterval: RollingInterval.Day, retainedFileCountLimit: 90, encoding: Encoding.UTF8)
+                .WriteTo.File(logfile, outputTemplate: loggerTemplate, rollingInterval: RollingInterval.Day, retainedFileCountLimit: 10, encoding: Encoding.UTF8)
                 .CreateLogger();
 
             try

@@ -55,7 +55,11 @@ namespace SwtorOptimizer.Calculator.Workers
                 this.logger.LogError(e, $"Task error : {e.Message}");
             }
 
-            if (tasks.Count == 0) return;
+            if (tasks.Count == 0)
+            {
+                this.logger.LogInformation($"No task found. Standby for {this.settings.Value.TaskInterval} seconds... ");
+                return;
+            }
 
             this.logger.LogInformation($"We have a job to do. Let's launch {tasks.Count} job");
             var enhancements = this.context.EnhancementRepository.All().ToList();
