@@ -30,7 +30,7 @@ namespace SwtorOptimizer.Calculator.Services
                 var left = threshold - enhancement.Tertiary;
                 if (left < 0)
                 {
-                    break;
+                    continue;
                 }
                 var vals = enhancement.Id + " " + values;
                 if (left == 0)

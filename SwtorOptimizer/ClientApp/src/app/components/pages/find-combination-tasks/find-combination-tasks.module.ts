@@ -17,4 +17,4 @@ export const routes: Routes = [{ path: '', component: FindCombinationTasksCompon
   imports: [RouterModule.forChild(routes), CommonModule, MatTableModule, MatSortModule, MatButtonModule, MatInputModule, MatSnackBarModule, MatFormFieldModule, MatIconModule],
   exports: [FindCombinationTasksComponent],
 })
-export class FindCombinationTasksModule { }
+export class FindCombinationTasksModule {}

@@ -3,17 +3,23 @@ import { IEnhancementSet } from '../../../models/IEnhancementSet';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EnhancementSetsService } from '../../../services/enhancement-sets.service';
-import { MatDialog } from '@angular/material';
-import { SetDetailsDialogComponent } from '../../dialogs/set-details-dialog/set-details-dialog.component';
+import { MatButtonToggleChange, MatDialog } from '@angular/material';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { IStat } from 'src/app/models/IStat';
+import { IEnhancement } from 'src/app/models/IEnhancement';
 
 @Component({
   selector: 'app-sets-table',
   templateUrl: './sets-table.component.html',
   styleUrls: ['./sets-table.component.scss'],
+  animations: [trigger('detailExpand', [state('collapsed', style({ height: '0px', minHeight: '0' })), state('expanded', style({ height: '*' })), transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))])],
 })
 export class SetsTableComponent implements OnInit {
-  public displayedColumns: string[] = ['threshold', 'setName', 'power', 'details'];
+  public displayedColumns: string[] = ['threshold', 'setName', 'power', 'endurance'];
   public dataSource: MatTableDataSource<IEnhancementSet> = new MatTableDataSource();
+  public expandedElement: IEnhancementSet | null;
+  public stats: IStat[];
+  public currentStat: IStat;
 
   @Input()
   public threshold: number;
@@ -24,6 +30,13 @@ export class SetsTableComponent implements OnInit {
   constructor(private service: EnhancementSetsService, private dialog: MatDialog) {}
 
   public ngOnInit() {
+    this.stats = [
+      { displayName: 'Précision', name: 'accuracy' },
+      { displayName: 'Alacrité', name: 'alacrity' },
+      { displayName: 'Critique', name: 'critical' },
+    ];
+    this.currentStat = this.stats[0];
+
     if (this.threshold != null) {
       this.service.getEnhancementSetsForThreshold(this.threshold).subscribe((e) => {
         this.initDataSource(e);
@@ -35,21 +48,39 @@ export class SetsTableComponent implements OnInit {
     }
   }
 
-  public showSetDetails(element: IEnhancementSet): void {
-    this.dialog.open(SetDetailsDialogComponent, { data: element });
+  public onStatChange(event: MatButtonToggleChange): void {
+    this.currentStat = this.stats.filter((s) => s.name === event.value)[0];
+  }
+
+  public isChecked(stat: IStat): boolean {
+    return stat.name === this.currentStat.name;
+  }
+
+  public getEnhancementDetails(set: IEnhancementSet): string {
+    let result = '';
+
+    set.enhancements.forEach((e) => {
+      result += `Supérieure 80 ${e.name} ${this.getEnhancementNameToDisplay(e)} | `;
+    });
+
+    return result.slice(0, result.length - 2);
+  }
+
+  public getEnhancementNameToDisplay(enhancement: IEnhancement): string {
+    switch (this.currentStat.name) {
+      case 'accuracy':
+        return enhancement.accuracyName;
+      case 'alacrity':
+        return enhancement.alacrityName;
+      case 'critical':
+        return enhancement.criticalName;
+      default:
+        return 'Erreur !';
+    }
   }
 
   private initDataSource(enhancementSets: IEnhancementSet[]): void {
     this.dataSource = new MatTableDataSource(enhancementSets);
     this.dataSource.sort = this.sort;
-  }
-
-  public applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 }

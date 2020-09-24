@@ -1,11 +1,20 @@
 <ng-container>
-  <mat-form-field class="filter">
-    <mat-label>Filtre</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Filtrer par cap, sophistication, niveau de puissance..." />
-  </mat-form-field>
+  <mat-card class="stats-display">
+    <mat-card-content>
+      <div class="stat-selector">
+        <mat-button-toggle-group *ngIf="stats" name="stat" (change)="onStatChange($event)">
+          <mat-button-toggle *ngFor="let stat of stats" [value]="stat.name" [checked]="isChecked(stat.name)"> {{ stat.displayName }}</mat-button-toggle>
+        </mat-button-toggle-group>
+        <div class="helper-text">
+          <mat-icon mat-list-icon>chevron_left</mat-icon>
+          <p>Sélectionnez la statistique que vous souhaitez afficher dans les détails, puis cliquez sur une ligne pour avoir plus de détails sur le set !</p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
   <div class="mat-elevation-z8 table-container">
-    <mat-table [dataSource]="dataSource" matSort matSortActive="power" matSortDisableClear matSortDirection="desc">
+    <mat-table [dataSource]="dataSource" matSort matSortActive="power" matSortDisableClear multiTemplateDataRows matSortDirection="desc">
       <ng-container matColumnDef="threshold" sticky>
         <mat-header-cell *matHeaderCellDef mat-sort-header> Cap </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.threshold }} </mat-cell>
@@ -21,17 +30,25 @@
         <mat-cell *matCellDef="let element"> {{ element.power }} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="details">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Détails </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <button mat-icon-button aria-label="Voir les détails" (click)="showSetDetails(element)">
-            <mat-icon>launch</mat-icon>
-          </button>
+      <ng-container matColumnDef="endurance">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Endurance </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.endurance }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length + 1">
+          <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div>
+              <h4>Détails :</h4>
+              <p>{{ getEnhancementDetails(element) }}</p>
+            </div>
+          </div>
         </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      <mat-row *matRowDef="let element; columns: displayedColumns" class="element-row" [class.expanded-row]="expandedElement === element" (click)="expandedElement = expandedElement === element ? null : element"></mat-row>
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']" [ngClass]="expandedElement != null && expandedElement === row ? 'expanded-row' : 'detail-row'"></mat-row>
     </mat-table>
   </div>
 </ng-container>
