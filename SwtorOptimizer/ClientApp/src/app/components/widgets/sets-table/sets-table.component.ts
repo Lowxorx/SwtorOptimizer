@@ -3,7 +3,7 @@ import { IEnhancementSet } from '../../../models/IEnhancementSet';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EnhancementSetsService } from '../../../services/enhancement-sets.service';
-import { MatButtonToggleChange } from '@angular/material';
+import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { IStat } from 'src/app/models/IStat';
 import { IEnhancement } from 'src/app/models/IEnhancement';
 
