@@ -21,7 +21,7 @@ export class FindCombinationTasksComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true })
   public sort: MatSort;
-  @ViewChild(MatPaginator, { static: false })
+  @ViewChild(MatPaginator)
   public paginator: MatPaginator;
 
   constructor(private service: FindCombinationsTasksService, public snackBar: MatSnackBar, private router: Router) {}
