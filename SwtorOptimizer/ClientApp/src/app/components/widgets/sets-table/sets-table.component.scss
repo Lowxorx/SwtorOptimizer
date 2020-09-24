@@ -2,40 +2,13 @@
   text-align: center;
 }
 
-.stats-display {
+.set-display {
   margin-bottom: 16px;
 }
 
 .table-container {
   max-height: 1000px;
   overflow: auto;
-}
-
-.element-detail {
-  overflow: hidden;
-  display: flex;
-}
-
-mat-row.element-row:not(.expanded-row):hover {
-  background: #777;
-}
-
-mat-row.element-row:not(.expanded-row):active {
-  background: #efefef;
-}
-
-.element-row {
-  border-bottom-width: 0;
-}
-
-mat-row.detail-row {
-  height: 0;
-  min-height: 0;
-}
-
-mat-row.expanded-row {
-  height: 68px;
-  min-height: 68px;
 }
 
 .stat-selector {

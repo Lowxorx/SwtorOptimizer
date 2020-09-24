@@ -3,8 +3,7 @@ import { IEnhancementSet } from '../../../models/IEnhancementSet';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EnhancementSetsService } from '../../../services/enhancement-sets.service';
-import { MatButtonToggleChange, MatDialog } from '@angular/material';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatButtonToggleChange } from '@angular/material';
 import { IStat } from 'src/app/models/IStat';
 import { IEnhancement } from 'src/app/models/IEnhancement';
 
@@ -12,14 +11,13 @@ import { IEnhancement } from 'src/app/models/IEnhancement';
   selector: 'app-sets-table',
   templateUrl: './sets-table.component.html',
   styleUrls: ['./sets-table.component.scss'],
-  animations: [trigger('detailExpand', [state('collapsed', style({ height: '0px', minHeight: '0' })), state('expanded', style({ height: '*' })), transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))])],
 })
 export class SetsTableComponent implements OnInit {
-  public displayedColumns: string[] = ['threshold', 'setName', 'power', 'endurance'];
+  public displayedColumns: string[] = ['threshold', 'setName', 'power', 'endurance', 'details'];
   public dataSource: MatTableDataSource<IEnhancementSet> = new MatTableDataSource();
-  public expandedElement: IEnhancementSet | null;
   public stats: IStat[];
   public currentStat: IStat;
+  public selectedSet: IEnhancementSet | null;
 
   @Input()
   public threshold: number;
@@ -27,7 +25,7 @@ export class SetsTableComponent implements OnInit {
   @ViewChild(MatSort, { static: true })
   public sort: MatSort;
 
-  constructor(private service: EnhancementSetsService, private dialog: MatDialog) {}
+  constructor(private service: EnhancementSetsService) {}
 
   public ngOnInit() {
     this.stats = [
@@ -77,6 +75,10 @@ export class SetsTableComponent implements OnInit {
       default:
         return 'Erreur !';
     }
+  }
+
+  public showSetDetails(enhancementSet: IEnhancementSet): void {
+    this.selectedSet = enhancementSet;
   }
 
   private initDataSource(enhancementSets: IEnhancementSet[]): void {

@@ -3,7 +3,6 @@
     <h1 class="mat-title">Détails de la tâche de calcul du cap {{ task.threshold }}</h1>
     <h4>Statut de la tâche : {{ task.statusDisplayName }}</h4>
     <h4 *ngIf="taskIsStarted()">Date de démarrage du calcul : {{ task.startDate | date: 'dd/MM/yyyy' }}</h4>
-    <h4 *ngIf="taskIsEnded()">Date de fin du calcul : {{ task.endDate | date: 'dd/MM/yyyy' }}</h4>
     <h4 *ngIf="taskIsEnded()">Durée d'exécution : {{ task.duration }}</h4>
     <h4 *ngIf="taskIsEnded()">Nombre de combinaisons trouvées : {{ task.foundSets }}</h4>
   </div>

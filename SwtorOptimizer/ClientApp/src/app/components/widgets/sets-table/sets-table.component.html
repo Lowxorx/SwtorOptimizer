@@ -1,5 +1,5 @@
 <ng-container>
-  <mat-card class="stats-display">
+  <mat-card class="set-display" *ngIf="selectedSet">
     <mat-card-content>
       <div class="stat-selector">
         <mat-button-toggle-group *ngIf="stats" name="stat" (change)="onStatChange($event)">
@@ -7,9 +7,25 @@
         </mat-button-toggle-group>
         <div class="helper-text">
           <mat-icon mat-list-icon>chevron_left</mat-icon>
-          <p>Sélectionnez la statistique que vous souhaitez afficher dans les détails, puis cliquez sur une ligne pour avoir plus de détails sur le set !</p>
+          <p>Choisissez la statistique que vous souhaitez afficher dans les détails</p>
         </div>
       </div>
+      <mat-list>
+        <mat-list-item>
+          <h4 mat-line>Endurance : {{ selectedSet.endurance }} | {{ currentStat.displayName }} : {{ selectedSet.threshold }} | Puissance : {{ selectedSet.power }}</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <h4 mat-line>Détails des sophistications utilisées</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item *ngFor="let enhancement of selectedSet.enhancements">
+          <mat-icon mat-list-icon>chevron_right</mat-icon>
+          <h4 mat-line>
+            Supérieure 80 <strong>{{ enhancement.name }}</strong> {{ getEnhancementNameToDisplay(enhancement) }}
+          </h4>
+        </mat-list-item>
+      </mat-list>
     </mat-card-content>
   </mat-card>
 
@@ -35,20 +51,17 @@
         <mat-cell *matCellDef="let element"> {{ element.endurance }} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="expandedDetail">
-        <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length + 1">
-          <div class="element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-            <div>
-              <h4>Détails :</h4>
-              <p>{{ getEnhancementDetails(element) }}</p>
-            </div>
-          </div>
+      <ng-container matColumnDef="details">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Détails </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-icon-button aria-label="Voir les détails" (click)="showSetDetails(element)">
+            <mat-icon>launch</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-      <mat-row *matRowDef="let element; columns: displayedColumns" class="element-row" [class.expanded-row]="expandedElement === element" (click)="expandedElement = expandedElement === element ? null : element"></mat-row>
-      <mat-row *matRowDef="let row; columns: ['expandedDetail']" [ngClass]="expandedElement != null && expandedElement === row ? 'expanded-row' : 'detail-row'"></mat-row>
+      <mat-row *matRowDef="let element; columns: displayedColumns"></mat-row>
     </mat-table>
   </div>
 </ng-container>

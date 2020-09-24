@@ -6,11 +6,11 @@ import { SetsTableComponent } from './sets-table.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule, MatCardModule, MatDialogModule } from '@angular/material';
+import { MatButtonToggleModule, MatCardModule, MatDialogModule, MatListModule } from '@angular/material';
 
 @NgModule({
   declarations: [SetsTableComponent],
-  imports: [CommonModule, MatTableModule, MatSortModule, MatInputModule, MatIconModule, MatButtonModule, MatDialogModule, MatButtonToggleModule, MatCardModule],
+  imports: [CommonModule, MatTableModule, MatSortModule, MatInputModule, MatIconModule, MatButtonModule, MatDialogModule, MatButtonToggleModule, MatCardModule, MatListModule],
   exports: [SetsTableComponent],
 })
 export class SetsTableModule {}
