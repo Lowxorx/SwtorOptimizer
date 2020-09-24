@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/core';
 import { IEnhancementSet } from '../../../models/IEnhancementSet';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -6,13 +6,14 @@ import { EnhancementSetsService } from '../../../services/enhancement-sets.servi
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { IStat } from 'src/app/models/IStat';
 import { IEnhancement } from 'src/app/models/IEnhancement';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-sets-table',
   templateUrl: './sets-table.component.html',
   styleUrls: ['./sets-table.component.scss'],
 })
-export class SetsTableComponent implements OnInit {
+export class SetsTableComponent implements OnInit, AfterViewInit {
   public displayedColumns: string[] = ['threshold', 'setName', 'power', 'endurance', 'details'];
   public dataSource: MatTableDataSource<IEnhancementSet> = new MatTableDataSource();
   public stats: IStat[];
@@ -24,6 +25,8 @@ export class SetsTableComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true })
   public sort: MatSort;
+  @ViewChild(MatPaginator)
+  paginator: MatPaginator;
 
   constructor(private service: EnhancementSetsService) {}
 
@@ -45,6 +48,8 @@ export class SetsTableComponent implements OnInit {
       });
     }
   }
+
+  public ngAfterViewInit() {}
 
   public onStatChange(event: MatButtonToggleChange): void {
     this.currentStat = this.stats.filter((s) => s.name === event.value)[0];
@@ -84,5 +89,6 @@ export class SetsTableComponent implements OnInit {
   private initDataSource(enhancementSets: IEnhancementSet[]): void {
     this.dataSource = new MatTableDataSource(enhancementSets);
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }

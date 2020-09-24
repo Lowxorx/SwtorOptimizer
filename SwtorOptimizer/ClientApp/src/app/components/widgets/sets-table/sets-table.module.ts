@@ -10,10 +10,11 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [SetsTableComponent],
-  imports: [CommonModule, MatTableModule, MatSortModule, MatInputModule, MatIconModule, MatButtonModule, MatDialogModule, MatButtonToggleModule, MatCardModule, MatListModule],
+  imports: [CommonModule, MatTableModule, MatSortModule, MatInputModule, MatIconModule, MatButtonModule, MatDialogModule, MatButtonToggleModule, MatCardModule, MatListModule, MatPaginatorModule],
   exports: [SetsTableComponent],
 })
 export class SetsTableModule {}

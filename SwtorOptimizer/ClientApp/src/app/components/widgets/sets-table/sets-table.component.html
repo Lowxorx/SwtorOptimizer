@@ -12,7 +12,7 @@
       </div>
       <mat-list>
         <mat-list-item>
-          <h4 mat-line>Endurance : {{ selectedSet.endurance }} | {{ currentStat.displayName }} : {{ selectedSet.threshold }} | Puissance : {{ selectedSet.power }}</h4>
+          <h4 mat-line>Endurance : {{ selectedSet.endurance }} | Puissance : {{ selectedSet.power }} | {{ currentStat.displayName }} : {{ selectedSet.threshold }}</h4>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item>
@@ -55,7 +55,7 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> Détails </mat-header-cell>
         <mat-cell *matCellDef="let element">
           <button mat-icon-button aria-label="Voir les détails" (click)="showSetDetails(element)">
-            <mat-icon>launch</mat-icon>
+            <mat-icon>zoom_in</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
@@ -63,5 +63,7 @@
       <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
       <mat-row *matRowDef="let element; columns: displayedColumns"></mat-row>
     </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>
   </div>
 </ng-container>
