@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SwtorOptimizer.Business.Database;
-using SwtorOptimizer.Calculator.Workers;
 using SwtorOptimizer.Database.Database;
 using System;
 using System.IO;
@@ -13,6 +12,7 @@ using System.Text;
 using SwtorOptimizer.Business.Settings;
 using SwtorOptimizer.Calculator.Settings;
 using System.Diagnostics;
+using SwtorOptimizer.Calculator.Services;
 
 namespace SwtorOptimizer.Calculator
 {
@@ -65,7 +65,6 @@ namespace SwtorOptimizer.Calculator
 
         private static string BuildConnectionString(string connectionString)
         {
-            Log.Information("Building connection string");
             connectionString = connectionString.Replace("#DBPASSWORD#", Environment.GetEnvironmentVariable("DB_PASSWORD"));
             connectionString = connectionString.Replace("#DBSERVER#", Environment.GetEnvironmentVariable("DB_SERVER"));
             connectionString = connectionString.Replace("#DBNAME#", Environment.GetEnvironmentVariable("DB_NAME"));
@@ -77,7 +76,8 @@ namespace SwtorOptimizer.Calculator
         .ConfigureHostConfiguration(BuildConfiguration)
         .ConfigureServices((hostContext, services) =>
         {
-            services.AddHostedService<SetCalculatorWorker>();
+            services.AddHostedService<TaskMonitorHostedService>();
+            services.AddScoped<ISetCalculatorProcessingService, SetCalculatorProcessingService>();
             services.Configure<DatabaseSettings>(hostContext.Configuration.GetSection(nameof(DatabaseSettings)));
             services.Configure<CalculatorSettings>(hostContext.Configuration.GetSection(nameof(CalculatorSettings)));
             services.AddTransient<ISwtorOptimizerDatabaseService>(_ => new SwtorOptimizerDatabaseService(BuildConnectionString(hostContext.Configuration.GetValue<string>("DatabaseSettings:ConnectionString"))));

@@ -4,7 +4,7 @@
     <h4>Statut de la tâche : {{ task.statusDisplayName }}</h4>
     <h4 *ngIf="taskIsStarted()">Date de démarrage du calcul : {{ task.startDate | date: 'dd/MM/yyyy' }}</h4>
     <h4 *ngIf="taskIsEnded()">Durée d'exécution : {{ task.duration }}</h4>
-    <h4 *ngIf="taskIsStarted()">Nombre de combinaisons trouvées : {{ task.foundSets }}</h4>
+    <h4 *ngIf="taskIsStarted() || taskIsEnded()">Nombre de combinaisons trouvées : {{ task.foundSets }}</h4>
   </div>
   <button *ngIf="task && taskIsEnded() && task.foundSets > 0" mat-raised-button color="primary" (click)="toggleDetails()">
     {{ isDetailsVisible ? 'Masquer les détails' : 'Afficher les détails' }}

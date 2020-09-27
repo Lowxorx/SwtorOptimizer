@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,7 +11,7 @@ import { IStat } from 'src/app/models/IStat';
   templateUrl: './set-details.component.html',
   styleUrls: ['./set-details.component.scss'],
 })
-export class SetDetailsComponent implements OnInit {
+export class SetDetailsComponent implements OnInit, OnChanges {
   public dataSource: MatTableDataSource<IEnhancement> = new MatTableDataSource();
   public displayedColumns: string[] = ['name', 'power', 'endurance', 'tertiary'];
   @Input() public selectedSet: IEnhancementSet;
@@ -31,6 +31,10 @@ export class SetDetailsComponent implements OnInit {
     ];
     this.currentStat = this.stats[0];
 
+    this.initDataSource();
+  }
+
+  public ngOnChanges(changes: SimpleChanges) {
     this.initDataSource();
   }
 
