@@ -1,11 +1,8 @@
-import { Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { IEnhancementSet } from '../../../models/IEnhancementSet';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EnhancementSetsService } from '../../../services/enhancement-sets.service';
-import { MatButtonToggleChange } from '@angular/material/button-toggle';
-import { IStat } from 'src/app/models/IStat';
-import { IEnhancement } from 'src/app/models/IEnhancement';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
@@ -13,11 +10,9 @@ import { MatPaginator } from '@angular/material/paginator';
   templateUrl: './sets-table.component.html',
   styleUrls: ['./sets-table.component.scss'],
 })
-export class SetsTableComponent implements OnInit, AfterViewInit {
+export class SetsTableComponent implements OnInit {
   public displayedColumns: string[] = ['threshold', 'setName', 'power', 'endurance', 'details'];
   public dataSource: MatTableDataSource<IEnhancementSet> = new MatTableDataSource();
-  public stats: IStat[];
-  public currentStat: IStat;
   public selectedSet: IEnhancementSet | null;
 
   @Input()
@@ -25,19 +20,17 @@ export class SetsTableComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort, { static: true })
   public sort: MatSort;
+
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
   constructor(private service: EnhancementSetsService) {}
 
-  public ngOnInit() {
-    this.stats = [
-      { displayName: 'Précision', name: 'accuracy' },
-      { displayName: 'Alacrité', name: 'alacrity' },
-      { displayName: 'Critique', name: 'critical' },
-    ];
-    this.currentStat = this.stats[0];
+  public ngOnInit(): void {
+    this.getData();
+  }
 
+  private getData(): void {
     if (this.threshold != null) {
       this.service.getEnhancementSetsForThreshold(this.threshold).subscribe((e) => {
         this.initDataSource(e);
@@ -46,39 +39,6 @@ export class SetsTableComponent implements OnInit, AfterViewInit {
       this.service.getEnhancementSets().subscribe((e) => {
         this.initDataSource(e);
       });
-    }
-  }
-
-  public ngAfterViewInit() {}
-
-  public onStatChange(event: MatButtonToggleChange): void {
-    this.currentStat = this.stats.filter((s) => s.name === event.value)[0];
-  }
-
-  public isChecked(stat: IStat): boolean {
-    return stat.name === this.currentStat.name;
-  }
-
-  public getEnhancementDetails(set: IEnhancementSet): string {
-    let result = '';
-
-    set.enhancements.forEach((e) => {
-      result += `Supérieure 80 ${e.name} ${this.getEnhancementNameToDisplay(e)} | `;
-    });
-
-    return result.slice(0, result.length - 2);
-  }
-
-  public getEnhancementNameToDisplay(enhancement: IEnhancement): string {
-    switch (this.currentStat.name) {
-      case 'accuracy':
-        return enhancement.accuracyName;
-      case 'alacrity':
-        return enhancement.alacrityName;
-      case 'critical':
-        return enhancement.criticalName;
-      default:
-        return 'Erreur !';
     }
   }
 

@@ -1,36 +1,8 @@
 <ng-container>
-  <mat-card class="set-display" *ngIf="selectedSet">
-    <mat-card-content>
-      <div class="stat-selector">
-        <mat-button-toggle-group *ngIf="stats" name="stat" (change)="onStatChange($event)">
-          <mat-button-toggle *ngFor="let stat of stats" [value]="stat.name" [checked]="isChecked(stat.name)"> {{ stat.displayName }}</mat-button-toggle>
-        </mat-button-toggle-group>
-        <div class="helper-text">
-          <mat-icon mat-list-icon>chevron_left</mat-icon>
-          <p>Choisissez la statistique que vous souhaitez afficher dans les détails</p>
-        </div>
-      </div>
-      <mat-list>
-        <mat-list-item>
-          <h4 mat-line>Endurance : {{ selectedSet.endurance }} | Puissance : {{ selectedSet.power }} | {{ currentStat.displayName }} : {{ selectedSet.threshold }}</h4>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <h4 mat-line>Détails des sophistications utilisées</h4>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item *ngFor="let enhancement of selectedSet.enhancements">
-          <mat-icon mat-list-icon>chevron_right</mat-icon>
-          <h4 mat-line>
-            Supérieure 80 <strong>{{ enhancement.name }}</strong> {{ getEnhancementNameToDisplay(enhancement) }}
-          </h4>
-        </mat-list-item>
-      </mat-list>
-    </mat-card-content>
-  </mat-card>
+  <app-set-details *ngIf="selectedSet" [selectedSet]="selectedSet"></app-set-details>
 
   <div class="mat-elevation-z8 table-container">
-    <mat-table [dataSource]="dataSource" matSort matSortActive="power" matSortDisableClear multiTemplateDataRows matSortDirection="desc">
+    <mat-table [dataSource]="dataSource" matSort matSortActive="power" matSortDisableClear matSortDirection="desc">
       <ng-container matColumnDef="threshold" sticky>
         <mat-header-cell *matHeaderCellDef mat-sort-header> Cap </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.threshold }} </mat-cell>

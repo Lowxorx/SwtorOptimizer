@@ -49,7 +49,8 @@ namespace SwtorOptimizer.Calculator
                 LogComponentVersions();
                 Log.Information($"Service location : {AppDomain.CurrentDomain.BaseDirectory}");
 
-                CreateHostBuilder(args).Build().Run();
+                var host = CreateHostBuilder(args).Build();
+                host.Run();
             }
             catch (Exception ex)
             {

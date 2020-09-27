@@ -1,0 +1,55 @@
+<ng-container>
+  <mat-card class="set-display">
+    <mat-card-content>
+      <div class="stat-selector">
+        <mat-button-toggle-group *ngIf="stats" name="stat" (change)="onStatChange($event)">
+          <mat-button-toggle *ngFor="let stat of stats" [value]="stat.name" [checked]="isChecked(stat.name)"> {{ stat.displayName }}</mat-button-toggle>
+        </mat-button-toggle-group>
+        <div class="helper-text">
+          <mat-icon mat-list-icon>chevron_left</mat-icon>
+          <p>Choisissez la statistique que vous souhaitez afficher dans les détails</p>
+        </div>
+      </div>
+      <mat-list>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <h4 mat-line>Détails des sophistications utilisées</h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list>
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8 details-table" matSort matSortDisableClear matSortActive="power" matSortDirection="desc">
+        <!-- Enhancement name -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ getEnhancementNameToDisplay(element) }} </mat-cell>
+          <mat-footer-cell *matFooterCellDef> <strong>Total</strong> </mat-footer-cell>
+        </ng-container>
+
+        <!-- Enhancement Tertiary -->
+        <ng-container matColumnDef="tertiary">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ currentStat.displayName }} </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.tertiary }} </mat-cell>
+          <mat-footer-cell *matFooterCellDef> {{ selectedSet.threshold }} </mat-footer-cell>
+        </ng-container>
+
+        <!-- Enhancement Endurance -->
+        <ng-container matColumnDef="endurance">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Endurance </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.endurance }} </mat-cell>
+          <mat-footer-cell *matFooterCellDef> {{ selectedSet.endurance }} </mat-footer-cell>
+        </ng-container>
+
+        <!-- Enhancement Power -->
+        <ng-container matColumnDef="power">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Puissance </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ element.power }} </mat-cell>
+          <mat-footer-cell *matFooterCellDef> {{ selectedSet.power }} </mat-footer-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+</ng-container>

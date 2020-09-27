@@ -4,18 +4,18 @@
     <h4>Statut de la tâche : {{ task.statusDisplayName }}</h4>
     <h4 *ngIf="taskIsStarted()">Date de démarrage du calcul : {{ task.startDate | date: 'dd/MM/yyyy' }}</h4>
     <h4 *ngIf="taskIsEnded()">Durée d'exécution : {{ task.duration }}</h4>
-    <h4 *ngIf="taskIsEnded()">Nombre de combinaisons trouvées : {{ task.foundSets }}</h4>
+    <h4 *ngIf="taskIsStarted()">Nombre de combinaisons trouvées : {{ task.foundSets }}</h4>
   </div>
   <button *ngIf="task && taskIsEnded() && task.foundSets > 0" mat-raised-button color="primary" (click)="toggleDetails()">
     {{ isDetailsVisible ? 'Masquer les détails' : 'Afficher les détails' }}
   </button>
-  <div *ngIf="task && !taskIsEnded()" class="centered">
+  <div *ngIf="task && !taskIsEnded() && !taskIsFaulted()" class="centered">
     <h3>Le calcul est toujours en cours. Selon le nombre de possibilités, cela peut prendre un moment. Merci de patienter.</h3>
     <mat-progress-spinner mode="indeterminate" color="primary"> </mat-progress-spinner>
   </div>
 </div>
 
-<div *ngIf="threshold !== undefined && task && taskIsEnded() && task.foundSets > 0">
+<div *ngIf="threshold !== undefined && task && task.foundSets > 0">
   <app-sets-table [threshold]="threshold"></app-sets-table>
 </div>
 

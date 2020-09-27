@@ -52,6 +52,11 @@ namespace SwtorOptimizer.Database.Repositories
             this.dbContext.SaveChanges();
         }
 
+        public virtual async Task SaveChangesAsync()
+        {
+            await this.dbContext.SaveChangesAsync();
+        }
+
         public virtual T Update(object id, T entity, bool saveChanges)
         {
             if (entity == null)
@@ -82,6 +87,24 @@ namespace SwtorOptimizer.Database.Repositories
             this.dbContext.SaveChanges();
 
             return entity;
+        }
+
+        public virtual async Task<T> UpdateAsync(object id, T entity, bool saveChanges)
+        {
+            if (entity == null)
+            {
+                return null;
+            }
+
+            var existing = this.Exists(id);
+
+            if (existing == null) return null;
+
+            this.dbContext.Entry(existing).CurrentValues.SetValues(entity);
+
+            if (saveChanges) await this.dbContext.SaveChangesAsync();
+
+            return existing;
         }
     }
 }

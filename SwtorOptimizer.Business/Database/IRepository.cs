@@ -19,8 +19,12 @@ namespace SwtorOptimizer.Business.Database
 
         void SaveChanges();
 
+        Task SaveChangesAsync();
+
         T Update(object id, T entity, bool saveChanges);
 
         T Update(T entity);
+
+        Task<T> UpdateAsync(object id, T entity, bool saveChanges);
     }
 }

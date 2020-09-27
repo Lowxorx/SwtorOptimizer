@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SwtorOptimizer.Business.Database;
 using SwtorOptimizer.Business.Entities;
-using SwtorOptimizer.Calculator.Services;
 using SwtorOptimizer.Calculator.Settings;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using System.Linq;
 using System.Threading;
 
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SwtorOptimizer.Calculator.Workers
 {
@@ -32,7 +32,7 @@ namespace SwtorOptimizer.Calculator.Workers
             return Task.CompletedTask;
         }
 
-        protected async override Task ExecuteAsync(CancellationToken cancellationToken)
+        protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
             this.logger.LogInformation("Starting SetCalculatorWorker service...");
             while (!cancellationToken.IsCancellationRequested)
@@ -42,13 +42,13 @@ namespace SwtorOptimizer.Calculator.Workers
             }
         }
 
-        private void CheckAndStartTasks()
+        private async void CheckAndStartTasks()
         {
             var tasks = new List<FindCombinationTask>();
 
             try
             {
-                tasks = this.context.FindCombinationTaskRepository.All().Where(e => e.EndDate == default && e.Status == FindCombinationTaskStatus.Idle).ToList();
+                tasks = await this.context.FindCombinationTaskRepository.All().Where(e => e.EndDate == default && e.Status == FindCombinationTaskStatus.Idle).ToListAsync();
             }
             catch (Exception e)
             {
@@ -66,7 +66,7 @@ namespace SwtorOptimizer.Calculator.Workers
 
             foreach (var task in tasks)
             {
-                Task.Run(() => this.StartTask(task, enhancements)).ContinueWith((result) =>
+                await Task.Run(() => this.StartTask(task, enhancements)).ContinueWith((result) =>
                 {
                     if (result.IsFaulted)
                     {
@@ -88,49 +88,64 @@ namespace SwtorOptimizer.Calculator.Workers
             }
         }
 
-        private void StartTask(FindCombinationTask task, List<Enhancement> enhancements)
+        private IEnumerable<string> GetCombinations(IReadOnlyList<Enhancement> enhancements, int threshold, string values)
+        {
+            foreach (var enhancement in enhancements)
+            {
+                var left = threshold - enhancement.Tertiary;
+                if (left < 0)
+                {
+                    continue;
+                }
+                var vals = enhancement.Id + " " + values;
+                if (left == 0)
+                {
+                    yield return vals.Trim();
+                }
+                else
+                {
+                    foreach (var s in this.GetCombinations(enhancements, left, vals))
+                    {
+                        yield return s.Trim();
+                    }
+                }
+            }
+        }
+
+        private async void StartTask(FindCombinationTask task, List<Enhancement> enhancements)
         {
             task.Status = FindCombinationTaskStatus.Started;
             task.StartDate = DateTime.Now;
             task.FoundSets = 0;
-            this.context.FindCombinationTaskRepository.Update(task.Id, task, true);
+            await this.context.FindCombinationTaskRepository.UpdateAsync(task.Id, task, true);
 
-            var calculator = new SetCalculatorService(task.Threshold, enhancements);
-            var combinations = calculator.Calculate();
+            foreach (var combination in this.GetCombinations(enhancements, task.Threshold, string.Empty))
+            {
+                var newSetFound = combination.Split(' ').Select(result => enhancements.First(e => e.Id.Equals(Convert.ToInt32(result)))).ToList();
 
-            if (combinations.Count == 0)
-            {
-                this.context.EnhancementSetRepository.Add(new EnhancementSet { SetName = "Invalid", Threshold = task.Threshold, IsInvalid = true }, true);
-            }
-            else
-            {
+                var setName = string.Join(';', newSetFound.OrderBy(e => e.Name).Select(e => e.Name).ToArray());
+
+                // if (this.context.EnhancementSetRepository.All().FirstOrDefaultAsync(es =>
+                // es.SetName.Equals(setName)) != null) continue;
+
+                var newSet = await this.context.EnhancementSetRepository.AddAsync(new EnhancementSet { SetName = setName, Threshold = task.Threshold, IsInvalid = false }, true);
+                task.FoundSets++;
+
                 var enhancementSetEnhancements = new List<EnhancementSetEnhancement>();
+                enhancementSetEnhancements.AddRange(newSetFound.Select(e => new EnhancementSetEnhancement { EnhancementSetId = newSet.Id, EnhancementId = e.Id }));
+                await this.context.FindCombinationTaskRepository.UpdateAsync(task.Id, task, true);
 
-                foreach (var combination in combinations)
-                {
-                    var newSetFound = combination.Split(' ').Select(result => enhancements.First(e => e.Id.Equals(Convert.ToInt32(result)))).ToList();
+                await this.context.EnhancementSetEnhancementRepository.AddAllAsync(enhancementSetEnhancements);
+            }
 
-                    var setName = string.Join(';', newSetFound.OrderBy(e => e.Name).Select(e => e.Name).ToArray());
-
-                    if (this.context.EnhancementSetRepository.All().FirstOrDefault(es => es.SetName.Equals(setName)) != null) continue;
-
-                    var newSet = this.context.EnhancementSetRepository.Add(new EnhancementSet { SetName = setName, Threshold = task.Threshold, IsInvalid = false }, true);
-                    task.FoundSets++;
-
-                    enhancementSetEnhancements.AddRange(newSetFound.Select(e => new EnhancementSetEnhancement { EnhancementSetId = newSet.Id, EnhancementId = e.Id }));
-                }
-                this.context.FindCombinationTaskRepository.Update(task.Id, task, true);
-
-                foreach (var e in enhancementSetEnhancements)
-                {
-                    this.context.EnhancementSetEnhancementRepository.Add(e, false);
-                }
-                this.context.EnhancementSetEnhancementRepository.SaveChanges();
+            if (task.FoundSets == 0)
+            {
+                await this.context.EnhancementSetRepository.AddAsync(new EnhancementSet { SetName = "Invalid", Threshold = task.Threshold, IsInvalid = true }, true);
             }
 
             task.Status = FindCombinationTaskStatus.Ended;
             task.EndDate = DateTime.Now;
-            this.context.FindCombinationTaskRepository.Update(task.Id, task, true);
+            await this.context.FindCombinationTaskRepository.UpdateAsync(task.Id, task, true);
         }
     }
 }

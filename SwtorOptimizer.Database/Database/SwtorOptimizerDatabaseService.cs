@@ -14,9 +14,9 @@ namespace SwtorOptimizer.Database.Database
 
         public IEnhancementRepository EnhancementRepository => new EnhancementRepository(this.DbContext);
 
-        public IRepository<EnhancementSetEnhancement> EnhancementSetEnhancementRepository => new EnhancementSetEnhancementRepository(this.DbContext);
+        public IEnhancementSetEnhancementRepository EnhancementSetEnhancementRepository => new EnhancementSetEnhancementRepository(this.DbContext);
 
-        public IRepository<EnhancementSet> EnhancementSetRepository => new EnhancementSetRepository(this.DbContext);
+        public IEnhancementSetRepository EnhancementSetRepository => new EnhancementSetRepository(this.DbContext);
 
         public IRepository<FindCombinationTask> FindCombinationTaskRepository => new FindCombinationTaskRepository(this.DbContext);
 
