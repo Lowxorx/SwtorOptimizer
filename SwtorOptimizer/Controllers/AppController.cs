@@ -14,10 +14,10 @@ namespace SwtorOptimizer.Controllers
         [HttpGet]
         public IActionResult GetComponentsVersion()
         {
-            return this.Ok(this.LogComponentVersions());
+            return this.Ok(LogComponentVersions());
         }
 
-        private List<string> LogComponentVersions()
+        private static List<string> LogComponentVersions()
         {
             var versions = new List<string>();
 

@@ -8,7 +8,7 @@ import { IResultObject } from '../models/IResultObject';
 export class EnhancementSetsService {
   private apiEndpoint = `/api/EnhancementSets`;
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {}
 
   public getNewEnhancementSet(threshold: number): Observable<IResultObject> {
     return this.http.get<IResultObject>(`${this.apiEndpoint}/GetNewEnhancementSet?threshold=${threshold}`);
@@ -16,9 +16,5 @@ export class EnhancementSetsService {
 
   public getEnhancementSetsForThreshold(threshold: number): Observable<IEnhancementSet[]> {
     return this.http.get<IEnhancementSet[]>(`${this.apiEndpoint}/GetEnhancementSetsForThreshold?threshold=${threshold}`);
-  }
-
-  public getEnhancementSets(): Observable<IEnhancementSet[]> {
-    return this.http.get<IEnhancementSet[]>(`${this.apiEndpoint}/GetEnhancementSets`);
   }
 }

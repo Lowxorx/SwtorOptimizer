@@ -35,10 +35,6 @@ export class SetsTableComponent implements OnInit {
       this.service.getEnhancementSetsForThreshold(this.threshold).subscribe((e) => {
         this.initDataSource(e);
       });
-    } else {
-      this.service.getEnhancementSets().subscribe((e) => {
-        this.initDataSource(e);
-      });
     }
   }
 
