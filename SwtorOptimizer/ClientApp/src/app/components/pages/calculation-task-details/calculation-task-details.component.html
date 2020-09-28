@@ -15,8 +15,8 @@
   </div>
 </div>
 
-<div *ngIf="threshold !== undefined && task && task.foundSets > 0">
-  <app-sets-table [threshold]="threshold"></app-sets-table>
+<div *ngIf="taskId !== undefined && task && task.foundSets > 0">
+  <app-sets-table [taskId]="taskId"></app-sets-table>
 </div>
 
 <div *ngIf="!task && isLoaded" class="centered">

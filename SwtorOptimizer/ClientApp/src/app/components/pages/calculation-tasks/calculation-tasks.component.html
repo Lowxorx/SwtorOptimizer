@@ -5,13 +5,11 @@
   <ng-container>
     <mat-form-field class="ou-filter">
       <mat-label>Filtre</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="">
+      <input matInput (keyup)="applyFilter($event)" placeholder="" />
     </mat-form-field>
 
     <div class="mat-elevation-z8 table-container">
-
       <mat-table [dataSource]="dataSource" matSort matSortActive="threshold" matSortDisableClear matSortDirection="asc">
-
         <ng-container matColumnDef="threshold">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Cap visé </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{ element.threshold }} </mat-cell>
@@ -20,11 +18,6 @@
         <ng-container matColumnDef="status">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{ getTaskStatus(element) }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="duration">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Durée d'éxécution </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ getTaskDuration(element) }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="setsFound">
@@ -42,7 +35,7 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
       </mat-table>
     </div>
   </ng-container>

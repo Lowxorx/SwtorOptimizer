@@ -10,11 +10,7 @@ export class EnhancementSetsService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getNewEnhancementSet(threshold: number): Observable<IResultObject> {
-    return this.http.get<IResultObject>(`${this.apiEndpoint}/GetNewEnhancementSet?threshold=${threshold}`);
-  }
-
-  public getEnhancementSetsForThreshold(threshold: number): Observable<IEnhancementSet[]> {
-    return this.http.get<IEnhancementSet[]>(`${this.apiEndpoint}/GetEnhancementSetsForThreshold?threshold=${threshold}`);
+  public getEnhancementSetsByTaskId(taskId: number): Observable<IEnhancementSet[]> {
+    return this.http.get<IEnhancementSet[]>(`${this.apiEndpoint}/GetEnhancementSetsByTaskId?taskId=${taskId}`);
   }
 }

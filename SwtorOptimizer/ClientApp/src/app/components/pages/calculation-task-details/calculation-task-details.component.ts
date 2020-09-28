@@ -5,6 +5,7 @@ import { CalculationTasksService } from '../../../services/calculation-tasks.ser
 import { Subscription, interval } from 'rxjs';
 import { ICalculationTaskFront } from '../../../models/ICalculationTaskFront';
 import { CalculationTaskStatus } from '../../../enums/CalculationTaskStatus';
+import CalculationTaskHelper from 'src/app/helpers/calculation-task.helper';
 
 @Component({
   selector: 'app-calculation-task-details',
@@ -14,17 +15,17 @@ import { CalculationTaskStatus } from '../../../enums/CalculationTaskStatus';
 export class CalculationTaskDetailsComponent implements OnInit, OnDestroy {
   public task: ICalculationTaskFront;
 
-  public threshold: number;
+  public taskId: number;
   public isLoaded = false;
   public isDetailsVisible = true;
   private timerSub: Subscription;
 
   constructor(private route: ActivatedRoute, private ngZone: NgZone, private service: CalculationTasksService) {
-    this.threshold = Number(this.route.snapshot.paramMap.get('value'));
+    this.taskId = Number(this.route.snapshot.paramMap.get('value'));
   }
 
   public ngOnInit() {
-    this.service.getTaskForThreshold(this.threshold).subscribe((response) => {
+    this.service.getTaskDetails(this.taskId).subscribe((response) => {
       if (response.status === 200) {
         this.task = { ...response.body, duration: this.getDuration(response.body), statusDisplayName: this.getTaskStatus(response.body) };
         if (this.task.status !== CalculationTaskStatus.Ended) {
@@ -50,19 +51,7 @@ export class CalculationTaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   public getTaskStatus(task: ICalculationTask): string {
-    const status = task.status as CalculationTaskStatus;
-    switch (status) {
-      case CalculationTaskStatus.Idle:
-        return 'En attente de lancement';
-      case CalculationTaskStatus.Ended:
-        return 'Terminée';
-      case CalculationTaskStatus.Started:
-        return 'Calcul en cours';
-      case CalculationTaskStatus.Faulted:
-        return 'Erreur';
-      default:
-        return 'Statut inconnu';
-    }
+    return CalculationTaskHelper.getTaskStatus(task);
   }
 
   public taskIsStarted(): boolean {
@@ -113,7 +102,7 @@ export class CalculationTaskDetailsComponent implements OnInit, OnDestroy {
   }
 
   private refreshTaskStatus() {
-    this.service.getTaskById(this.task.id).subscribe((response) => {
+    this.service.getTaskById(this.taskId).subscribe((response) => {
       if (response.status === 200) {
         this.ngZone.run(() => {
           this.task = { ...response.body, duration: this.getDuration(response.body), statusDisplayName: this.getTaskStatus(response.body) };

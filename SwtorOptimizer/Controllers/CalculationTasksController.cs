@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SwtorOptimizer.Business.Database;
+using SwtorOptimizer.Business.Entities;
+using SwtorOptimizer.Models;
 using SwtorOptimizer.Models.Convertors;
 
 namespace SwtorOptimizer.Controllers
@@ -20,6 +22,20 @@ namespace SwtorOptimizer.Controllers
         {
             this.logger = logger;
             this.context = context;
+        }
+
+        [HttpGet]
+        [ActionName(nameof(CalculateEnhancementSets))]
+        public async Task<IActionResult> CalculateEnhancementSets(int threshold)
+        {
+            var existingCalculationTask = await this.context.EnhancementSetRepository.All().FirstOrDefaultAsync(e => e.Threshold == threshold);
+            if (existingCalculationTask != null)
+            {
+                return this.Ok(new ResultObject<int> { StatusCode = StatusCodes.Status200OK, Message = "Le calcul a déjà été effectué.", Data = existingCalculationTask.CalculationTaskId });
+            }
+
+            var newTask = await this.context.CalculationTaskRepository.AddAsync(new CalculationTask { Threshold = threshold, Status = CalculationTaskStatus.Idle, FoundSets = 0 }, true);
+            return this.Accepted(new ResultObject<int> { StatusCode = StatusCodes.Status202Accepted, Message = "Une tâche a été crée.", Data = newTask.Id });
         }
 
         [HttpGet]
@@ -44,11 +60,11 @@ namespace SwtorOptimizer.Controllers
         }
 
         [HttpGet]
-        [ActionName(nameof(GetTaskForThreshold))]
-        public async Task<IActionResult> GetTaskForThreshold(int threshold)
+        [ActionName(nameof(GetTaskDetails))]
+        public async Task<IActionResult> GetTaskDetails(int id)
         {
-            var task = await this.context.CalculationTaskRepository.All().Where(e => e.Threshold == threshold).FirstOrDefaultAsync();
-            var sets = await this.context.EnhancementSetRepository.All().Where(e => e.Threshold == threshold).ToListAsync();
+            var task = await this.context.CalculationTaskRepository.All().Where(e => e.Id == id).FirstOrDefaultAsync();
+            var sets = await this.context.EnhancementSetRepository.All().Where(e => e.CalculationTaskId == id).ToListAsync();
 
             if (task == null)
             {

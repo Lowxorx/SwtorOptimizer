@@ -62,7 +62,7 @@ namespace SwtorOptimizer.Calculator.Services
 
             if (tasks.Count == 0)
             {
-                this.logger.LogInformation($"No task found. Standby for {this.settings.Value.TaskInterval} seconds... ");
+                this.logger.LogDebug($"No task found. Standby for {this.settings.Value.TaskInterval} seconds... ");
                 return;
             }
 

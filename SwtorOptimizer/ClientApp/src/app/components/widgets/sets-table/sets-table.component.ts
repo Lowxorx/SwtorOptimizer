@@ -16,7 +16,7 @@ export class SetsTableComponent implements OnInit {
   public selectedSet: IEnhancementSet | null;
 
   @Input()
-  public threshold: number;
+  public taskId: number;
 
   @ViewChild(MatSort, { static: true })
   public sort: MatSort;
@@ -31,8 +31,8 @@ export class SetsTableComponent implements OnInit {
   }
 
   private getData(): void {
-    if (this.threshold != null) {
-      this.service.getEnhancementSetsForThreshold(this.threshold).subscribe((e) => {
+    if (this.taskId != null) {
+      this.service.getEnhancementSetsByTaskId(this.taskId).subscribe((e) => {
         this.initDataSource(e);
       });
     }
