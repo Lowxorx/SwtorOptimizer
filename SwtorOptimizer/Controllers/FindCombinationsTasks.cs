@@ -28,12 +28,7 @@ namespace SwtorOptimizer.Controllers
         public async Task<IActionResult> GetAllTasks()
         {
             var tasks = await this.context.FindCombinationTaskRepository.All().ToListAsync();
-            var tasksDto = new List<FindCombinationTaskDto>();
-            foreach (var task in tasks)
-            {
-                var sets = await this.context.EnhancementSetRepository.All().Where(e => e.Threshold == task.Threshold).ToListAsync();
-                tasksDto.Add(FindCombinationTaskDtoConvertor.FromEntityToDto(task, sets));
-            }
+            var tasksDto = tasks.Select(task => FindCombinationTaskDtoConvertor.FromEntityToDto(task, null)).ToList();
             return this.Ok(tasksDto);
         }
 
