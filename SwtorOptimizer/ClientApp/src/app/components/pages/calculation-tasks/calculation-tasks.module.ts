@@ -8,13 +8,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { FindCombinationTasksComponent } from './find-combination-tasks.component';
+import { CalculationTasksComponent } from './calculation-tasks.component';
 
-export const routes: Routes = [{ path: '', component: FindCombinationTasksComponent }];
+export const routes: Routes = [{ path: '', component: CalculationTasksComponent }];
 
 @NgModule({
-  declarations: [FindCombinationTasksComponent],
+  declarations: [CalculationTasksComponent],
   imports: [RouterModule.forChild(routes), CommonModule, MatTableModule, MatSortModule, MatButtonModule, MatInputModule, MatSnackBarModule, MatFormFieldModule, MatIconModule],
-  exports: [FindCombinationTasksComponent],
+  exports: [CalculationTasksComponent],
 })
-export class FindCombinationTasksModule {}
+export class CalculationTasksModule {}

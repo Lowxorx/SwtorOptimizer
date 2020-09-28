@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class NoCacheHeadersInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    const isTaskUrl = request.url.includes('/api/FindCombinationsTasks');
+    const isTaskUrl = request.url.includes('/api/CalculationTasks');
     if (isTaskUrl) {
       request = request.clone({
         setHeaders: {

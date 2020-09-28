@@ -5,16 +5,16 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { ICalculationTask } from '../../../models/ICalculationTask';
-import { FindCombinationsTasksService } from '../../../services/find-combinations-tasks.service';
+import { CalculationTasksService } from '../../../services/calculation-tasks.service';
 import { Router } from '@angular/router';
 import { CalculationTaskStatus } from 'src/app/enums/CalculationTaskStatus';
 
 @Component({
-  selector: 'app-find-combination-tasks',
-  templateUrl: './find-combination-tasks.component.html',
-  styleUrls: ['./find-combination-tasks.component.scss'],
+  selector: 'app-calculation-tasks',
+  templateUrl: './calculation-tasks.component.html',
+  styleUrls: ['./calculation-tasks.component.scss'],
 })
-export class FindCombinationTasksComponent implements OnInit {
+export class CalculationTasksComponent implements OnInit {
   public displayedColumns: string[] = ['threshold', 'status', 'duration', 'setsFound', 'action'];
   public dataSource: MatTableDataSource<ICalculationTask> = new MatTableDataSource();
   private dataSourceSubscription: Subscription;
@@ -24,7 +24,7 @@ export class FindCombinationTasksComponent implements OnInit {
   @ViewChild(MatPaginator)
   public paginator: MatPaginator;
 
-  constructor(private service: FindCombinationsTasksService, public snackBar: MatSnackBar, private router: Router) {}
+  constructor(private service: CalculationTasksService, public snackBar: MatSnackBar, private router: Router) {}
 
   public ngOnInit() {
     this.dataSourceSubscription = this.service.getAllTasks().subscribe((tasks) => {

@@ -1,17 +1,17 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICalculationTask } from '../../../models/ICalculationTask';
-import { FindCombinationsTasksService } from '../../../services/find-combinations-tasks.service';
+import { CalculationTasksService } from '../../../services/calculation-tasks.service';
 import { Subscription, interval } from 'rxjs';
 import { ICalculationTaskFront } from '../../../models/ICalculationTaskFront';
 import { CalculationTaskStatus } from '../../../enums/CalculationTaskStatus';
 
 @Component({
-  selector: 'app-find-combination-task-details',
-  templateUrl: './find-combination-task-details.component.html',
-  styleUrls: ['./find-combination-task-details.component.scss'],
+  selector: 'app-calculation-task-details',
+  templateUrl: './calculation-task-details.component.html',
+  styleUrls: ['./calculation-task-details.component.scss'],
 })
-export class FindCombinationTaskDetailsComponent implements OnInit, OnDestroy {
+export class CalculationTaskDetailsComponent implements OnInit, OnDestroy {
   public task: ICalculationTaskFront;
 
   public threshold: number;
@@ -19,7 +19,7 @@ export class FindCombinationTaskDetailsComponent implements OnInit, OnDestroy {
   public isDetailsVisible = true;
   private timerSub: Subscription;
 
-  constructor(private route: ActivatedRoute, private ngZone: NgZone, private service: FindCombinationsTasksService) {
+  constructor(private route: ActivatedRoute, private ngZone: NgZone, private service: CalculationTasksService) {
     this.threshold = Number(this.route.snapshot.paramMap.get('value'));
   }
 

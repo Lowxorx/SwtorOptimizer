@@ -4,8 +4,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { ICalculationTask } from '../models/ICalculationTask';
 
 @Injectable({ providedIn: 'root' })
-export class FindCombinationsTasksService {
-  private apiEndpoint = `/api/FindCombinationsTasks`;
+export class CalculationTasksService {
+  private apiEndpoint = `/api/CalculationTasks`;
 
   constructor(private readonly http: HttpClient) {}
 

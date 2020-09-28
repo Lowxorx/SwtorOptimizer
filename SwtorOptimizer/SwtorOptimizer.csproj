@@ -41,11 +41,8 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\components\widgets\theme-toggle\theme-toggle.module.ts" />
     <None Remove="ClientApp\src\app\components\widgets\topbar\topbar.module.ts" />
-    <None Remove="ClientApp\src\app\models\FindCombinationTaskStatus.ts" />
     <None Remove="ClientApp\src\app\models\IEnhancement.ts" />
     <None Remove="ClientApp\src\app\models\IEnhancementSet.ts" />
-    <None Remove="ClientApp\src\app\models\IFindCombinationTask.ts" />
-    <None Remove="ClientApp\src\app\models\IFindCombinationTaskFront.ts" />
     <None Remove="ClientApp\src\app\models\IResultObject.ts" />
     <None Remove="ClientApp\src\app\models\IThresholdData.ts" />
     <None Remove="ClientApp\src\app\services\app.service.ts" />
@@ -61,15 +58,10 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\components\widgets\theme-toggle\theme-toggle.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\widgets\topbar\topbar.module.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\FindCombinationTaskStatus.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\models\IEnhancement.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\models\IEnhancementSet.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\IFindCombinationTask.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\IFindCombinationTaskFront.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\IResultObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\IThresholdData.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\app.service.ts" />
@@ -101,20 +93,20 @@
   </Target>
 
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
-     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
-     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
 
     <!-- Include the newly-built files in the publish output -->
-   <ItemGroup>
-     <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
-     <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
-     <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-     <RelativePath>%(DistFiles.Identity)</RelativePath>
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-   </ResolvedFileToPublish>
-   </ItemGroup>
- </Target>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
 </Project>

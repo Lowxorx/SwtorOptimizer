@@ -10,11 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'tasks',
-    loadChildren: () => import('src/app/components/pages/find-combination-tasks/find-combination-tasks.module').then((mod) => mod.FindCombinationTasksModule),
+    loadChildren: () => import('src/app/components/pages/calculation-tasks/calculation-tasks.module').then((mod) => mod.CalculationTasksModule),
   },
   {
     path: 'task/:value',
-    loadChildren: () => import('src/app/components/pages/find-combination-task-details/find-combination-task-details.module').then((mod) => mod.FindCombinationTaskDetailsModule),
+    loadChildren: () => import('src/app/components/pages/calculation-task-details/calculation-task-details.module').then((mod) => mod.CalculationTaskDetailsModule),
   },
   {
     path: 'admin',
