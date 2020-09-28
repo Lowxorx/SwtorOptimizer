@@ -49,6 +49,6 @@ export class CalculationTasksComponent implements OnInit {
   }
 
   public showSets(task: ICalculationTask): void {
-    this.router.navigate(['/task', task.threshold]);
+    this.router.navigate(['/task', task.id]);
   }
 }
