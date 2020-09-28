@@ -19,6 +19,7 @@ namespace SwtorOptimizer.Database.Database
         public IEnhancementSetRepository EnhancementSetRepository => new EnhancementSetRepository(this.DbContext);
 
         public IRepository<FindCombinationTask> FindCombinationTaskRepository => new FindCombinationTaskRepository(this.DbContext);
+        public IRepository<User> UserRepository => new UserRepository(this.DbContext);
 
         private SwtorOptimizerContext DbContext { get; }
     }

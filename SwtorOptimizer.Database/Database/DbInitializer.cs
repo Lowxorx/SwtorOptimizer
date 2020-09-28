@@ -88,6 +88,13 @@ namespace SwtorOptimizer.Database.Database
             context.Enhancements.AddRange(typeOneEnhancements);
             context.Enhancements.AddRange(typeTwoEnhancements);
             context.Enhancements.AddRange(typeThreeEnhancements);
+
+            context.Users.Add(new User()
+            {
+                Username = "admin",
+                Password = "P@ssw0rd"
+            });
+
             context.SaveChanges();
         }
     }
