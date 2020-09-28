@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SwtorOptimizer.Business.Database;
 using SwtorOptimizer.Models.Convertors;
-using SwtorOptimizer.Models.Dto;
 
 namespace SwtorOptimizer.Controllers
 {
@@ -28,12 +26,8 @@ namespace SwtorOptimizer.Controllers
         public async Task<IActionResult> GetAllTasks()
         {
             var tasks = await this.context.FindCombinationTaskRepository.All().ToListAsync();
-            var tasksDto = new List<FindCombinationTaskDto>();
-            foreach (var task in tasks)
-            {
-                var sets = await this.context.EnhancementSetRepository.All().Where(e => e.Threshold == task.Threshold).ToListAsync();
-                tasksDto.Add(FindCombinationTaskDtoConvertor.FromEntityToDto(task, sets));
-            }
+            var tasksDto = tasks.Select(task => FindCombinationTaskDtoConvertor.FromEntityToDto(task, null)).ToList();
+            this.logger.LogDebug($"Return {tasksDto.Count} tasks");
             return this.Ok(tasksDto);
         }
 

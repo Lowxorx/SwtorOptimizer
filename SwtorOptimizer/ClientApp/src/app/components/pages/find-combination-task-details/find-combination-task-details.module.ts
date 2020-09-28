@@ -5,7 +5,6 @@ import { FindCombinationTaskDetailsComponent } from './find-combination-task-det
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { SetsTableModule } from '../../widgets/sets-table/sets-table.module';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 export const routes: Routes = [{ path: '', component: FindCombinationTaskDetailsComponent }];
 
