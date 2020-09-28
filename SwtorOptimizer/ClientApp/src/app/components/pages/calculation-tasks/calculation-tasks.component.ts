@@ -7,7 +7,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ICalculationTask } from '../../../models/ICalculationTask';
 import { CalculationTasksService } from '../../../services/calculation-tasks.service';
 import { Router } from '@angular/router';
-import { CalculationTaskStatus } from 'src/app/enums/CalculationTaskStatus';
 import CalculationTaskHelper from 'src/app/helpers/calculation-task.helper';
 
 @Component({

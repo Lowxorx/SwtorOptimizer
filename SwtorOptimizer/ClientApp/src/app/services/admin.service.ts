@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { IEnhancementSet } from '../models/IEnhancementSet';
+import { IAppUser } from '../models/IAppUser';
 
 @Injectable({ providedIn: 'root' })
-export class EnhancementSetsService {
-  private apiEndpoint = `/api/EnhancementSets`;
+export class AdminService {
+  private apiEndpoint = `/api/Admin`;
 
   constructor(private readonly http: HttpClient) {}
 
-  public getEnhancementSetsByTaskId(taskId: number): Observable<IEnhancementSet[]> {
-    return this.http.get<IEnhancementSet[]>(`${this.apiEndpoint}/GetEnhancementSetsByTaskId?taskId=${taskId}`);
+  public getCurrentUser(): Observable<string> {
+    return this.http.get<string>(`${this.apiEndpoint}/GetCurrentUser`);
   }
 }

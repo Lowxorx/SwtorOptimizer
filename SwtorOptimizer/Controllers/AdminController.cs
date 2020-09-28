@@ -19,11 +19,11 @@ namespace SwtorOptimizer.Controllers
             this.context = context;
         }
 
-        [HttpPost]
-        [ActionName(nameof(DeleteTask))]
-        public ActionResult DeleteTask(int taskId)
+        [HttpGet]
+        [ActionName(nameof(GetCurrentUser))]
+        public IActionResult GetCurrentUser()
         {
-            return this.Ok();
+            return this.Ok(this.User.Identity.Name);
         }
     }
 }
