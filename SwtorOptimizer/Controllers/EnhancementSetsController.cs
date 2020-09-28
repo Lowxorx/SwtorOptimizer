@@ -50,7 +50,7 @@ namespace SwtorOptimizer.Controllers
         {
             if (!this.context.EnhancementSetRepository.All().Any(e => e.Threshold == threshold))
             {
-                await this.context.FindCombinationTaskRepository.AddAsync(new FindCombinationTask { Threshold = threshold, Status = FindCombinationTaskStatus.Idle, FoundSets = 0 }, true);
+                await this.context.CalculationTaskRepository.AddAsync(new CalculationTask { Threshold = threshold, Status = CalculationTaskStatus.Idle, FoundSets = 0 }, true);
                 return this.Accepted(new ResultObject<string> { StatusCode = StatusCodes.Status202Accepted, Message = "Une tâche a été crée." });
             }
             return this.Ok(new ResultObject<string> { StatusCode = StatusCodes.Status200OK, Message = "Le calcul a déjà été effectué." });

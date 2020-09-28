@@ -1,5 +1,5 @@
-import { IEnhancement } from "./IEnhancement";
-import { IFindCombinationTask } from "./IFindCombinationTask";
+import { IEnhancement } from './IEnhancement';
+import { ICalculationTask } from './ICalculationTask';
 
 export interface IEnhancementSet {
   id: number;
@@ -9,6 +9,6 @@ export interface IEnhancementSet {
   endurance: number;
   enhancements: IEnhancement[];
   isInvalid: boolean;
-  findCombinationTaskId: number;
-  findCombinationTask: IFindCombinationTask;
+  taskid: number;
+  calculationTask: ICalculationTask;
 }

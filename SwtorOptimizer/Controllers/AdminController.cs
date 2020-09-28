@@ -18,5 +18,12 @@ namespace SwtorOptimizer.Controllers
             this.logger = logger;
             this.context = context;
         }
+
+        [HttpPost]
+        [ActionName(nameof(DeleteTask))]
+        public ActionResult DeleteTask(int taskId)
+        {
+            return this.Ok();
+        }
     }
 }

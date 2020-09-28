@@ -6,6 +6,6 @@ namespace SwtorOptimizer.Calculator.Services
 {
     internal interface ISetCalculatorProcessingService
     {
-        void StartTask(FindCombinationTask task, List<Enhancement> enhancements);
+        void StartTask(CalculationTask task, List<Enhancement> enhancements);
     }
 }

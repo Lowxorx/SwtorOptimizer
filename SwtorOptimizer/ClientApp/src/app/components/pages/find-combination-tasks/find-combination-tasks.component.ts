@@ -4,10 +4,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { IFindCombinationTask } from '../../../models/IFindCombinationTask';
+import { ICalculationTask } from '../../../models/ICalculationTask';
 import { FindCombinationsTasksService } from '../../../services/find-combinations-tasks.service';
 import { Router } from '@angular/router';
-import { FindCombinationTaskStatus } from 'src/app/models/FindCombinationTaskStatus';
+import { CalculationTaskStatus } from 'src/app/enums/CalculationTaskStatus';
 
 @Component({
   selector: 'app-find-combination-tasks',
@@ -16,7 +16,7 @@ import { FindCombinationTaskStatus } from 'src/app/models/FindCombinationTaskSta
 })
 export class FindCombinationTasksComponent implements OnInit {
   public displayedColumns: string[] = ['threshold', 'status', 'duration', 'setsFound', 'action'];
-  public dataSource: MatTableDataSource<IFindCombinationTask> = new MatTableDataSource();
+  public dataSource: MatTableDataSource<ICalculationTask> = new MatTableDataSource();
   private dataSourceSubscription: Subscription;
 
   @ViewChild(MatSort, { static: true })
@@ -43,29 +43,25 @@ export class FindCombinationTasksComponent implements OnInit {
     }
   }
 
-  public getTaskStatus(task: IFindCombinationTask): string {
-    const status = task.status as FindCombinationTaskStatus;
+  public getTaskStatus(task: ICalculationTask): string {
+    const status = task.status as CalculationTaskStatus;
     switch (status) {
-      case FindCombinationTaskStatus.Idle:
+      case CalculationTaskStatus.Idle:
         return 'En attente de lancement';
-      case FindCombinationTaskStatus.Ended:
+      case CalculationTaskStatus.Ended:
         return 'Terminée';
-      case FindCombinationTaskStatus.Started:
+      case CalculationTaskStatus.Started:
         return 'Calcul en cours';
-      case FindCombinationTaskStatus.Faulted:
+      case CalculationTaskStatus.Faulted:
         return 'Erreur';
       default:
         return 'Statut inconnu';
     }
   }
 
-  public getTaskDuration(task: IFindCombinationTask): string {
+  public getTaskDuration(task: ICalculationTask): string {
     const startDate = new Date(task.startDate);
-    const endDate =
-      (task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Started ||
-      (task.status as FindCombinationTaskStatus) === FindCombinationTaskStatus.Idle
-        ? new Date()
-        : new Date(task.endDate);
+    const endDate = (task.status as CalculationTaskStatus) === CalculationTaskStatus.Started || (task.status as CalculationTaskStatus) === CalculationTaskStatus.Idle ? new Date() : new Date(task.endDate);
     const duration = endDate.valueOf() - startDate.valueOf();
     const seconds = (duration / 1000).toFixed(1);
     const minutes = (duration / (1000 * 60)).toFixed(1);
@@ -82,7 +78,7 @@ export class FindCombinationTasksComponent implements OnInit {
     }
   }
 
-  public showSets(task: IFindCombinationTask): void {
+  public showSets(task: ICalculationTask): void {
     this.router.navigate(['/task', task.threshold]);
   }
 }

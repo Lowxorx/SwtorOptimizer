@@ -31,13 +31,12 @@ namespace SwtorOptimizer.Database.Database
         {
         }
 
+        public DbSet<CalculationTask> CalculationTasks { get; set; }
         public DbSet<Enhancement> Enhancements { get; set; }
 
         public DbSet<EnhancementSetEnhancement> EnhancementSetEnhancements { get; set; }
 
         public DbSet<EnhancementSet> EnhancementSets { get; set; }
-
-        public DbSet<FindCombinationTask> FindCombinationTasks { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -51,9 +50,17 @@ namespace SwtorOptimizer.Database.Database
 
             modelBuilder.Entity<Enhancement>(entity => entity.HasKey(e => e.Id));
 
-            modelBuilder.Entity<EnhancementSet>(entity => entity.HasKey(e => e.Id));
+            modelBuilder.Entity<EnhancementSet>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasOne(e => e.CalculationTask).WithMany(e => e.EnhancementSets);
+            });
 
-            modelBuilder.Entity<FindCombinationTask>(entity => entity.HasKey(e => e.Id));
+            modelBuilder.Entity<CalculationTask>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasMany(e => e.EnhancementSets).WithOne(e => e.CalculationTask);
+            });
 
             modelBuilder.Entity<EnhancementSetEnhancement>().HasKey(e => e.Id);
 

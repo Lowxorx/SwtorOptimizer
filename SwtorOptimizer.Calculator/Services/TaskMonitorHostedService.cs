@@ -49,11 +49,11 @@ namespace SwtorOptimizer.Calculator.Services
 
         private async Task CheckAndStartTasks()
         {
-            var tasks = new List<FindCombinationTask>();
+            var tasks = new List<CalculationTask>();
 
             try
             {
-                tasks = await this.context.FindCombinationTaskRepository.All().Where(e => e.EndDate == default && e.Status == FindCombinationTaskStatus.Idle).ToListAsync();
+                tasks = await this.context.CalculationTaskRepository.All().Where(e => e.EndDate == default && e.Status == CalculationTaskStatus.Idle).ToListAsync();
             }
             catch (Exception e)
             {

@@ -20,13 +20,13 @@ namespace SwtorOptimizer.Calculator.Services
             this.context = context;
         }
 
-        public async void StartTask(FindCombinationTask task, List<Enhancement> enhancements)
+        public async void StartTask(CalculationTask task, List<Enhancement> enhancements)
         {
             this.logger.LogDebug($"Task {task.Id} is starting.");
-            task.Status = FindCombinationTaskStatus.Started;
+            task.Status = CalculationTaskStatus.Started;
             task.StartDate = DateTime.Now;
             task.FoundSets = 0;
-            await this.context.FindCombinationTaskRepository.UpdateAsync(task.Id, task, true);
+            await this.context.CalculationTaskRepository.UpdateAsync(task.Id, task, true);
 
             foreach (var combination in this.GetCombinations(enhancements, task.Threshold, string.Empty))
             {
@@ -37,23 +37,23 @@ namespace SwtorOptimizer.Calculator.Services
 
                 if (this.context.EnhancementSetRepository.All().FirstOrDefault(es => es.SetInternalName.Equals(setInternalName)) != null) continue;
 
-                var newSet = await this.context.EnhancementSetRepository.AddAsync(new EnhancementSet { SetName = setName, SetInternalName = setInternalName, Threshold = task.Threshold, IsInvalid = false }, true);
+                var newSet = await this.context.EnhancementSetRepository.AddAsync(new EnhancementSet { SetName = setName, SetInternalName = setInternalName, Threshold = task.Threshold, IsInvalid = false, CalculationTaskId = task.Id }, true);
                 task.FoundSets++;
                 var enhancementSetEnhancements = new List<EnhancementSetEnhancement>();
                 enhancementSetEnhancements.AddRange(newSetFound.Select(e => new EnhancementSetEnhancement { EnhancementSetId = newSet.Id, EnhancementId = e.Id }));
-                await this.context.FindCombinationTaskRepository.UpdateAsync(task.Id, task, true);
+                await this.context.CalculationTaskRepository.UpdateAsync(task.Id, task, true);
                 await this.context.EnhancementSetEnhancementRepository.AddAllAsync(enhancementSetEnhancements);
             }
 
             if (task.FoundSets == 0)
             {
-                await this.context.EnhancementSetRepository.AddAsync(new EnhancementSet { SetName = "Invalid", Threshold = task.Threshold, IsInvalid = true }, true);
+                await this.context.EnhancementSetRepository.AddAsync(new EnhancementSet { SetName = "Invalid", Threshold = task.Threshold, IsInvalid = true, CalculationTaskId = task.Id }, true);
             }
 
-            task.Status = FindCombinationTaskStatus.Ended;
+            task.Status = CalculationTaskStatus.Ended;
             task.EndDate = DateTime.Now;
             this.logger.LogDebug($"Task {task.Id} is completed.");
-            await this.context.FindCombinationTaskRepository.UpdateAsync(task.Id, task, true);
+            await this.context.CalculationTaskRepository.UpdateAsync(task.Id, task, true);
         }
 
         private IEnumerable<string> GetCombinations(IReadOnlyList<Enhancement> enhancements, int threshold, string values)

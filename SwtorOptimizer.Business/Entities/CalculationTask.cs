@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SwtorOptimizer.Models.Dto
+namespace SwtorOptimizer.Business.Entities
 {
-    public class FindCombinationTaskDto
+    public class CalculationTask
     {
         public DateTime EndDate { get; set; }
-        public List<EnhancementSetDto> EnhancementSetDtos { get; set; }
+        public virtual ICollection<EnhancementSet> EnhancementSets { get; set; }
         public int FoundSets { get; set; }
         public int Id { get; set; }
         public DateTime StartDate { get; set; }
-        public int Status { get; set; }
+        public CalculationTaskStatus Status { get; set; }
         public int Threshold { get; set; }
     }
 }

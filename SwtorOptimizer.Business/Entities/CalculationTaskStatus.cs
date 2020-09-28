@@ -1,6 +1,6 @@
 ﻿namespace SwtorOptimizer.Business.Entities
 {
-    public enum FindCombinationTaskStatus
+    public enum CalculationTaskStatus
     {
         Idle,
         Started,
