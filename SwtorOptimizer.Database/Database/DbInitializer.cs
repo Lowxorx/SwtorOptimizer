@@ -1,5 +1,6 @@
 using SwtorOptimizer.Business.Entities;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace SwtorOptimizer.Database.Database
 {
@@ -7,7 +8,10 @@ namespace SwtorOptimizer.Database.Database
     {
         public static void Initialize(SwtorOptimizerContext context)
         {
-            context.Database.EnsureCreated();
+            if (!context.Database.EnsureCreated())
+            {
+                context.Database.Migrate();
+            }
 
             if (context.Enhancements.Any()) return;
 
