@@ -94,7 +94,7 @@ namespace SwtorOptimizer.Controllers
             var userName = this.User.Identity.Name;
             this.jwtAuthManager.RemoveRefreshTokenByUserName(userName);
             this.logger.LogInformation($"User [{userName}] logged out the system.");
-            return this.Ok(new ResultObject<string> { Message = "Utilisateur déconnecté", StatusCode = 200 });
+            return this.Ok();
         }
 
         [HttpPost]
