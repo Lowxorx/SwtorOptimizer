@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IAppUser } from 'src/app/models/IAppUser';
 import { ILoginData } from 'src/app/models/ILoginData';
-import { AccountService } from 'src/app/services/account.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin-accounts',
@@ -11,27 +11,28 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./admin-accounts.component.scss'],
 })
 export class AdminAccountsComponent implements OnInit {
-  public formGroup: FormGroup;
-  public passwordErrorText = '';
+  public passwordFormGroup: FormGroup;
   public currentPassword: string;
   public newPassword: string;
   public newPasswordConfirmation: string;
-  private appUser: IAppUser;
 
-  constructor(private accountService: AccountService, private snackBar: MatSnackBar, private formBuilder: FormBuilder) {}
+  public usernameFormGroup: FormGroup;
+  public user: IAppUser = { username: '', originalUserName: '' };
+
+  constructor(private authService: AuthService, private snackBar: MatSnackBar, private formBuilder: FormBuilder) {}
 
   public ngOnInit(): void {
     this.createForm();
-    this.accountService.getCurrentUser().subscribe({ next: (e) => (this.appUser = e) });
+    this.refreshCurrentUser();
   }
 
   public isValidateButtonDisabled(): boolean {
-    return !this.formGroup.valid;
+    return !this.passwordFormGroup.valid;
   }
 
-  public onSubmit(): void {
-    const loginData: ILoginData = { username: this.appUser.username, password: this.formGroup.get('password').value };
-    this.accountService.checkPassword(loginData).subscribe({
+  public onSubmitPassword(): void {
+    const loginData: ILoginData = { username: this.user.username, password: this.passwordFormGroup.get('password').value };
+    this.authService.checkPassword(loginData).subscribe({
       next: (data) => {
         if (data.status === 200) {
           this.updatePassword();
@@ -43,40 +44,76 @@ export class AdminAccountsComponent implements OnInit {
     });
   }
 
-  public shouldDisplayError(): boolean {
-    if (this.formGroup.invalid) {
-      this.passwordErrorText = 'Tout les champs sont requis';
-    }
-    if (this.formGroup.get('newPasswordConfirm').hasError('MatchPassword')) {
-      this.passwordErrorText = 'Les mots de passe ne correspondent pas';
-    }
-    return this.formGroup.get('password').touched && this.formGroup.get('newPassword').touched && this.formGroup.get('newPasswordConfirm').touched && this.formGroup.invalid;
+  public onSubmitUsername(): void {
+    const loginData: ILoginData = { username: this.user.username, password: this.usernameFormGroup.get('password').value };
+    this.authService.checkPassword(loginData).subscribe({
+      next: (data) => {
+        if (data.status === 200) {
+          this.updateUsername();
+        }
+      },
+      error: (error) => {
+        this.snackBar.open(`Le mot de passe est incorrect !`, null, { duration: 5000, verticalPosition: 'top' });
+      },
+    });
+  }
+
+  private updateUsername(): void {
+    this.user.username = this.usernameFormGroup.get('username').value;
+    this.authService.updateUsername(this.user).subscribe({
+      next: (data) => {
+        this.usernameFormGroup.reset();
+        this.snackBar.open("Le nom d'utilisateur a bien été modifié. Merci de vous reconnecter.", null, { duration: 5000 });
+        this.authService.logout();
+      },
+      error: (error) => {
+        this.usernameFormGroup.reset();
+        this.refreshCurrentUser();
+        console.error(error);
+        this.snackBar.open(`Il y a eu un problème pendant la mise à jour du nom d'utilisateur`, null, { duration: 5000 });
+      },
+    });
   }
 
   private updatePassword(): void {
-    const userData: ILoginData = { username: this.appUser.username, password: this.formGroup.get('newPassword').value };
-    this.accountService.updatePassword(userData).subscribe({
+    const userData: ILoginData = { username: this.user.username, password: this.passwordFormGroup.get('newPassword').value };
+    this.authService.updatePassword(userData).subscribe({
       next: (data) => {
-        this.formGroup.reset();
+        this.passwordFormGroup.reset();
         this.snackBar.open('Le mot de passe a bien été modifié.', null, { duration: 5000 });
       },
       error: (error) => {
-        this.formGroup.reset();
+        this.passwordFormGroup.reset();
         console.error(error);
         this.snackBar.open(`Il y a eu un problème pendant la mise à jour du mot de passe`, null, { duration: 5000 });
       },
     });
   }
 
+  private refreshCurrentUser(): void {
+    this.authService.getCurrentUser().subscribe({
+      next: (e) => {
+        this.user = e;
+        this.usernameFormGroup.get('originalUserName').setValue(e.originalUserName);
+      },
+    });
+  }
+
   private createForm() {
-    this.formGroup = this.formBuilder.group(
+    this.passwordFormGroup = this.formBuilder.group(
       {
         password: [this.currentPassword, [Validators.required]],
-        newPassword: [this.newPassword, [Validators.required]],
-        newPasswordConfirm: [this.newPasswordConfirmation, [Validators.required]],
+        newPassword: [this.newPassword, [Validators.required, Validators.minLength(8)]],
+        newPasswordConfirm: [this.newPasswordConfirmation, [Validators.required, Validators.minLength(8)]],
       },
       { validators: this.passwordMatch }
     );
+
+    this.usernameFormGroup = this.formBuilder.group({
+      password: [this.currentPassword, [Validators.required]],
+      originalUserName: [{ value: this.user.originalUserName, disabled: true }, [Validators.required]],
+      username: [this.user.username, [Validators.required, Validators.minLength(3), Validators.pattern(/^[\w\s]+$/)]],
+    });
   }
 
   private passwordMatch(control: AbstractControl): { invalid: boolean } {

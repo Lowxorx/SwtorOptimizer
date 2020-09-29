@@ -52,7 +52,7 @@ namespace SwtorOptimizer.Controllers
             return this.Ok(new LoginResult
             {
                 UserName = this.User.Identity.Name,
-                OriginalUserName = this.User.FindFirst("OriginalUserName")?.Value
+                OriginalUserName = this.User.Identity.Name
             });
         }
 
@@ -86,7 +86,7 @@ namespace SwtorOptimizer.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpGet]
         [Authorize]
         [ActionName(nameof(Logout))]
         public ActionResult Logout()
@@ -94,7 +94,7 @@ namespace SwtorOptimizer.Controllers
             var userName = this.User.Identity.Name;
             this.jwtAuthManager.RemoveRefreshTokenByUserName(userName);
             this.logger.LogInformation($"User [{userName}] logged out the system.");
-            return this.Ok();
+            return this.Ok(new ResultObject<string> { Message = "Utilisateur déconnecté", StatusCode = 200 });
         }
 
         [HttpPost]
@@ -137,6 +137,19 @@ namespace SwtorOptimizer.Controllers
             var user = await this.context.UserRepository.All().FirstOrDefaultAsync(e => e.Username == request.UserName);
             if (user == null) return this.BadRequest();
             user.Password = request.Password;
+            await this.context.UserRepository.UpdateAsync(user.Id, user, true);
+            return this.Ok();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ActionName(nameof(UpdateUsername))]
+        public async Task<ActionResult> UpdateUsername([FromBody] LoginResult loginResult)
+        {
+            if (loginResult.UserName == null || loginResult.OriginalUserName == null) return this.BadRequest();
+            var user = await this.context.UserRepository.All().FirstOrDefaultAsync(e => e.Username == loginResult.OriginalUserName);
+            if (user == null) return this.BadRequest();
+            user.Username = loginResult.UserName;
             await this.context.UserRepository.UpdateAsync(user.Id, user, true);
             return this.Ok();
         }

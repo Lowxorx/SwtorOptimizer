@@ -3,21 +3,42 @@
     <mat-card-title> <mat-icon>account_circle</mat-icon> Gestion du compte </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-      <div class="error-text" *ngIf="shouldDisplayError()">
-        <mat-error> {{ passwordErrorText }} </mat-error>
-      </div>
-      <div class="password-form">
+    <h5>Modification du mot de passe</h5>
+    <form [formGroup]="passwordFormGroup" (ngSubmit)="onSubmitPassword()">
+      <div class="admin-form">
         <mat-form-field>
           <input matInput type="password" placeholder="Mot de passe" formControlName="password" required />
         </mat-form-field>
         <mat-form-field>
           <input matInput type="password" placeholder="Nouveau mot de passe" formControlName="newPassword" required />
+          <mat-error> Le mot de passe doit faire au moins 8 caractères de long </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput type="password" placeholder="Confirmation" formControlName="newPasswordConfirm" required />
+          <mat-error *ngIf="passwordFormGroup.controls['newPasswordConfirm'].hasError('minlength')"> Le mot de passe doit faire au moins 8 caractères de long </mat-error>
+          <mat-error *ngIf="passwordFormGroup.controls['newPasswordConfirm'].hasError('MatchPassword')"> Les mots de passe ne correspondent pas </mat-error>
         </mat-form-field>
         <button mat-mini-fab aria-label="Valider" color="primary" [disabled]="isValidateButtonDisabled()">
+          <mat-icon>done</mat-icon>
+        </button>
+      </div>
+    </form>
+    <h5>Modification du nom d'utilisateur</h5>
+    <form [formGroup]="usernameFormGroup" (ngSubmit)="onSubmitUsername()">
+      <div class="admin-form">
+        <mat-form-field>
+          <input matInput type="password" placeholder="Mot de passe" formControlName="password" required />
+          <mat-error> Vous devez confirmer votre mot de passe actuel </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Nom d'utilisateur actuel" formControlName="originalUserName" required />
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Nouveau nom d'utilisateur" formControlName="username" required />
+          <mat-error *ngIf="usernameFormGroup.controls['username'].hasError('minlength')"> Le nom d'utilisateur doit faire au moins 3 caractères de long </mat-error>
+          <mat-error *ngIf="usernameFormGroup.controls['username'].hasError('pattern')"> Le nom d'utilisateur ne doit pas contenir de caractères spéciaux </mat-error>
+        </mat-form-field>
+        <button mat-mini-fab aria-label="Valider" color="primary" [disabled]="usernameFormGroup.invalid">
           <mat-icon>done</mat-icon>
         </button>
       </div>
