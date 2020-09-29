@@ -1,0 +1,20 @@
+mat-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mat-icon {
+    margin-right: 8px;
+  }
+}
+
+.error-text {
+  margin: 8px;
+}
+
+.password-form {
+  display: flex;
+  justify-content: space-between;
+  mat-form-field {
+    width: 30%;
+  }
+}

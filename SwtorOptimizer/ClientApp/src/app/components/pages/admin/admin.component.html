@@ -1,69 +1,8 @@
-<div class="mat-typography">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title> <mat-icon>account_circle</mat-icon> Gestion du compte </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-        <div class="error-text" *ngIf="shouldDisplayError()">
-          <mat-error> {{ passwordErrorText }} </mat-error>
-        </div>
-        <div class="password-form">
-          <mat-form-field>
-            <input matInput type="password" placeholder="Mot de passe" formControlName="password" required />
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput type="password" placeholder="Nouveau mot de passe" formControlName="newPassword" required />
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput type="password" placeholder="Confirmation" formControlName="newPasswordConfirm" required />
-          </mat-form-field>
-          <button mat-mini-fab aria-label="Valider" color="primary" [disabled]="isValidateButtonDisabled()">
-            <mat-icon>done</mat-icon>
-          </button>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card class="admin-card">
-    <mat-card-header>
-      <mat-card-title> <mat-icon>memory</mat-icon> Gestion des tâches </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="mat-elevation-z8 table-container">
-        <mat-table [dataSource]="dataSource" matSort matSortActive="threshold" matSortDisableClear matSortDirection="asc">
-          <ng-container matColumnDef="threshold">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Cap visé </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{ element.threshold }} </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{ getTaskStatus(element) }} </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="setsFound">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Combinaisons trouvées </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{ element.foundSets }} </mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="action">
-            <mat-header-cell *matHeaderCellDef class="actions-cell">Supprimer</mat-header-cell>
-            <mat-cell *matCellDef="let element" class="actions-cell">
-              <button *ngIf="canDeleteTask(element.status)" mat-icon-button aria-label="Supprimer la tâche" (click)="deleteTask(element)">
-                <mat-icon>delete</mat-icon>
-              </button>
-              <button *ngIf="canStopTask(element.status)" mat-icon-button aria-label="Stopper la tâche" (click)="stopTask(element)">
-                <mat-icon>stop</mat-icon>
-              </button>
-            </mat-cell>
-          </ng-container>
-
-          <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-        </mat-table>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>
+<ng-container>
+  <div>
+    <app-admin-accounts></app-admin-accounts>
+  </div>
+  <div class="admin-card">
+    <app-admin-tasks></app-admin-tasks>
+  </div>
+</ng-container>

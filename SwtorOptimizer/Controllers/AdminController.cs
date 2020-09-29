@@ -34,6 +34,7 @@ namespace SwtorOptimizer.Controllers
             }
             catch (Exception exception)
             {
+                this.logger.LogError(exception, $"Impossible de supprimer la tâche {taskId}");
                 return this.Problem(exception.Message);
             }
         }
@@ -51,6 +52,7 @@ namespace SwtorOptimizer.Controllers
             }
             catch (Exception exception)
             {
+                this.logger.LogError(exception, $"Impossible de stopper la tâche {taskId}");
                 return this.Problem(exception.Message);
             }
         }
