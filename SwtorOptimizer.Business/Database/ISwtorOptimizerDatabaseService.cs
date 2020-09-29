@@ -8,6 +8,7 @@ namespace SwtorOptimizer.Business.Database
         IEnhancementRepository EnhancementRepository { get; }
         IEnhancementSetEnhancementRepository EnhancementSetEnhancementRepository { get; }
         IEnhancementSetRepository EnhancementSetRepository { get; }
+        IRepository<Package> PackageRepository { get; }
         IRepository<User> UserRepository { get; }
     }
 }
