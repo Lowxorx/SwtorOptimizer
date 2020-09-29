@@ -3,4 +3,5 @@ export enum CalculationTaskStatus {
   Started,
   Faulted,
   Ended,
+  Stopped,
 }

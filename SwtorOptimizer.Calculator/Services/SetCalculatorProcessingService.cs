@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SwtorOptimizer.Business.Database;
 using SwtorOptimizer.Business.Entities;
@@ -41,8 +39,10 @@ namespace SwtorOptimizer.Calculator.Services
                 task.FoundSets++;
                 var enhancementSetEnhancements = new List<EnhancementSetEnhancement>();
                 enhancementSetEnhancements.AddRange(newSetFound.Select(e => new EnhancementSetEnhancement { EnhancementSetId = newSet.Id, EnhancementId = e.Id }));
-                await this.context.CalculationTaskRepository.UpdateAsync(task.Id, task, true);
+                var updatedTask = await this.context.CalculationTaskRepository.UpdateAsync(task.Id, task, true);
                 await this.context.EnhancementSetEnhancementRepository.AddAllAsync(enhancementSetEnhancements);
+                var reloadedTask = this.context.CalculationTaskRepository.Reload(updatedTask);
+                if (reloadedTask.Status == CalculationTaskStatus.Stopped) break;
             }
 
             if (task.FoundSets == 0)

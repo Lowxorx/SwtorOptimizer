@@ -12,4 +12,8 @@ export class AdminService {
   public deleteTask(taskId: number): Observable<IResultObject> {
     return this.http.post<IResultObject>(`${this.apiEndpoint}/DeleteTask`, taskId);
   }
+
+  public stopTask(taskId: number): Observable<IResultObject> {
+    return this.http.post<IResultObject>(`${this.apiEndpoint}/StopTask`, taskId);
+  }
 }

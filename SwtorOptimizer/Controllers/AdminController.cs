@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SwtorOptimizer.Business.Database;
+using SwtorOptimizer.Business.Entities;
 using SwtorOptimizer.Models;
 
 namespace SwtorOptimizer.Controllers
@@ -29,6 +31,23 @@ namespace SwtorOptimizer.Controllers
             {
                 this.context.CalculationTaskRepository.Delete(taskId);
                 return this.Ok(new ResultObject<string> { Message = $"La tâche {taskId} a été supprimée.", Data = null, StatusCode = 200 });
+            }
+            catch (Exception exception)
+            {
+                return this.Problem(exception.Message);
+            }
+        }
+
+        [HttpPost]
+        [ActionName(nameof(StopTask))]
+        public async Task<ActionResult> StopTask([FromBody] int taskId)
+        {
+            try
+            {
+                var task = this.context.CalculationTaskRepository.Get(taskId);
+                task.Status = CalculationTaskStatus.Stopped;
+                await this.context.CalculationTaskRepository.UpdateAsync(taskId, task, true);
+                return this.Ok(new ResultObject<string> { Message = $"La tâche {taskId} a été stoppée. L'opération peut prendre jusqu'à 20 secondes.", Data = null, StatusCode = 200 });
             }
             catch (Exception exception)
             {

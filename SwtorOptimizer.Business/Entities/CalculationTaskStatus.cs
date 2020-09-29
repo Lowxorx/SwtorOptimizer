@@ -5,6 +5,7 @@
         Idle,
         Started,
         Faulted,
-        Ended
+        Ended,
+        Stopped
     }
 }

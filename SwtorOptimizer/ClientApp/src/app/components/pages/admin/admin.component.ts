@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import { CalculationTaskStatus } from 'src/app/enums/CalculationTaskStatus';
 import CalculationTaskHelper from 'src/app/helpers/calculation-task.helper';
 import { IAppUser } from 'src/app/models/IAppUser';
 import { ICalculationTask } from 'src/app/models/ICalculationTask';
@@ -85,6 +86,25 @@ export class AdminComponent implements OnInit {
         this.refreshTasks();
       },
     });
+  }
+
+  public stopTask(element: ICalculationTask): void {
+    this.adminService.stopTask(element.id).subscribe({
+      next: (data) => {
+        this.snackBar.open(data.message, null, { duration: 5000 });
+        this.refreshTasks();
+      },
+    });
+  }
+
+  public canDeleteTask(status: number): boolean {
+    const taskStatus = status as CalculationTaskStatus;
+    return taskStatus !== CalculationTaskStatus.Started;
+  }
+
+  public canStopTask(status: number): boolean {
+    const taskStatus = status as CalculationTaskStatus;
+    return taskStatus === CalculationTaskStatus.Started;
   }
 
   private updatePassword(): void {

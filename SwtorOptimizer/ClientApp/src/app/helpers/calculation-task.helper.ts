@@ -11,6 +11,8 @@ export default class CalculationTaskHelper {
         return 'Terminée';
       case CalculationTaskStatus.Started:
         return 'Calcul en cours';
+      case CalculationTaskStatus.Stopped:
+        return 'Arrêtée';
       case CalculationTaskStatus.Faulted:
         return 'Erreur';
       default:
