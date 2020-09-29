@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { IEnhancementSet } from '../models/IEnhancementSet';
-import { IAppUser } from '../models/IAppUser';
+import { IResultObject } from '../models/IResultObject';
 
 @Injectable({ providedIn: 'root' })
 export class AdminService {
@@ -10,7 +9,7 @@ export class AdminService {
 
   constructor(private readonly http: HttpClient) {}
 
-  public getCurrentUser(): Observable<string> {
-    return this.http.get<string>(`${this.apiEndpoint}/GetCurrentUser`);
+  public deleteTask(taskId: number): Observable<IResultObject> {
+    return this.http.post<IResultObject>(`${this.apiEndpoint}/DeleteTask`, taskId);
   }
 }

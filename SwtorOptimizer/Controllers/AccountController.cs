@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using SwtorOptimizer.Business.Database;
 using SwtorOptimizer.Models;
 
 namespace SwtorOptimizer.Controllers
@@ -15,15 +18,30 @@ namespace SwtorOptimizer.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+        private readonly ISwtorOptimizerDatabaseService context;
         private readonly IJwtAuthManager jwtAuthManager;
         private readonly ILogger<AccountController> logger;
         private readonly IUserService userService;
 
-        public AccountController(ILogger<AccountController> logger, IJwtAuthManager jwtAuthManager, IUserService userService)
+        public AccountController(ILogger<AccountController> logger, IJwtAuthManager jwtAuthManager, IUserService userService, ISwtorOptimizerDatabaseService context)
         {
             this.logger = logger;
             this.jwtAuthManager = jwtAuthManager;
             this.userService = userService;
+            this.context = context;
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ActionName(nameof(CheckPassword))]
+        public ActionResult CheckPassword([FromBody] LoginRequest request)
+        {
+            if (this.userService.IsValidUserCredentials(request.UserName, request.Password))
+            {
+                return this.Ok();
+            }
+
+            return this.BadRequest();
         }
 
         [HttpGet]
@@ -108,6 +126,19 @@ namespace SwtorOptimizer.Controllers
             {
                 return this.Unauthorized(e.Message); // return 401 so that the client side can redirect the user to login page
             }
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ActionName(nameof(UpdatePassword))]
+        public async Task<ActionResult> UpdatePassword([FromBody] LoginRequest request)
+        {
+            if (request.Password == null || request.UserName == null) return this.BadRequest();
+            var user = await this.context.UserRepository.All().FirstOrDefaultAsync(e => e.Username == request.UserName);
+            if (user == null) return this.BadRequest();
+            user.Password = request.Password;
+            await this.context.UserRepository.UpdateAsync(user.Id, user, true);
+            return this.Ok();
         }
     }
 }

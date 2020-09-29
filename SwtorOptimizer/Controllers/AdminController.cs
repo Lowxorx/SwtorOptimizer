@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SwtorOptimizer.Business.Database;
+using SwtorOptimizer.Models;
 
 namespace SwtorOptimizer.Controllers
 {
@@ -19,11 +21,19 @@ namespace SwtorOptimizer.Controllers
             this.context = context;
         }
 
-        [HttpGet]
-        [ActionName(nameof(GetCurrentUser))]
-        public IActionResult GetCurrentUser()
+        [HttpPost]
+        [ActionName(nameof(DeleteTask))]
+        public IActionResult DeleteTask([FromBody] int taskId)
         {
-            return this.Ok(this.User.Identity.Name);
+            try
+            {
+                this.context.CalculationTaskRepository.Delete(taskId);
+                return this.Ok(new ResultObject<string> { Message = $"La tâche {taskId} a été supprimée.", Data = null, StatusCode = 200 });
+            }
+            catch (Exception exception)
+            {
+                return this.Problem(exception.Message);
+            }
         }
     }
 }

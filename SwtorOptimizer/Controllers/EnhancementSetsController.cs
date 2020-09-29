@@ -1,12 +1,9 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SwtorOptimizer.Business.Database;
-using SwtorOptimizer.Business.Entities;
-using SwtorOptimizer.Models;
 using SwtorOptimizer.Models.Convertors;
 
 namespace SwtorOptimizer.Controllers
