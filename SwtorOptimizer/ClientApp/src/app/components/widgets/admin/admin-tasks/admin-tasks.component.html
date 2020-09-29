@@ -38,7 +38,7 @@
 
         <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-        <div *ngIf="tasksNumber > 0">
+        <div *ngIf="tasksNumber && tasksNumber === 0">
           <mat-footer-row *matFooterRowDef="['noData']"></mat-footer-row>
         </div>
       </mat-table>

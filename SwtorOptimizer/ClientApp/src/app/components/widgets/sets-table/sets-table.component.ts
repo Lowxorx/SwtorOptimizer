@@ -14,6 +14,7 @@ export class SetsTableComponent implements OnInit {
   public displayedColumns: string[] = ['threshold', 'setName', 'power', 'endurance', 'details'];
   public dataSource: MatTableDataSource<IEnhancementSet> = new MatTableDataSource();
   public selectedSet: IEnhancementSet | null;
+  public setsNumber = 0;
 
   @Input()
   public taskId: number;
@@ -43,6 +44,7 @@ export class SetsTableComponent implements OnInit {
   }
 
   private initDataSource(enhancementSets: IEnhancementSet[]): void {
+    this.setsNumber = enhancementSets.length;
     this.dataSource = new MatTableDataSource(enhancementSets);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;

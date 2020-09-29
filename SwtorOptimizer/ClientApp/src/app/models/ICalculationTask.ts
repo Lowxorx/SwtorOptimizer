@@ -6,6 +6,7 @@ export interface ICalculationTask {
   foundSets: number;
   status: number;
   startDate: Date;
+  lastUpdate: Date;
   endDate: Date;
   enhancementSets: IEnhancementSet[];
 }

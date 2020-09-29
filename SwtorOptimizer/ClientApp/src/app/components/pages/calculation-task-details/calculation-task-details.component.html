@@ -5,6 +5,9 @@
     <h4 *ngIf="taskIsStarted()">Date de démarrage du calcul : {{ task.startDate | date: 'dd/MM/yyyy' }}</h4>
     <h4 *ngIf="taskIsEnded()">Durée d'exécution : {{ task.duration }}</h4>
     <h4 *ngIf="taskIsStarted() || taskIsEnded()">Nombre de combinaisons trouvées : {{ task.foundSets }}</h4>
+    <h4 *ngIf="taskIsFaulted()">
+      Attention ! Cette tâche est incomplète. Le calcul est bloqué, ou le serveur a rencontré un problème. Les résultats affichés ci-dessous (s'il y en a) sont ceux qui ont pu être calculés avant l'incident. Ne prenez pas cela comme modèle pour optimiser votre personnage !
+    </h4>
   </div>
   <button *ngIf="task && taskIsEnded() && task.foundSets > 0" mat-raised-button color="primary" (click)="toggleDetails()">
     {{ isDetailsVisible ? 'Masquer les détails' : 'Afficher les détails' }}

@@ -39,6 +39,7 @@ namespace SwtorOptimizer.Calculator.Services
                 task.FoundSets++;
                 var enhancementSetEnhancements = new List<EnhancementSetEnhancement>();
                 enhancementSetEnhancements.AddRange(newSetFound.Select(e => new EnhancementSetEnhancement { EnhancementSetId = newSet.Id, EnhancementId = e.Id }));
+                task.LastUpdate = DateTime.Now;
                 var updatedTask = await this.context.CalculationTaskRepository.UpdateAsync(task.Id, task, true);
                 await this.context.EnhancementSetEnhancementRepository.AddAllAsync(enhancementSetEnhancements);
                 var reloadedTask = this.context.CalculationTaskRepository.Reload(updatedTask);
