@@ -10,6 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Config\appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Config\appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.5" />
@@ -19,6 +29,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SwtorOptimizer.Business\SwtorOptimizer.Business.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Config\appsettings.json" />
   </ItemGroup>
 
 </Project>
