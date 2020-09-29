@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using SwtorOptimizer.Business.Entities;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +15,7 @@ namespace SwtorOptimizer.Database.Database
         // C# will call base class parameterless constructor by default
         {
             var config = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "Config"))
+                .SetBasePath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config"))
                 .AddJsonFile("appsettings.json", false, true);
 
             this.configuration = config.Build();

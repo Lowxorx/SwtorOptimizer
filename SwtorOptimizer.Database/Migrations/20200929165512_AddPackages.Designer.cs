@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SwtorOptimizer.Database.Database;
 
 namespace SwtorOptimizer.Database.Migrations
 {
     [DbContext(typeof(SwtorOptimizerContext))]
-    partial class SwtorOptimizerContextModelSnapshot : ModelSnapshot
+    [Migration("20200929165512_AddPackages")]
+    partial class AddPackages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

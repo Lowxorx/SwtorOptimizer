@@ -8,10 +8,7 @@ namespace SwtorOptimizer.Database.Database
     {
         public static void Initialize(SwtorOptimizerContext context)
         {
-            if (!context.Database.EnsureCreated())
-            {
-                context.Database.Migrate();
-            }
+            context.Database.Migrate();
 
             if (context.Enhancements.Any()) return;
 
