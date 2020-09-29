@@ -32,8 +32,15 @@
         </mat-cell>
       </ng-container>
 
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef [attr.colspan]="displayedColumns.length">Il n'y a pas de données disponibles.</mat-footer-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
       <mat-row *matRowDef="let element; columns: displayedColumns"></mat-row>
+      <div *ngIf="setsNumber && setsNumber === 0">
+        <mat-footer-row *matFooterRowDef="['noData']"></mat-footer-row>
+      </div>
     </mat-table>
 
     <mat-paginator [pageSizeOptions]="[10, 25, 50]" showFirstLastButtons></mat-paginator>

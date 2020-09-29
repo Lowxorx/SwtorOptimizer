@@ -11,22 +11,25 @@
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
     <UserSecretsId>5ce5350d-50d0-468c-8ef9-506e257fff0a</UserSecretsId>
-    <AssemblyVersion>1.4.0.0</AssemblyVersion>
-    <FileVersion>1.4.0.0</FileVersion>
-    <Version>1.2.0</Version>
+    <AssemblyVersion>1.5.0.0</AssemblyVersion>
+    <FileVersion>1.5.0.0</FileVersion>
+    <Version>1.5.0.0</Version>
+    <Company>Lahan</Company>
+    <Authors>Lowxorx</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.8" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.8" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
-    <PackageReference Include="Serilog" Version="2.9.0" />
-    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
   </ItemGroup>
 
@@ -40,11 +43,8 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\components\widgets\theme-toggle\theme-toggle.module.ts" />
     <None Remove="ClientApp\src\app\components\widgets\topbar\topbar.module.ts" />
-    <None Remove="ClientApp\src\app\models\FindCombinationTaskStatus.ts" />
     <None Remove="ClientApp\src\app\models\IEnhancement.ts" />
     <None Remove="ClientApp\src\app\models\IEnhancementSet.ts" />
-    <None Remove="ClientApp\src\app\models\IFindCombinationTask.ts" />
-    <None Remove="ClientApp\src\app\models\IFindCombinationTaskFront.ts" />
     <None Remove="ClientApp\src\app\models\IResultObject.ts" />
     <None Remove="ClientApp\src\app\models\IThresholdData.ts" />
     <None Remove="ClientApp\src\app\services\app.service.ts" />
@@ -60,15 +60,10 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\components\widgets\theme-toggle\theme-toggle.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\widgets\topbar\topbar.module.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\FindCombinationTaskStatus.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\models\IEnhancement.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\models\IEnhancementSet.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\IFindCombinationTask.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\IFindCombinationTaskFront.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\IResultObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\IThresholdData.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\app.service.ts" />
@@ -100,20 +95,20 @@
   </Target>
 
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
-     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
-     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
 
     <!-- Include the newly-built files in the publish output -->
-   <ItemGroup>
-     <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
-     <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
-     <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-     <RelativePath>%(DistFiles.Identity)</RelativePath>
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+      <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-   </ResolvedFileToPublish>
-   </ItemGroup>
- </Target>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
 </Project>

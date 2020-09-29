@@ -17,6 +17,8 @@ namespace SwtorOptimizer.Business.Database
 
         T Get(object id);
 
+        T Reload(T entity);
+
         void SaveChanges();
 
         Task SaveChangesAsync();

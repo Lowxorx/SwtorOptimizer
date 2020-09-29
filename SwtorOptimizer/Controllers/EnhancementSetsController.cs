@@ -1,12 +1,9 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SwtorOptimizer.Business.Database;
-using SwtorOptimizer.Business.Entities;
-using SwtorOptimizer.Models;
 using SwtorOptimizer.Models.Convertors;
 
 namespace SwtorOptimizer.Controllers
@@ -32,28 +29,16 @@ namespace SwtorOptimizer.Controllers
         }
 
         [HttpGet]
-        [ActionName(nameof(GetEnhancementSetsForThreshold))]
-        public async Task<IActionResult> GetEnhancementSetsForThreshold(int threshold)
+        [ActionName(nameof(GetEnhancementSetsByTaskId))]
+        public async Task<IActionResult> GetEnhancementSetsByTaskId(int taskId)
         {
-            var sets = await this.context.EnhancementSetRepository.All().Where(e => e.Threshold == threshold).Include(e => e.EnhancementSetEnhancements).ThenInclude(e => e.Enhancement).ToListAsync();
+            var sets = await this.context.EnhancementSetRepository.All().Where(e => e.CalculationTaskId == taskId).Include(e => e.EnhancementSetEnhancements).ThenInclude(e => e.Enhancement).ToListAsync();
             if (sets.Any(e => e.IsInvalid))
             {
                 return this.NoContent();
             }
             var dtos = sets.Select(e => EnhancementSetDtoConvertor.FromEntityToDto(e, e.EnhancementSetEnhancements.Select(e => e.Enhancement).ToList())).ToList();
             return this.Ok(dtos);
-        }
-
-        [HttpGet]
-        [ActionName(nameof(GetNewEnhancementSet))]
-        public async Task<IActionResult> GetNewEnhancementSet(int threshold)
-        {
-            if (!this.context.EnhancementSetRepository.All().Any(e => e.Threshold == threshold))
-            {
-                await this.context.FindCombinationTaskRepository.AddAsync(new FindCombinationTask { Threshold = threshold, Status = FindCombinationTaskStatus.Idle, FoundSets = 0 }, true);
-                return this.Accepted(new ResultObject<string> { StatusCode = StatusCodes.Status202Accepted, Message = "Une tâche a été crée." });
-            }
-            return this.Ok(new ResultObject<string> { StatusCode = StatusCodes.Status200OK, Message = "Le calcul a déjà été effectué." });
         }
     }
 }

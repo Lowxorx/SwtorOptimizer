@@ -1,0 +1,16 @@
+mat-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mat-icon {
+    margin-right: 8px;
+  }
+}
+
+.admin-form {
+  display: flex;
+  justify-content: space-between;
+  mat-form-field {
+    width: 30%;
+  }
+}

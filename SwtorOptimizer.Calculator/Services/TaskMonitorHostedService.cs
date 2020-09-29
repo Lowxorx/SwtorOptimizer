@@ -19,6 +19,7 @@ namespace SwtorOptimizer.Calculator.Services
         private readonly ISwtorOptimizerDatabaseService context;
         private readonly ILogger<TaskMonitorHostedService> logger;
         private readonly IOptions<CalculatorSettings> settings;
+        private List<Enhancement> enhancements;
 
         public TaskMonitorHostedService(IServiceProvider services, ILogger<TaskMonitorHostedService> logger, IOptions<CalculatorSettings> settings, ISwtorOptimizerDatabaseService context)
         {
@@ -33,7 +34,7 @@ namespace SwtorOptimizer.Calculator.Services
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             this.logger.LogInformation("TaskMonitorHostedService is starting.");
-
+            this.enhancements = this.context.EnhancementRepository.All().ToList();
             while (!cancellationToken.IsCancellationRequested)
             {
                 await this.CheckAndStartTasks();
@@ -49,31 +50,47 @@ namespace SwtorOptimizer.Calculator.Services
 
         private async Task CheckAndStartTasks()
         {
-            var tasks = new List<FindCombinationTask>();
+            var allTasks = new List<CalculationTask>();
 
             try
             {
-                tasks = await this.context.FindCombinationTaskRepository.All().Where(e => e.EndDate == default && e.Status == FindCombinationTaskStatus.Idle).ToListAsync();
+                allTasks = await this.context.CalculationTaskRepository.All().ToListAsync();
             }
             catch (Exception e)
             {
-                this.logger.LogError(e, $"Task error : {e.Message}");
+                this.logger.LogError(e, $"Cannot get all tasks. Error : {e.Message}");
             }
 
-            if (tasks.Count == 0)
+            // Cleanup current faulted tasks
+            var runningTasks = allTasks.Where(e => e.Status == CalculationTaskStatus.Started).ToList();
+            if (runningTasks.Count == 0)
             {
-                this.logger.LogInformation($"No task found. Standby for {this.settings.Value.TaskInterval} seconds... ");
+                this.logger.LogDebug($"No task to clean.");
+            }
+            else
+            {
+                foreach (var task in runningTasks.Where(task => DateTime.Now.Subtract(task.LastUpdate).Minutes >= 5))
+                {
+                    this.logger.LogWarning($"A task seems to hang (task #{task.Id}). Cleaning...");
+                    task.Status = CalculationTaskStatus.Faulted;
+                    task.EndDate = DateTime.Now;
+                    await this.context.CalculationTaskRepository.UpdateAsync(task.Id, task, true);
+                }
+            }
+
+            // Launch new tasks
+            var waitingTasks = allTasks.Where(e => e.Status == CalculationTaskStatus.Idle).ToList();
+            if (waitingTasks.Count == 0)
+            {
+                this.logger.LogDebug($"No task to run. Standby for {this.settings.Value.TaskInterval} seconds... ");
                 return;
             }
-
-            this.logger.LogInformation($"We have a job to do. Let's launch {tasks.Count} task(s)");
-            var enhancements = this.context.EnhancementRepository.All().ToList();
-
-            foreach (var task in tasks)
+            this.logger.LogInformation($"Let's launch {waitingTasks.Count} task(s) !");
+            foreach (var task in waitingTasks)
             {
                 using var scope = this.Services.CreateScope();
                 var scopedProcessingService = scope.ServiceProvider.GetRequiredService<ISetCalculatorProcessingService>();
-                scopedProcessingService.StartTask(task, enhancements);
+                scopedProcessingService.StartTask(task, this.enhancements);
             }
         }
     }

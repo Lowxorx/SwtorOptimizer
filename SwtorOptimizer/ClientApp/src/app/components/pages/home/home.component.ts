@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { EnhancementSetsService } from '../../../services/enhancement-sets.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IThresholdData } from '../../../models/IThresholdData';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { CalculationTasksService } from 'src/app/services/calculation-tasks.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   public thresholdData: IThresholdData = { rawThreshold: 389, useAccuracyStim: false, augments: 0 };
 
-  constructor(private enhancementSetsService: EnhancementSetsService, private formBuilder: FormBuilder, private snackBar: MatSnackBar, private router: Router) {}
+  constructor(private calculationTaskService: CalculationTasksService, private formBuilder: FormBuilder, private snackBar: MatSnackBar, private router: Router) {}
 
   public ngOnInit() {
     this.createForm();
@@ -29,15 +29,15 @@ export class HomeComponent implements OnInit {
   public calculateMySets(): void {
     this.isCalculating = true;
     const realThreshold = this.getRealThreshold();
-    this.enhancementSetsService.getNewEnhancementSet(realThreshold).subscribe((e) => {
+    this.calculationTaskService.calculateEnhancementSets(realThreshold).subscribe((e) => {
       switch (e.statusCode) {
         case 200:
           this.snackBar.open('Le résultat pour ce cap a déjà été calculé, redirection vers les résultats dans 3 secondes...', null, { duration: 3000 });
-          this.router.navigate(['/task', realThreshold]);
+          this.router.navigate(['/task', e.data]);
           break;
         case 202:
           this.snackBar.open("Le résultat pour ce cap n'a pas encore été calculé. Une tâche a été créée, redirection vers les détails...", null, { duration: 5000 });
-          this.router.navigate(['/task', realThreshold]);
+          this.router.navigate(['/task', e.data]);
           break;
         default:
       }
