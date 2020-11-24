@@ -122,7 +122,7 @@ namespace SwtorOptimizer.Database.Database
 
             context.Packages.AddRange(packages);
 
-            context.Users.Add(new User()
+            context.Users.Add(new User
             {
                 Username = "admin",
                 Password = "admin"

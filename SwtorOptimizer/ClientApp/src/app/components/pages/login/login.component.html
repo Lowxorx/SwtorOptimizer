@@ -2,7 +2,6 @@
   <mat-card-content>
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
       <h2>Connexion</h2>
-      <mat-error *ngIf="loginError"> Le nom d'utilisateur ou le mot de passe est incorrect </mat-error>
       <mat-form-field class="full-width-input">
         <input matInput placeholder="Nom d'utilisateur" formControlName="username" required />
         <mat-error> Nom d'utilisateur invalide </mat-error>
@@ -11,6 +10,8 @@
         <input matInput type="password" placeholder="Mot de passe" formControlName="password" required />
         <mat-error> Mot de passe invalide </mat-error>
       </mat-form-field>
+      <mat-error *ngIf="loginError"> Le nom d'utilisateur ou le mot de passe est incorrect </mat-error>
+      <br />
       <button mat-raised-button color="primary" [disabled]="isValidateButtonDisabled()">Connexion</button>
     </form>
   </mat-card-content>
