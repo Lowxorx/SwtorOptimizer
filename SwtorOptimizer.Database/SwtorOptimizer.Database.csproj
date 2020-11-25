@@ -2,9 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
+    <Version>1.2.0.0</Version>
+    <Authors>Lowxorx</Authors>
+    <Company>Lahan</Company>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Config\appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Config\appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
@@ -16,6 +29,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SwtorOptimizer.Business\SwtorOptimizer.Business.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Config\appsettings.json" />
   </ItemGroup>
 
 </Project>

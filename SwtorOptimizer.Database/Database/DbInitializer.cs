@@ -1,5 +1,6 @@
 using SwtorOptimizer.Business.Entities;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace SwtorOptimizer.Database.Database
 {
@@ -7,7 +8,7 @@ namespace SwtorOptimizer.Database.Database
     {
         public static void Initialize(SwtorOptimizerContext context)
         {
-            context.Database.EnsureCreated();
+            context.Database.Migrate();
 
             if (context.Enhancements.Any()) return;
 
@@ -88,6 +89,45 @@ namespace SwtorOptimizer.Database.Database
             context.Enhancements.AddRange(typeOneEnhancements);
             context.Enhancements.AddRange(typeTwoEnhancements);
             context.Enhancements.AddRange(typeThreeEnhancements);
+
+            var packages = new[]
+            {
+                new Package { Name = "Sha'tek (tous) Type 19", Power = 652, Tertiary = 431, Endurance = 1007, Mastery = 858},
+                new Package { Name = "InterroTek Savant Type 19", Power = 538, Tertiary = 420, Endurance = 1115, Mastery = 850},
+                new Package { Name = "InterroTek Qualification Type 19", Power = 589, Tertiary = 387, Endurance = 1084, Mastery = 883},
+                new Package { Name = "InterroTek Efficacité Type 19", Power = 568, Tertiary = 431, Endurance = 1097, Mastery = 836},
+                new Package { Name = "Sorosuub Savant/Qualification Type 19", Power = 592, Tertiary = 431, Endurance = 1114, Mastery = 809},
+                new Package { Name = "Sorosuub Efficacité Type 19", Power = 589, Tertiary = 431, Endurance = 1112, Mastery = 813},
+                new Package { Name = "Mier-Lang Savant/Qualification Type 19", Power = 575, Tertiary = 431, Endurance = 1101, Mastery = 831},
+                new Package { Name = "Mier-Lang Efficacité Type 19", Power = 562, Tertiary = 431, Endurance = 1109, Mastery = 835},
+                new Package { Name = "BlasTech Savant/Qualification Type 19", Power = 548, Tertiary = 431, Endurance = 1117, Mastery = 837},
+                new Package { Name = "BlasTech Efficacité Type 19", Power = 558, Tertiary = 431, Endurance = 1115, Mastery = 830},
+                new Package { Name = "Ord Mantell Savant Type 19", Power = 529, Tertiary = 441, Endurance = 1140, Mastery = 819},
+                new Package { Name = "Ord Mantell Savant Type 19", Power = 529, Tertiary = 433, Endurance = 1140, Mastery = 819},
+                new Package { Name = "Ord Mantell Qualification Type 19", Power = 563, Tertiary = 441, Endurance = 1134, Mastery = 808},
+                new Package { Name = "Ord Mantell Qualification Type 19", Power = 563, Tertiary = 433, Endurance = 1134, Mastery = 808},
+                new Package { Name = "Ord Mantell Efficacité Type 19", Power = 547, Tertiary = 441, Endurance = 1129, Mastery = 827},
+                new Package { Name = "Ord Mantell Efficacité Type 19", Power = 547, Tertiary = 433, Endurance = 1129, Mastery = 827},
+                new Package { Name = "Sund Tech Savant Type 19", Power = 585, Tertiary = 431, Endurance = 1087, Mastery = 840},
+                new Package { Name = "Sund Tech Qualification Type 19", Power = 589, Tertiary = 429, Endurance = 1095, Mastery = 835},
+                new Package { Name = "Baktoid Savant/Qualification Type 19", Power = 565, Tertiary = 422, Endurance = 1127, Mastery = 822},
+                new Package { Name = "Baktoid Efficacité Type 19", Power = 563, Tertiary = 422, Endurance = 1148, Mastery = 806},
+                new Package { Name = "Systech Savant/Qualification Type 19", Power = 564, Tertiary = 409, Endurance = 1128, Mastery = 843},
+                new Package { Name = "Systech Efficacité Type 19", Power = 599, Tertiary = 424, Endurance = 1105, Mastery = 820},
+                new Package { Name = "Arakyd Industries Savant/Qualification Type 19", Power = 572, Tertiary = 431, Endurance = 1129, Mastery = 809},
+                new Package { Name = "Arakyd Industries Efficacité Type 19", Power = 585, Tertiary = 431, Endurance = 1112, Mastery = 812},
+                new Package { Name = "Blastech Métamorphique Type 19", Power = 837, Tertiary = 431, Endurance = 1117, Mastery = 548},
+                new Package { Name = "Ord Mantell Métamorphique Type 19", Power = 819, Tertiary = 441, Endurance = 1140, Mastery = 529},
+            };
+
+            context.Packages.AddRange(packages);
+
+            context.Users.Add(new User
+            {
+                Username = "admin",
+                Password = "admin"
+            });
+
             context.SaveChanges();
         }
     }

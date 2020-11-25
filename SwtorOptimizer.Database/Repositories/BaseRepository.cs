@@ -47,6 +47,15 @@ namespace SwtorOptimizer.Database.Repositories
             return this.dbContext.Set<T>().Find(id);
         }
 
+        public virtual T Reload(T entity)
+        {
+            if (entity == null) return null;
+
+            this.dbContext.Entry(entity).Reload();
+
+            return entity;
+        }
+
         public virtual void SaveChanges()
         {
             this.dbContext.SaveChanges();

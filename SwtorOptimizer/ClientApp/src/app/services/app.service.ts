@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 export class AppService {
   private apiEndpoint = `/api/App`;
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {}
 
   public getComponentsVersion(): Observable<string[]> {
     return this.http.get<string[]>(`${this.apiEndpoint}/GetComponentsVersion`);

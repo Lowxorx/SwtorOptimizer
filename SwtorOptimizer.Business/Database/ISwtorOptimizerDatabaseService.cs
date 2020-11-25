@@ -4,9 +4,11 @@ namespace SwtorOptimizer.Business.Database
 {
     public interface ISwtorOptimizerDatabaseService
     {
+        IRepository<CalculationTask> CalculationTaskRepository { get; }
         IEnhancementRepository EnhancementRepository { get; }
         IEnhancementSetEnhancementRepository EnhancementSetEnhancementRepository { get; }
         IEnhancementSetRepository EnhancementSetRepository { get; }
-        IRepository<FindCombinationTask> FindCombinationTaskRepository { get; }
+        IRepository<Package> PackageRepository { get; }
+        IRepository<User> UserRepository { get; }
     }
 }

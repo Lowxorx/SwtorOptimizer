@@ -4,6 +4,8 @@ namespace SwtorOptimizer.Models.Dto
 {
     public class EnhancementSetDto
     {
+        public CalculationTaskDto CalculationTask { get; set; }
+        public int CalculationTaskId { get; set; }
         public int Endurance { get; set; }
         public List<EnhancementDto> Enhancements { get; set; }
         public int Id { get; set; }

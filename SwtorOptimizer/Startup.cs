@@ -9,6 +9,11 @@ using SwtorOptimizer.Business.Database;
 using SwtorOptimizer.Business.Settings;
 using SwtorOptimizer.Database.Database;
 using System;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using SwtorOptimizer.Helpers;
+using SwtorOptimizer.Models;
 
 namespace SwtorOptimizer
 {
@@ -16,13 +21,13 @@ namespace SwtorOptimizer
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -42,15 +47,16 @@ namespace SwtorOptimizer
                 app.UseHsts();
             }
 
-            // app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(name: "default", pattern: "{controller}/{action=Index}/{id?}");
@@ -75,6 +81,7 @@ namespace SwtorOptimizer
             services.AddControllersWithViews();
 
             this.ConfigureDatabase(services);
+            this.ConfigureAuthentication(services);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => configuration.RootPath = "ClientApp/dist");
@@ -88,6 +95,36 @@ namespace SwtorOptimizer
             connectionString = connectionString.Replace("#DBNAME#", Environment.GetEnvironmentVariable("DB_NAME"));
             connectionString = connectionString.Replace("#DBUSER#", Environment.GetEnvironmentVariable("DB_USER"));
             return connectionString;
+        }
+
+        private void ConfigureAuthentication(IServiceCollection services)
+        {
+            var jwtTokenConfig = this.Configuration.GetSection("jwtTokenConfig").Get<JwtTokenConfig>();
+            services.AddSingleton(jwtTokenConfig);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = true;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = jwtTokenConfig.Issuer,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtTokenConfig.Secret)),
+                    ValidAudience = jwtTokenConfig.Audience,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.FromMinutes(1)
+                };
+            });
+
+            services.AddSingleton<IJwtAuthManager, JwtAuthManager>();
+            services.AddHostedService<JwtRefreshTokenCache>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         private void ConfigureDatabase(IServiceCollection services)
