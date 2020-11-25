@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using SwtorOptimizer.Business.Entities;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +15,7 @@ namespace SwtorOptimizer.Database.Database
         // C# will call base class parameterless constructor by default
         {
             var config = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "Config"))
+                .SetBasePath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config"))
                 .AddJsonFile("appsettings.json", false, true);
 
             this.configuration = config.Build();
@@ -33,10 +34,9 @@ namespace SwtorOptimizer.Database.Database
 
         public DbSet<CalculationTask> CalculationTasks { get; set; }
         public DbSet<Enhancement> Enhancements { get; set; }
-
         public DbSet<EnhancementSetEnhancement> EnhancementSetEnhancements { get; set; }
-
         public DbSet<EnhancementSet> EnhancementSets { get; set; }
+        public DbSet<Package> Packages { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -47,6 +47,8 @@ namespace SwtorOptimizer.Database.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>(entity => entity.HasKey(e => e.Id));
+
+            modelBuilder.Entity<Package>(entity => entity.HasKey(e => e.Id));
 
             modelBuilder.Entity<Enhancement>(entity => entity.HasKey(e => e.Id));
 
