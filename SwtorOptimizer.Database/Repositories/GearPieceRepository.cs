@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace SwtorOptimizer.Database.Repositories
 {
-    internal class EnhancementRepository : BaseRespository<Enhancement>, IEnhancementRepository
+    internal class GearPieceRepository : BaseRespository<GearPiece>, IGearPieceRepository
     {
-        internal EnhancementRepository(SwtorOptimizerContext dbContext) : base(dbContext)
+        internal GearPieceRepository(SwtorOptimizerContext dbContext) : base(dbContext)
         {
         }
 
-        public void AddAll(IEnumerable<Enhancement> enhancements)
+        public void AddAll(IEnumerable<GearPiece> enhancements)
         {
             foreach (var enhancement in enhancements)
             {

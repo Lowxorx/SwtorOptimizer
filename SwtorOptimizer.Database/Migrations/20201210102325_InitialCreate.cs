@@ -26,22 +26,20 @@ namespace SwtorOptimizer.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Enhancements",
+                name: "GearPieces",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AccuracyName = table.Column<string>(nullable: true),
-                    AlacrityName = table.Column<string>(nullable: true),
-                    CriticalName = table.Column<string>(nullable: true),
                     Endurance = table.Column<int>(nullable: false),
+                    Mastery = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Power = table.Column<int>(nullable: false),
                     Tertiary = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enhancements", x => x.Id);
+                    table.PrimaryKey("PK_GearPieces", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,7 +57,7 @@ namespace SwtorOptimizer.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EnhancementSets",
+                name: "GearSets",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -72,9 +70,9 @@ namespace SwtorOptimizer.Database.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EnhancementSets", x => x.Id);
+                    table.PrimaryKey("PK_GearSets", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EnhancementSets_CalculationTasks_CalculationTaskId",
+                        name: "FK_GearSets_CalculationTasks_CalculationTaskId",
                         column: x => x.CalculationTaskId,
                         principalTable: "CalculationTasks",
                         principalColumn: "Id",
@@ -82,60 +80,60 @@ namespace SwtorOptimizer.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EnhancementSetEnhancements",
+                name: "GearSetGearPieces",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EnhancementId = table.Column<int>(nullable: false),
-                    EnhancementSetId = table.Column<int>(nullable: false)
+                    GearPieceId = table.Column<int>(nullable: false),
+                    GearSetId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EnhancementSetEnhancements", x => x.Id);
+                    table.PrimaryKey("PK_GearSetGearPieces", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EnhancementSetEnhancements_Enhancements_EnhancementId",
-                        column: x => x.EnhancementId,
-                        principalTable: "Enhancements",
+                        name: "FK_GearSetGearPieces_GearPieces_GearPieceId",
+                        column: x => x.GearPieceId,
+                        principalTable: "GearPieces",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EnhancementSetEnhancements_EnhancementSets_EnhancementSetId",
-                        column: x => x.EnhancementSetId,
-                        principalTable: "EnhancementSets",
+                        name: "FK_GearSetGearPieces_GearSets_GearSetId",
+                        column: x => x.GearSetId,
+                        principalTable: "GearSets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_EnhancementSetEnhancements_EnhancementId",
-                table: "EnhancementSetEnhancements",
-                column: "EnhancementId");
+                name: "IX_GearSetGearPieces_GearPieceId",
+                table: "GearSetGearPieces",
+                column: "GearPieceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EnhancementSetEnhancements_EnhancementSetId",
-                table: "EnhancementSetEnhancements",
-                column: "EnhancementSetId");
+                name: "IX_GearSetGearPieces_GearSetId",
+                table: "GearSetGearPieces",
+                column: "GearSetId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EnhancementSets_CalculationTaskId",
-                table: "EnhancementSets",
+                name: "IX_GearSets_CalculationTaskId",
+                table: "GearSets",
                 column: "CalculationTaskId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EnhancementSetEnhancements");
+                name: "GearSetGearPieces");
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Enhancements");
+                name: "GearPieces");
 
             migrationBuilder.DropTable(
-                name: "EnhancementSets");
+                name: "GearSets");
 
             migrationBuilder.DropTable(
                 name: "CalculationTasks");

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SwtorOptimizer.Database.Database;
 
 namespace SwtorOptimizer.Database.Migrations
 {
     [DbContext(typeof(SwtorOptimizerContext))]
-    partial class SwtorOptimizerContextModelSnapshot : ModelSnapshot
+    [Migration("20201210133457_GearStat")]
+    partial class GearStat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,6 +59,12 @@ namespace SwtorOptimizer.Database.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Endurance")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GearPieceStat")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GearPieceType")
                         .HasColumnType("int");
 
                     b.Property<int>("Mastery")

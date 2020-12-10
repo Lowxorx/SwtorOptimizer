@@ -5,7 +5,7 @@ namespace SwtorOptimizer.Models.Convertors
 {
     public static class EnhancementDtoConvertor
     {
-        public static EnhancementDto FromEntityToDto(Enhancement entity)
+        public static EnhancementDto FromEntityToDto(GearPiece entity)
         {
             return new EnhancementDto
             {

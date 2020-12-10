@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace SwtorOptimizer.Database.Repositories
 {
-    internal class EnhancementSetEnhancementRepository : BaseRespository<EnhancementSetEnhancement>, IEnhancementSetEnhancementRepository
+    internal class GearSetGearPieceRepository : BaseRespository<GearSetGearPiece>, IGearSetGearPieceRepository
     {
-        internal EnhancementSetEnhancementRepository(SwtorOptimizerContext dbContext) : base(dbContext)
+        internal GearSetGearPieceRepository(SwtorOptimizerContext dbContext) : base(dbContext)
         {
         }
 
-        public void AddAll(IEnumerable<EnhancementSetEnhancement> enhancementSetEnhancements)
+        public void AddAll(IEnumerable<GearSetGearPiece> enhancementSetEnhancements)
         {
             foreach (var enhancementSetEnhancement in enhancementSetEnhancements)
             {
@@ -21,7 +21,7 @@ namespace SwtorOptimizer.Database.Repositories
             this.SaveChanges();
         }
 
-        public async Task AddAllAsync(IEnumerable<EnhancementSetEnhancement> enhancementSetEnhancements)
+        public async Task AddAllAsync(IEnumerable<GearSetGearPiece> enhancementSetEnhancements)
         {
             foreach (var enhancementSetEnhancement in enhancementSetEnhancements)
             {

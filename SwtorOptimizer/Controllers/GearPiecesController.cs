@@ -27,13 +27,13 @@ namespace SwtorOptimizer.Controllers
         {
             try
             {
-                var enhancements = await this.context.EnhancementRepository.All().ToListAsync();
+                var enhancements = await this.context.GearPieceRepository.All().ToListAsync();
                 return this.Ok(enhancements);
             }
             catch (Exception e)
             {
                 this.logger.LogError(e.Message);
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Erreur lors de la récupération des attributs");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Erreur lors de la rï¿½cupï¿½ration des attributs");
             }
         }
     }

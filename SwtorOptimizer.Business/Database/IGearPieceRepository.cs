@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace SwtorOptimizer.Business.Database
 {
-    public interface IEnhancementRepository : IRepository<Enhancement>
+    public interface IGearPieceRepository : IRepository<GearPiece>
     {
-        void AddAll(IEnumerable<Enhancement> enhancements);
+        void AddAll(IEnumerable<GearPiece> enhancements);
     }
 }
