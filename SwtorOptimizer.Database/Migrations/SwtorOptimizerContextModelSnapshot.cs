@@ -59,6 +59,12 @@ namespace SwtorOptimizer.Database.Migrations
                     b.Property<int>("Endurance")
                         .HasColumnType("int");
 
+                    b.Property<int>("GearPieceStat")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GearPieceType")
+                        .HasColumnType("int");
+
                     b.Property<int>("Mastery")
                         .HasColumnType("int");
 

@@ -6,8 +6,8 @@ namespace SwtorOptimizer.Business.Database
 {
     public interface IGearSetGearPieceRepository : IRepository<GearSetGearPiece>
     {
-        void AddAll(IEnumerable<GearSetGearPiece> enhancementSetEnhancements);
+        void AddAll(IEnumerable<GearSetGearPiece> gearSetGearPieces);
 
-        Task AddAllAsync(IEnumerable<GearSetGearPiece> enhancementSetEnhancements);
+        Task AddAllAsync(IEnumerable<GearSetGearPiece> gearSetGearPieces);
     }
 }

@@ -22,22 +22,22 @@ namespace SwtorOptimizer.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetEnhancementSets()
+        public async Task<IActionResult> GetGearSets()
         {
-            var enhancementSets = await this.context.GearSetRepository.All().Include(e => e.GearSetGearPieces).ThenInclude(e => e.GearPiece).ToListAsync();
-            return this.Ok(enhancementSets.Select(e => GearSetDtoConvertor.FromEntityToDto(e, e.GearSetGearPieces.Select(e => e.GearPiece).ToList())).ToList());
+            var gearSets = await this.context.GearSetRepository.All().Include(e => e.GearSetGearPieces).ThenInclude(e => e.GearPiece).ToListAsync();
+            return this.Ok(gearSets.Select(e => GearSetDtoConvertor.FromEntityToDto(e, e.GearSetGearPieces.Select(o => o.GearPiece).ToList())).ToList());
         }
 
         [HttpGet]
-        [ActionName(nameof(GetEnhancementSetsByTaskId))]
-        public async Task<IActionResult> GetEnhancementSetsByTaskId(int taskId)
+        [ActionName(nameof(GetGearSetsByTaskId))]
+        public async Task<IActionResult> GetGearSetsByTaskId(int taskId)
         {
             var sets = await this.context.GearSetRepository.All().Where(e => e.CalculationTaskId == taskId).Include(e => e.GearSetGearPieces).ThenInclude(e => e.GearPiece).ToListAsync();
             if (sets.Any(e => e.IsInvalid))
             {
                 return this.NoContent();
             }
-            var dtos = sets.Select(e => GearSetDtoConvertor.FromEntityToDto(e, e.GearSetGearPieces.Select(e => e.GearPiece).ToList())).ToList();
+            var dtos = sets.Select(e => GearSetDtoConvertor.FromEntityToDto(e, e.GearSetGearPieces.Select(o => o.GearPiece).ToList())).ToList();
             return this.Ok(dtos);
         }
     }

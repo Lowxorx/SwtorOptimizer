@@ -12,20 +12,20 @@ namespace SwtorOptimizer.Database.Repositories
         {
         }
 
-        public void AddAll(IEnumerable<GearSetGearPiece> enhancementSetEnhancements)
+        public void AddAll(IEnumerable<GearSetGearPiece> gearSetGearPieces)
         {
-            foreach (var enhancementSetEnhancement in enhancementSetEnhancements)
+            foreach (var gearSetGearPiece in gearSetGearPieces)
             {
-                this.Add(enhancementSetEnhancement, false);
+                this.Add(gearSetGearPiece, false);
             }
             this.SaveChanges();
         }
 
-        public async Task AddAllAsync(IEnumerable<GearSetGearPiece> enhancementSetEnhancements)
+        public async Task AddAllAsync(IEnumerable<GearSetGearPiece> gearSetGearPieces)
         {
-            foreach (var enhancementSetEnhancement in enhancementSetEnhancements)
+            foreach (var gearSetGearPiece in gearSetGearPieces)
             {
-                await this.AddAsync(enhancementSetEnhancement, false);
+                await this.AddAsync(gearSetGearPiece, false);
             }
 
             await this.SaveChangesAsync();

@@ -5,19 +5,19 @@ using System.Linq;
 
 namespace SwtorOptimizer.Models.Convertors
 {
-    public static class EnhancementSetDtoConvertor
+    public static class GearSetDtoConvertor
     {
-        public static EnhancementSetDto FromEntityToDto(GearSet entity, List<GearPiece> enhancements)
+        public static GearSetDto FromEntityToDto(GearSet entity, List<GearPiece> gearPieces)
         {
-            return new EnhancementSetDto
+            return new GearSetDto
             {
                 Id = entity.Id,
                 SetName = entity.SetName,
                 Threshold = entity.Threshold,
-                Power = enhancements?.Count > 0 ? enhancements.Sum(e => e.Power) : 0,
-                Endurance = enhancements?.Count > 0 ? enhancements.Sum(e => e.Endurance) : 0,
+                Power = gearPieces?.Count > 0 ? gearPieces.Sum(e => e.Power) : 0,
+                Endurance = gearPieces?.Count > 0 ? gearPieces.Sum(e => e.Endurance) : 0,
                 IsInvalid = entity.IsInvalid,
-                Enhancements = enhancements?.Count > 0 ? enhancements.Select(GearPieceDtoConvertor.FromEntityToDto).ToList() : null,
+                GearPieces = gearPieces?.Count > 0 ? gearPieces.Select(GearPieceDtoConvertor.FromEntityToDto).ToList() : null,
                 CalculationTaskId = entity.CalculationTaskId,
                 CalculationTask = entity.CalculationTask != null ? CalculationTaskDtoConvertor.FromEntityToDto(entity.CalculationTask, null) : null
             };

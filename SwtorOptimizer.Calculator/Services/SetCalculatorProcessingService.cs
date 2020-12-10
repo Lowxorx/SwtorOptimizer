@@ -18,7 +18,7 @@ namespace SwtorOptimizer.Calculator.Services
             this.context = context;
         }
 
-        public async void StartTask(CalculationTask task, List<Enhancement> enhancements)
+        public async void StartTask(CalculationTask task, List<GearPiece> gearPieces)
         {
             this.logger.LogDebug($"Task {task.Id} is starting.");
             task.Status = CalculationTaskStatus.Started;
@@ -26,29 +26,35 @@ namespace SwtorOptimizer.Calculator.Services
             task.FoundSets = 0;
             await this.context.CalculationTaskRepository.UpdateAsync(task.Id, task, true);
 
-            foreach (var combination in this.GetCombinations(enhancements, task.Threshold, string.Empty))
+            foreach (var combination in this.GetCombinations(gearPieces, task.Threshold, string.Empty))
             {
-                var newSetFound = combination.Split(' ').Select(result => enhancements.First(e => e.Id.Equals(Convert.ToInt32(result)))).ToList();
+                var newSetFound = combination.Split(' ').Select(result => gearPieces.First(e => e.Id.Equals(Convert.ToInt32(result)))).ToList();
 
                 var setName = string.Join(';', newSetFound.OrderBy(e => e.Name).Select(e => e.Name).ToArray());
                 var setInternalName = string.Join(';', newSetFound.OrderBy(e => e.Id).Select(e => e.Id).ToArray());
 
-                if (this.context.EnhancementSetRepository.All().FirstOrDefault(es => es.SetInternalName.Equals(setInternalName)) != null) continue;
+                if (this.context.GearSetRepository.All().FirstOrDefault(es => es.SetInternalName.Equals(setInternalName)) != null)
+                {
+                    continue;
+                }
 
-                var newSet = await this.context.EnhancementSetRepository.AddAsync(new EnhancementSet { SetName = setName, SetInternalName = setInternalName, Threshold = task.Threshold, IsInvalid = false, CalculationTaskId = task.Id }, true);
+                var newSet = await this.context.GearSetRepository.AddAsync(new GearSet { SetName = setName, SetInternalName = setInternalName, Threshold = task.Threshold, IsInvalid = false, CalculationTaskId = task.Id }, true);
                 task.FoundSets++;
-                var enhancementSetEnhancements = new List<EnhancementSetEnhancement>();
-                enhancementSetEnhancements.AddRange(newSetFound.Select(e => new EnhancementSetEnhancement { EnhancementSetId = newSet.Id, EnhancementId = e.Id }));
+                var enhancementSetEnhancements = new List<GearSetGearPiece>();
+                enhancementSetEnhancements.AddRange(newSetFound.Select(e => new GearSetGearPiece { GearSetId = newSet.Id, GearPieceId = e.Id }));
                 task.LastUpdate = DateTime.Now;
                 var updatedTask = await this.context.CalculationTaskRepository.UpdateAsync(task.Id, task, true);
-                await this.context.EnhancementSetEnhancementRepository.AddAllAsync(enhancementSetEnhancements);
+                await this.context.GearSetGearPieceRepository.AddAllAsync(enhancementSetEnhancements);
                 var reloadedTask = this.context.CalculationTaskRepository.Reload(updatedTask);
-                if (reloadedTask.Status == CalculationTaskStatus.Stopped) break;
+                if (reloadedTask.Status == CalculationTaskStatus.Stopped)
+                {
+                    break;
+                }
             }
 
             if (task.FoundSets == 0)
             {
-                await this.context.EnhancementSetRepository.AddAsync(new EnhancementSet { SetName = "Invalid", Threshold = task.Threshold, IsInvalid = true, CalculationTaskId = task.Id }, true);
+                await this.context.GearSetRepository.AddAsync(new GearSet { SetName = "Invalid", Threshold = task.Threshold, IsInvalid = true, CalculationTaskId = task.Id }, true);
             }
 
             task.Status = CalculationTaskStatus.Ended;
@@ -57,23 +63,23 @@ namespace SwtorOptimizer.Calculator.Services
             await this.context.CalculationTaskRepository.UpdateAsync(task.Id, task, true);
         }
 
-        private IEnumerable<string> GetCombinations(IReadOnlyList<Enhancement> enhancements, int threshold, string values)
+        private IEnumerable<string> GetCombinations(IReadOnlyList<GearPiece> gearPieces, int threshold, string values)
         {
-            foreach (var enhancement in enhancements)
+            foreach (var baseGear in gearPieces)
             {
-                var left = threshold - enhancement.Tertiary;
+                var left = threshold - baseGear.Tertiary;
                 if (left < 0)
                 {
                     continue;
                 }
-                var vals = enhancement.Id + " " + values;
+                var vals = baseGear.Id + " " + values;
                 if (left == 0)
                 {
                     yield return vals.Trim();
                 }
                 else
                 {
-                    foreach (var s in this.GetCombinations(enhancements, left, vals))
+                    foreach (var s in this.GetCombinations(gearPieces, left, vals))
                     {
                         yield return s.Trim();
                     }

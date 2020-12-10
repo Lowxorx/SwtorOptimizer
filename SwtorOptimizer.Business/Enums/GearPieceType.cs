@@ -1,4 +1,9 @@
-$HEADER$namespace $NAMESPACE$
+namespace SwtorOptimizer.Business.Enums
 {
-  public enum $ENUM$ {$END$}
+    public enum GearPieceType
+    {
+        Enhancement,
+        Package,
+        Augment
+    }
 }

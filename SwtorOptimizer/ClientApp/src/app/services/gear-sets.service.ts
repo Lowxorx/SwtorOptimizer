@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { IEnhancementSet } from '../models/IEnhancementSet';
+import { IGearSet } from '../models/IGearSet';
 
 @Injectable({ providedIn: 'root' })
-export class EnhancementSetsService {
-  private apiEndpoint = `/api/EnhancementSets`;
+export class GearSetsService {
+  private apiEndpoint = `/api/GearSets`;
 
   constructor(private readonly http: HttpClient) {}
 
-  public getEnhancementSetsByTaskId(taskId: number): Observable<IEnhancementSet[]> {
-    return this.http.get<IEnhancementSet[]>(`${this.apiEndpoint}/GetEnhancementSetsByTaskId?taskId=${taskId}`);
+  public getGearSetsByTaskId(taskId: number): Observable<IGearSet[]> {
+    return this.http.get<IGearSet[]>(`${this.apiEndpoint}/GetGearSetsByTaskId?taskId=${taskId}`);
   }
 }

@@ -11,11 +11,11 @@ namespace SwtorOptimizer.Database.Repositories
         {
         }
 
-        public void AddAll(IEnumerable<GearPiece> enhancements)
+        public void AddAll(IEnumerable<GearPiece> gearPieces)
         {
-            foreach (var enhancement in enhancements)
+            foreach (var gearPiece in gearPieces)
             {
-                this.Add(enhancement, false);
+                this.Add(gearPiece, false);
             }
             this.SaveChanges();
         }

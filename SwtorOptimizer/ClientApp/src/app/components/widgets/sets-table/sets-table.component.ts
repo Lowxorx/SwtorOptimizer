@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { IEnhancementSet } from '../../../models/IEnhancementSet';
+import { IGearSet } from '../../../models/IGearSet';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { EnhancementSetsService } from '../../../services/enhancement-sets.service';
+import { GearSetsService } from '../../../services/gear-sets.service';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
@@ -12,8 +12,8 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class SetsTableComponent implements OnInit {
   public displayedColumns: string[] = ['threshold', 'setName', 'power', 'endurance', 'details'];
-  public dataSource: MatTableDataSource<IEnhancementSet> = new MatTableDataSource();
-  public selectedSet: IEnhancementSet | null;
+  public dataSource: MatTableDataSource<IGearSet> = new MatTableDataSource();
+  public selectedSet: IGearSet | null;
   public setsNumber = 0;
 
   @Input()
@@ -25,7 +25,7 @@ export class SetsTableComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
-  constructor(private service: EnhancementSetsService) {}
+  constructor(private service: GearSetsService) {}
 
   public ngOnInit(): void {
     this.getData();
@@ -33,17 +33,17 @@ export class SetsTableComponent implements OnInit {
 
   private getData(): void {
     if (this.taskId != null) {
-      this.service.getEnhancementSetsByTaskId(this.taskId).subscribe((e) => {
+      this.service.getGearSetsByTaskId(this.taskId).subscribe((e) => {
         this.initDataSource(e);
       });
     }
   }
 
-  public showSetDetails(enhancementSet: IEnhancementSet): void {
+  public showSetDetails(enhancementSet: IGearSet): void {
     this.selectedSet = enhancementSet;
   }
 
-  private initDataSource(enhancementSets: IEnhancementSet[]): void {
+  private initDataSource(enhancementSets: IGearSet[]): void {
     this.setsNumber = enhancementSets.length;
     this.dataSource = new MatTableDataSource(enhancementSets);
     this.dataSource.sort = this.sort;

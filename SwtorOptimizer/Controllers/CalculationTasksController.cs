@@ -25,10 +25,10 @@ namespace SwtorOptimizer.Controllers
         }
 
         [HttpGet]
-        [ActionName(nameof(CalculateEnhancementSets))]
-        public async Task<IActionResult> CalculateEnhancementSets(int threshold)
+        [ActionName(nameof(CalculateGearSets))]
+        public async Task<IActionResult> CalculateGearSets(int threshold)
         {
-            var existingCalculationTask = await this.context.EnhancementSetRepository.All().FirstOrDefaultAsync(e => e.Threshold == threshold);
+            var existingCalculationTask = await this.context.GearSetRepository.All().FirstOrDefaultAsync(e => e.Threshold == threshold);
             if (existingCalculationTask != null)
             {
                 return this.Ok(new ResultObject<int> { StatusCode = StatusCodes.Status200OK, Message = "Le calcul a déjà été effectué.", Data = existingCalculationTask.CalculationTaskId });
@@ -64,7 +64,7 @@ namespace SwtorOptimizer.Controllers
         public async Task<IActionResult> GetTaskDetails(int id)
         {
             var task = await this.context.CalculationTaskRepository.All().Where(e => e.Id == id).FirstOrDefaultAsync();
-            var sets = await this.context.EnhancementSetRepository.All().Where(e => e.CalculationTaskId == id).ToListAsync();
+            var sets = await this.context.GearSetRepository.All().Where(e => e.CalculationTaskId == id).ToListAsync();
 
             if (task == null)
             {

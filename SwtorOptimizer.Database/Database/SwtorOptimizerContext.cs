@@ -33,10 +33,9 @@ namespace SwtorOptimizer.Database.Database
         }
 
         public DbSet<CalculationTask> CalculationTasks { get; set; }
-        public DbSet<Enhancement> Enhancements { get; set; }
-        public DbSet<EnhancementSetEnhancement> EnhancementSetEnhancements { get; set; }
-        public DbSet<EnhancementSet> EnhancementSets { get; set; }
-        public DbSet<Package> Packages { get; set; }
+        public DbSet<GearPiece> GearPieces { get; set; }
+        public DbSet<GearSetGearPiece> GearSetGearPieces { get; set; }
+        public DbSet<GearSet> GearSets { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -48,11 +47,9 @@ namespace SwtorOptimizer.Database.Database
         {
             modelBuilder.Entity<User>(entity => entity.HasKey(e => e.Id));
 
-            modelBuilder.Entity<Package>(entity => entity.HasKey(e => e.Id));
+            modelBuilder.Entity<GearPiece>(entity => entity.HasKey(e => e.Id));
 
-            modelBuilder.Entity<Enhancement>(entity => entity.HasKey(e => e.Id));
-
-            modelBuilder.Entity<EnhancementSet>(entity =>
+            modelBuilder.Entity<GearSet>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.HasOne(e => e.CalculationTask).WithMany(e => e.EnhancementSets);
@@ -64,17 +61,17 @@ namespace SwtorOptimizer.Database.Database
                 entity.HasMany(e => e.EnhancementSets).WithOne(e => e.CalculationTask);
             });
 
-            modelBuilder.Entity<EnhancementSetEnhancement>().HasKey(e => e.Id);
+            modelBuilder.Entity<GearSetGearPiece>().HasKey(e => e.Id);
 
-            modelBuilder.Entity<EnhancementSetEnhancement>()
-                .HasOne(e => e.Enhancement)
-                .WithMany(e => e.EnhancementSetEnhancements)
-                .HasForeignKey(e => e.EnhancementId);
+            modelBuilder.Entity<GearSetGearPiece>()
+                .HasOne(e => e.GearPiece)
+                .WithMany(e => e.GearSetEnhancements)
+                .HasForeignKey(e => e.GearPieceId);
 
-            modelBuilder.Entity<EnhancementSetEnhancement>()
-                .HasOne(e => e.EnhancementSet)
-                .WithMany(e => e.EnhancementSetEnhancements)
-                .HasForeignKey(e => e.EnhancementSetId);
+            modelBuilder.Entity<GearSetGearPiece>()
+                .HasOne(e => e.GearSet)
+                .WithMany(e => e.GearSetGearPieces)
+                .HasForeignKey(e => e.GearSetId);
         }
     }
 }

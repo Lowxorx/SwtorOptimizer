@@ -1,10 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
-import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { IEnhancement } from 'src/app/models/IEnhancement';
-import { IEnhancementSet } from 'src/app/models/IEnhancementSet';
-import { IStat } from 'src/app/models/IStat';
+import { IGearPiece } from 'src/app/models/IGearPiece';
+import { IGearSet } from 'src/app/models/IGearSet';
 
 @Component({
   selector: 'app-set-details',
@@ -12,11 +10,9 @@ import { IStat } from 'src/app/models/IStat';
   styleUrls: ['./set-details.component.scss'],
 })
 export class SetDetailsComponent implements OnInit, OnChanges {
-  public dataSource: MatTableDataSource<IEnhancement> = new MatTableDataSource();
+  public dataSource: MatTableDataSource<IGearPiece> = new MatTableDataSource();
   public displayedColumns: string[] = ['name', 'power', 'endurance', 'tertiary'];
-  @Input() public selectedSet: IEnhancementSet;
-  public stats: IStat[];
-  public currentStat: IStat;
+  @Input() public selectedSet: IGearSet;
 
   @ViewChild(MatSort, { static: true })
   public sort: MatSort;
@@ -24,13 +20,6 @@ export class SetDetailsComponent implements OnInit, OnChanges {
   constructor() {}
 
   public ngOnInit(): void {
-    this.stats = [
-      { displayName: 'Précision', name: 'accuracy' },
-      { displayName: 'Alacrité', name: 'alacrity' },
-      { displayName: 'Critique', name: 'critical' },
-    ];
-    this.currentStat = this.stats[0];
-
     this.initDataSource();
   }
 
@@ -39,29 +28,8 @@ export class SetDetailsComponent implements OnInit, OnChanges {
   }
 
   private initDataSource(): void {
-    const data: IEnhancement[] = [...this.selectedSet.enhancements];
+    const data: IGearPiece[] = [...this.selectedSet.gearPieces];
     this.dataSource = new MatTableDataSource(data);
     this.dataSource.sort = this.sort;
-  }
-
-  public onStatChange(event: MatButtonToggleChange): void {
-    this.currentStat = this.stats.filter((s) => s.name === event.value)[0];
-  }
-
-  public isChecked(stat: IStat): boolean {
-    return stat.name === this.currentStat.name;
-  }
-
-  public getEnhancementNameToDisplay(enhancement: IEnhancement): string {
-    switch (this.currentStat.name) {
-      case 'accuracy':
-        return `${enhancement.name} ${enhancement.accuracyName}`;
-      case 'alacrity':
-        return `${enhancement.name} ${enhancement.alacrityName}`;
-      case 'critical':
-        return `${enhancement.name} ${enhancement.criticalName}`;
-      default:
-        return 'Erreur !';
-    }
   }
 }

@@ -1,4 +1,4 @@
-import { IEnhancementSet } from './IEnhancementSet';
+import { IGearSet } from './IGearSet';
 
 export interface ICalculationTask {
   id: number;
@@ -8,5 +8,5 @@ export interface ICalculationTask {
   startDate: Date;
   lastUpdate: Date;
   endDate: Date;
-  enhancementSets: IEnhancementSet[];
+  enhancementSets: IGearSet[];
 }

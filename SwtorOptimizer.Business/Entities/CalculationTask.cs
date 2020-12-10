@@ -6,7 +6,7 @@ namespace SwtorOptimizer.Business.Entities
     public class CalculationTask
     {
         public DateTime EndDate { get; set; }
-        public virtual ICollection<EnhancementSet> EnhancementSets { get; set; }
+        public virtual ICollection<GearSet> EnhancementSets { get; set; }
         public int FoundSets { get; set; }
         public int Id { get; set; }
         public DateTime LastUpdate { get; set; }

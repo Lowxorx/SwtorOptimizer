@@ -3,20 +3,18 @@ using SwtorOptimizer.Models.Dto;
 
 namespace SwtorOptimizer.Models.Convertors
 {
-    public static class EnhancementDtoConvertor
+    public static class GearPieceDtoConvertor
     {
-        public static EnhancementDto FromEntityToDto(GearPiece entity)
+        public static GearPieceDto FromEntityToDto(GearPiece entity)
         {
-            return new EnhancementDto
+            return new GearPieceDto
             {
                 Id = entity.Id,
                 Name = entity.Name,
                 Endurance = entity.Endurance,
                 Power = entity.Power,
                 Tertiary = entity.Tertiary,
-                CriticalName = entity.CriticalName,
-                AccuracyName = entity.AccuracyName,
-                AlacrityName = entity.AlacrityName
+                Mastery = entity.Mastery
             };
         }
     }

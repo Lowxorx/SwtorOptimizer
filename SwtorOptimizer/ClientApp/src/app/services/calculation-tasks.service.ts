@@ -22,7 +22,7 @@ export class CalculationTasksService {
     return this.http.get<ICalculationTask[]>(`${this.apiEndpoint}/GetAllTasks`);
   }
 
-  public calculateEnhancementSets(threshold: number): Observable<IResultObject> {
-    return this.http.get<IResultObject>(`${this.apiEndpoint}/CalculateEnhancementSets?threshold=${threshold}`);
+  public calculateGearSets(threshold: number): Observable<IResultObject> {
+    return this.http.get<IResultObject>(`${this.apiEndpoint}/CalculateGearSets?threshold=${threshold}`);
   }
 }

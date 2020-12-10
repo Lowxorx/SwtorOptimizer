@@ -35,4 +35,8 @@
     <Resource Include="Config\appsettings.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations" />
+  </ItemGroup>
+
 </Project>

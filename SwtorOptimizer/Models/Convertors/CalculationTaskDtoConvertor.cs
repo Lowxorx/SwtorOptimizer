@@ -7,7 +7,7 @@ namespace SwtorOptimizer.Models.Convertors
 {
     public static class CalculationTaskDtoConvertor
     {
-        public static CalculationTaskDto FromEntityToDto(CalculationTask entity, List<EnhancementSet> enhancementSets)
+        public static CalculationTaskDto FromEntityToDto(CalculationTask entity, List<GearSet> enhancementSets)
         {
             return new CalculationTaskDto
             {
@@ -17,7 +17,7 @@ namespace SwtorOptimizer.Models.Convertors
                 StartDate = entity.StartDate,
                 Threshold = entity.Threshold,
                 FoundSets = entity.FoundSets,
-                EnhancementSets = enhancementSets?.Select(e => EnhancementSetDtoConvertor.FromEntityToDto(e, null)).ToList()
+                EnhancementSets = enhancementSets?.Select(e => GearSetDtoConvertor.FromEntityToDto(e, null)).ToList()
             };
         }
     }
