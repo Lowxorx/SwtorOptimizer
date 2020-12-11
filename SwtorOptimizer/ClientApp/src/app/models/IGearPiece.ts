@@ -3,6 +3,8 @@ export interface IGearPiece {
   endurance: number;
   name: string;
   power: number;
-  mastery: number;
   tertiary: number;
+  accuracyName: string;
+  alacrityName: string;
+  criticalName: string;
 }

@@ -13,9 +13,9 @@ namespace SwtorOptimizer.Database.Repositories
 
         public void AddAll(IEnumerable<GearPiece> gearPieces)
         {
-            foreach (var gearPiece in gearPieces)
+            foreach (var enhancement in gearPieces)
             {
-                this.Add(gearPiece, false);
+                this.Add(enhancement, false);
             }
             this.SaveChanges();
         }

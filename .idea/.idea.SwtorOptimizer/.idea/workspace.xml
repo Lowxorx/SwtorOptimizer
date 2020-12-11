@@ -24,67 +24,234 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68899aa6-1242-48e7-9823-cd11919c0b31" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearSetGearPieceRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearSetRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearSetGearPiece.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Enums/GearPieceStat.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Enums/GearPieceType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210130458_GearType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/enums/GearPieceType.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SwtorOptimizer/Controllers/GearSetsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IEnhancementRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearPieceRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IEnhancementSetEnhancementRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IEnhancementSetRepository.cs" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearPieceSetGearPieceRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearPieceSetRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearPieceSet.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearPieceSetGearPiece.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210215737_InitialMigration.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210215737_InitialMigration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201211085330_AddGearPieceCount.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201211085330_AddGearPieceCount.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearPieceSetGearPieceRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearPieceSetRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IGearPieceSet.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IPackage.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IStat.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/enhancement-sets.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer/Controllers/EnhancementSetsController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer/Controllers/EnhancementsController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/GearPieceSetDtoConvertor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/GearPieceSetDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SwtorOptimizer/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwtorOptimizer/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SwtorOptimizer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwtorOptimizer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile.Calculator" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile.Calculator" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile.Optimizer" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile.Optimizer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearPieceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearPieceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearSetGearPieceRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearSetRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/ISwtorOptimizerDatabaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Database/ISwtorOptimizerDatabaseService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/CalculationTask.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/CalculationTask.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/Enhancement.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/EnhancementSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearSet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/EnhancementSetEnchancement.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/Package.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearPiece.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/CalculationTaskStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/CalculationTaskStatus.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearPiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearPiece.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearSet.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearSetGearPiece.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/User.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Enums/GearPieceStat.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Enums/GearPieceType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Settings/DatabaseSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Settings/DatabaseSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/Settings/IDatabaseSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/Settings/IDatabaseSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Business/SwtorOptimizer.Business.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Business/SwtorOptimizer.Business.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Properties/launchSettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Services/ISetCalculatorProcessingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Services/ISetCalculatorProcessingService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Services/SetCalculatorProcessingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Services/SetCalculatorProcessingService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Services/TaskMonitorHostedService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Services/TaskMonitorHostedService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Settings/CalculatorSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Calculator/Settings/CalculatorSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Calculator/SwtorOptimizer.Calculator.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Calculator/SwtorOptimizer.Calculator.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Calculator/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Calculator/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Calculator/appsettings.Production.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Calculator/appsettings.Production.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Config/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Config/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Database/DbInitializer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Database/DbInitializer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Database/SwtorOptimizerContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Database/SwtorOptimizerContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Database/SwtorOptimizerDatabaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Database/SwtorOptimizerDatabaseService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20200929164304_InitialCreate.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210102325_InitialCreate.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20200929164304_InitialCreate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210102325_InitialCreate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20200929165512_AddPackages.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210130458_GearType.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20200929165512_AddPackages.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210102325_InitialCreate.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210102325_InitialCreate.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210130458_GearType.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210130458_GearType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210133457_GearStat.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/20201210133457_GearStat.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/SwtorOptimizerContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Migrations/SwtorOptimizerContextModelSnapshot.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/BaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/BaseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/EnhancementRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearPieceRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/EnhancementSetEnhancementRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearSetGearPieceRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/EnhancementSetRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearSetRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/PackageRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/CalculationTaskRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/CalculationTaskRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearPieceRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearPieceRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearSetGearPieceRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearSetRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/UserRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer.Database/SwtorOptimizer.Database.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.Database/SwtorOptimizer.Database.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer.sln" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/.browserslistrc" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/.browserslistrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/e2e/protractor.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/e2e/protractor.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/e2e/src/app.e2e-spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/e2e/src/app.e2e-spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/e2e/src/app.po.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/e2e/src/app.po.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/e2e/tsconfig.e2e.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/e2e/tsconfig.e2e.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/app.server.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/app.server.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/admin/admin.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/admin/admin.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/admin/admin.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/admin/admin.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/admin/admin.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/admin/admin.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/admin/admin.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/admin/admin.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-task-details/calculation-task-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-task-details/calculation-task-details.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-task-details/calculation-task-details.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-task-details/calculation-task-details.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-task-details/calculation-task-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-task-details/calculation-task-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-task-details/calculation-task-details.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-task-details/calculation-task-details.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-tasks/calculation-tasks.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-tasks/calculation-tasks.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-tasks/calculation-tasks.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-tasks/calculation-tasks.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-tasks/calculation-tasks.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-tasks/calculation-tasks.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-tasks/calculation-tasks.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/calculation-tasks/calculation-tasks.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/home/home.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/home/home.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/home/home.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/home/home.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/login/login.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/login/login.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/login/login.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/login/login.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-accounts/admin-accounts.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-accounts/admin-accounts.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-accounts/admin-accounts.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-accounts/admin-accounts.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-accounts/admin-accounts.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-accounts/admin-accounts.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-accounts/admin-accounts.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-accounts/admin-accounts.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-tasks/admin-tasks.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-tasks/admin-tasks.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-tasks/admin-tasks.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-tasks/admin-tasks.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-tasks/admin-tasks.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-tasks/admin-tasks.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-tasks/admin-tasks.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/admin/admin-tasks/admin-tasks.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/nav-menu/nav-menu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/nav-menu/nav-menu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/nav-menu/nav-menu.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/nav-menu/nav-menu.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/nav-menu/nav-menu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/nav-menu/nav-menu.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/nav-menu/nav-menu.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/nav-menu/nav-menu.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/theme-toggle/theme-toggle.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/theme-toggle/theme-toggle.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/theme-toggle/theme-toggle.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/theme-toggle/theme-toggle.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/theme-toggle/theme-toggle.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/theme-toggle/theme-toggle.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/theme-toggle/theme-toggle.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/theme-toggle/theme-toggle.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/topbar/topbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/topbar/topbar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/topbar/topbar.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/topbar/topbar.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/topbar/topbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/topbar/topbar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/topbar/topbar.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/topbar/topbar.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/enums/CalculationTaskStatus.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/enums/CalculationTaskStatus.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/enums/GearPieceType.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/guards/auth.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/guards/auth.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/helpers/calculation-task.helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/helpers/calculation-task.helper.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/interceptors/cache.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/interceptors/cache.interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/interceptors/jwt.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/interceptors/jwt.interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/interceptors/unauthorized.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/interceptors/unauthorized.interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IAppUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IAppUser.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/ICalculationTask.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/ICalculationTask.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IEnhancement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IGearPiece.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IEnhancementSet.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IGearSet.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IPackage.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IStat.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/ICalculationTaskFront.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/ICalculationTaskFront.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IGearPiece.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IGearPiece.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IGearSet.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/ILoginData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/ILoginData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/ILoginResult.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/ILoginResult.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IResultObject.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IResultObject.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IThresholdData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IThresholdData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/admin.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/admin.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/app-initializer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/app-initializer.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/app.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/auth.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/calculation-tasks.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/calculation-tasks.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/enhancement-sets.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/gear-sets.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/gear-sets.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/shared.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/shared.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/github-brands.svg" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/github-brands.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/images/augment_red.png" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/images/augment_red.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/images/enhancement_accu.png" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/images/enhancement_accu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/images/enhancement_alac.png" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/images/enhancement_alac.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/images/header.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/images/header.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/images/stim_yellow.png" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/assets/images/stim_yellow.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/custom-theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/custom-theme.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/environments/environment.prod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/karma.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/karma.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/polyfills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/theme.scss" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/theme.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/tsconfig.app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/tsconfig.server.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/tsconfig.server.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/tsconfig.spec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/tsconfig.spec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/ClientApp/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Controllers/AccountController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Controllers/AccountController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Controllers/AdminController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Controllers/AdminController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Controllers/AppController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Controllers/AppController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Controllers/CalculationTasksController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Controllers/CalculationTasksController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Controllers/EnhancementSetsController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Controllers/EnhancementsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Controllers/GearPiecesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Controllers/GearPiecesController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Controllers/GearSetsController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Helpers/JwtAuthManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Helpers/JwtAuthManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Helpers/JwtRefreshTokenCache.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Helpers/JwtRefreshTokenCache.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/CalculationTaskDtoConvertor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/CalculationTaskDtoConvertor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/EnhancementDtoConvertor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/GearPieceDtoConvertor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/EnhancementSetDtoConvertor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/GearSetDtoConvertor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/GearPieceDtoConvertor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/GearPieceDtoConvertor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/GearSetDtoConvertor.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/CalculationTaskDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/CalculationTaskDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/EnhancementDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/GearPieceDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/EnhancementSetDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/GearSetDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/GearPieceDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/GearPieceDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/GearSetDto.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/IJwtAuthManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/IJwtAuthManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/IUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/IUserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/JwtAuthResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/JwtAuthResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/JwtTokenConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/JwtTokenConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/LoginRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/LoginRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/LoginResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/LoginResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/RefreshToken.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/RefreshToken.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/RefreshTokenRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/RefreshTokenRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Models/ResultObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Models/ResultObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Pages/Error.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Pages/Error.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Pages/Error.cshtml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Pages/Error.cshtml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Pages/_ViewImports.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Pages/_ViewImports.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Resources/header.xcf" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Resources/header.xcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/Startup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SwtorOptimizer/SwtorOptimizer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/SwtorOptimizer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SwtorOptimizer/wwwroot/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/SwtorOptimizer/wwwroot/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-build.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/docker-build.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose-portainer.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-portainer.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EditorConfigPreviewManager">
+    <editorConfig file="$PROJECT_DIR$/SwtorOptimizer/ClientApp/.editorconfig" previewFile="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.component.html" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -97,44 +264,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/IBaseGearStats.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/IBaseGear.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearSetPackage.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/Package.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearSetEnchancement.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/Enhancement.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearSetGearPiece.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearSet.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Database/ISwtorOptimizerDatabaseService.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer.Database/Database/SwtorOptimizerContext.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer.Calculator/Services/ISetCalculatorProcessingService.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer.Calculator/Services/TaskMonitorHostedService.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer.Database/Database/SwtorOptimizerDatabaseService.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearSetRepository.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearSetGearPieceRepository.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/GearPieceRepository.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer.Database/Repositories/BaseRepository.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/GearSetDtoConvertor.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/GearSetDto.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/GearPieceDto.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/GearPieceDtoConvertor.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer/Controllers/GearPiecesController.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer/Controllers/GearSetsController.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer/Controllers/CalculationTasksController.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IEnhancementSet.ts" />
         <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IEnhancement.ts" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IGearPiece.ts" />
         <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IGearSet.ts" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/gear-sets.service.ts" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Enums/GearPieceType.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Enums/GearPieceStat.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.component.ts" />
         <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/calculation-tasks.service.ts" />
         <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/home/home.component.ts" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/services/gear-sets.service.ts" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.component.ts" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.component.html" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Enums/GearPieceType.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer.Calculator/Services/SetCalculatorProcessingService.cs" />
-        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Enums/GearPieceStat.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Calculator/Services/TaskMonitorHostedService.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearSet.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/GearSetDtoConvertor.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/GearSetDto.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/Controllers/CalculationTasksController.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/EnhancementSetEnchancement.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/CalculationTask.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearPieceRepository.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearPieceSetGearPieceRepository.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Database/IGearPieceSetRepository.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Database/Database/SwtorOptimizerContext.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/GearPieceDto.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/CalculationTaskDto.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/CalculationTaskDtoConvertor.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/GearPieceDtoConvertor.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IGearPiece.ts" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/ICalculationTask.ts" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/SwtorOptimizer.csproj" />
         <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearPiece.cs" />
         <option value="$PROJECT_DIR$/SwtorOptimizer.Database/Database/DbInitializer.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.component.html" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Business/Entities/GearPieceSet.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Dto/GearPieceSetDto.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/Models/Convertors/GearPieceSetDtoConvertor.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/models/IGearPieceSet.ts" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer.Calculator/Services/SetCalculatorProcessingService.cs" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/set-details/set-details.module.ts" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.module.ts" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.component.ts" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/widgets/sets-table/sets-table.component.html" />
+        <option value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/src/app/components/pages/home/home.component.html" />
       </list>
     </option>
   </component>
@@ -147,6 +327,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="sqlserver" />
     <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34991843" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30016312" />
@@ -155,8 +336,9 @@
     <property name="last_opened_file_path" value="$USER_HOME$/.nvs/default/bin/node" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="CodeCleanupOptionsPage" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/SwtorOptimizer/ClientApp/node_modules/typescript/lib" />
+    <property name="ts.rename.search.for.dynamic.occurrences" value="true" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.SwtorOptimizer">
@@ -220,21 +402,6 @@
         <option name="Build" />
       </method>
     </configuration>
-    <configuration name="SwtorOptimizer.Calculator (3)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
-      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SwtorOptimizer.Calculator/SwtorOptimizer.Calculator.csproj" />
-      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
-      <option name="LAUNCH_PROFILE_NAME" value="SwtorOptimizer.Calculator" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
-      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
-      <option name="SEND_DEBUG_REQUEST" value="1" />
-      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
     <configuration name="SwtorOptimizer.Calculator (4)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SwtorOptimizer.Calculator/SwtorOptimizer.Calculator.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
@@ -251,6 +418,21 @@
       </method>
     </configuration>
     <configuration name="SwtorOptimizer.Calculator (5)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SwtorOptimizer.Calculator/SwtorOptimizer.Calculator.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
+      <option name="LAUNCH_PROFILE_NAME" value="SwtorOptimizer.Calculator" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <configuration name="SwtorOptimizer.Calculator (6)" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SwtorOptimizer.Calculator/SwtorOptimizer.Calculator.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
       <option name="LAUNCH_PROFILE_NAME" value="SwtorOptimizer.Calculator" />
@@ -284,19 +466,19 @@
       <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer" />
       <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator" />
       <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer: IIS Express" />
-      <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (1)" />
-      <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (2)" />
-      <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (3)" />
       <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (4)" />
       <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (5)" />
+      <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (6)" />
+      <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (1)" />
+      <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (2)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (5)" />
-        <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (4)" />
-        <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (3)" />
         <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (2)" />
         <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (1)" />
+        <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (6)" />
+        <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (5)" />
+        <item itemvalue=".NET Launch Settings Profile.SwtorOptimizer.Calculator (4)" />
       </list>
     </recent_temporary>
   </component>
@@ -317,7 +499,10 @@
       <workItem from="1607585197902" duration="729000" />
       <workItem from="1607585946249" duration="2132000" />
       <workItem from="1607590261616" duration="5944000" />
-      <workItem from="1607596243465" duration="5179000" />
+      <workItem from="1607596243465" duration="14309000" />
+      <workItem from="1607635959530" duration="2040000" />
+      <workItem from="1607675399911" duration="1318000" />
+      <workItem from="1607676740903" duration="1768000" />
     </task>
     <servers />
   </component>
@@ -337,9 +522,18 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="797" y="245" width="832" height="705" key="#Inspection_severity" timestamp="1607676087063">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="797" y="245" width="832" height="705" key="#Inspection_severity/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676087063" />
     <state x="710" y="281" width="1274" height="756" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607591699451">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -350,105 +544,105 @@
     </state>
     <state x="1072" y="459" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607605084853" />
     <state x="1072" y="462" key="FileChooserDialogImpl/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607586568717" />
-    <state width="2514" height="418" key="GridCell.Tab.0.bottom" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.0.bottom" timestamp="1607676972500">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676972500" />
     <state width="1257" height="422" key="GridCell.Tab.0.bottom/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.0.center" timestamp="1607606839709">
+    <state width="1257" height="418" key="GridCell.Tab.0.center" timestamp="1607676972499">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.0.center/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839709" />
+    <state width="1257" height="418" key="GridCell.Tab.0.center/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676972499" />
     <state width="1257" height="422" key="GridCell.Tab.0.center/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.0.left" timestamp="1607606839709">
+    <state width="1257" height="418" key="GridCell.Tab.0.left" timestamp="1607676972499">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.0.left/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839709" />
+    <state width="1257" height="418" key="GridCell.Tab.0.left/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676972499" />
     <state width="1257" height="422" key="GridCell.Tab.0.left/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.0.right" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.0.right" timestamp="1607676972499">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.0.right/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.0.right/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676972499" />
     <state width="1257" height="422" key="GridCell.Tab.0.right/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.1.bottom" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.1.bottom" timestamp="1607676717176">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717176" />
     <state width="1257" height="422" key="GridCell.Tab.1.bottom/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.1.center" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.1.center" timestamp="1607676717175">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.1.center/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.1.center/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717175" />
     <state width="1257" height="422" key="GridCell.Tab.1.center/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.1.left" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.1.left" timestamp="1607676717175">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.1.left/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.1.left/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717175" />
     <state width="1257" height="422" key="GridCell.Tab.1.left/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.1.right" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.1.right" timestamp="1607676717176">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.1.right/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.1.right/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717176" />
     <state width="1257" height="422" key="GridCell.Tab.1.right/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.2.bottom" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.2.bottom" timestamp="1607676717176">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.2.bottom/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.2.bottom/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717176" />
     <state width="1257" height="422" key="GridCell.Tab.2.bottom/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.2.center" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.2.center" timestamp="1607676717176">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.2.center/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.2.center/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717176" />
     <state width="1257" height="422" key="GridCell.Tab.2.center/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.2.left" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.2.left" timestamp="1607676717176">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.2.left/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.2.left/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717176" />
     <state width="1257" height="422" key="GridCell.Tab.2.left/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.2.right" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.2.right" timestamp="1607676717176">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.2.right/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.2.right/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717176" />
     <state width="1257" height="422" key="GridCell.Tab.2.right/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.3.bottom" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.3.bottom" timestamp="1607676717177">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.3.bottom/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.3.bottom/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717177" />
     <state width="1257" height="422" key="GridCell.Tab.3.bottom/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.3.center" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.3.center" timestamp="1607676717177">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.3.center/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.3.center/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717177" />
     <state width="1257" height="422" key="GridCell.Tab.3.center/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.3.left" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.3.left" timestamp="1607676717177">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.3.left/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.3.left/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717177" />
     <state width="1257" height="422" key="GridCell.Tab.3.left/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.3.right" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.3.right" timestamp="1607676717177">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.3.right/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.3.right/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717177" />
     <state width="1257" height="422" key="GridCell.Tab.3.right/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.4.bottom" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.4.bottom" timestamp="1607676717177">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.4.bottom/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.4.bottom/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717177" />
     <state width="1257" height="422" key="GridCell.Tab.4.bottom/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.4.center" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.4.center" timestamp="1607676717177">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.4.center/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.4.center/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717177" />
     <state width="1257" height="422" key="GridCell.Tab.4.center/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.4.left" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.4.left" timestamp="1607676717177">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.4.left/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.4.left/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717177" />
     <state width="1257" height="422" key="GridCell.Tab.4.left/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
-    <state width="2514" height="418" key="GridCell.Tab.4.right" timestamp="1607606839710">
+    <state width="1257" height="418" key="GridCell.Tab.4.right" timestamp="1607676717177">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2514" height="418" key="GridCell.Tab.4.right/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607606839710" />
+    <state width="1257" height="418" key="GridCell.Tab.4.right/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676717177" />
     <state width="1257" height="422" key="GridCell.Tab.4.right/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607588078446" />
     <state width="235" height="495" key="HiddenNamespacesPopup" timestamp="1607595898592">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -459,24 +653,32 @@
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state x="676" y="419" width="1047" height="567" key="LayersDialog/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607586576337" />
-    <state x="781" y="337" width="1007" height="731" key="SettingsEditor" timestamp="1607598006369">
+    <state x="781" y="337" width="1007" height="731" key="SettingsEditor" timestamp="1607615793578">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="337" width="1007" height="731" key="SettingsEditor/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607598006369" />
+    <state x="781" y="337" width="1007" height="731" key="SettingsEditor/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607615793578" />
     <state x="781" y="339" width="1007" height="731" key="SettingsEditor/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607586509860" />
     <state x="696" y="193" width="2360" height="1207" key="VCS.FileHistoryDialog" timestamp="1607591603967">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="696" y="193" width="2360" height="1207" key="VCS.FileHistoryDialog/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607591603967" />
     <state x="696" y="195" width="2360" height="1215" key="VCS.FileHistoryDialog/0.0.2560.1410/2560.0.2560.1440@0.0.2560.1410" timestamp="1607586905469" />
-    <state x="1153" y="581" width="328" height="270" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1607607282623">
+    <state x="1153" y="581" width="328" height="270" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1607676790489">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1153" y="581" width="328" height="270" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607607282623" />
+    <state x="1153" y="581" width="328" height="270" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607676790489" />
     <state x="1030" y="0" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog" timestamp="1607592147031">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1030" y="0" key="com.intellij.database.actions.ToolActions$ScriptingActionBase$MyDatabaseScriptDialog/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607592147030" />
+    <state x="2786" y="0" width="2360" height="1200" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1607613130192">
+      <screen x="2560" y="0" width="2560" height="1440" />
+    </state>
+    <state x="2786" y="0" width="2360" height="1200" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607613130192" />
+    <state x="468" y="212" width="1238" height="967" key="find.popup" timestamp="1607637052667">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="468" y="212" width="1238" height="967" key="find.popup/0.0.2560.1400/2560.0.2560.1440@0.0.2560.1400" timestamp="1607637052667" />
     <state x="1009" y="515" key="jetbrains.nodejs.interpreters-dialog" timestamp="1607529812023">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>

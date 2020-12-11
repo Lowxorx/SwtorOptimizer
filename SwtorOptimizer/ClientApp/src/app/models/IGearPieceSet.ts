@@ -1,7 +1,7 @@
 import { IGearPiece } from './IGearPiece';
 import { ICalculationTask } from './ICalculationTask';
 
-export interface IGearSet {
+export interface IGearPieceSet {
   id: number;
   setName: string;
   threshold: number;
@@ -10,5 +10,6 @@ export interface IGearSet {
   gearPieces: IGearPiece[];
   isInvalid: boolean;
   taskid: number;
+  gearPieceCount: number;
   calculationTask: ICalculationTask;
 }

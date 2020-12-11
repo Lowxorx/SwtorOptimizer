@@ -14,7 +14,9 @@ namespace SwtorOptimizer.Models.Convertors
                 Endurance = entity.Endurance,
                 Power = entity.Power,
                 Tertiary = entity.Tertiary,
-                Mastery = entity.Mastery
+                CriticalName = entity.CriticalName,
+                AccuracyName = entity.AccuracyName,
+                AlacrityName = entity.AlacrityName
             };
         }
     }

@@ -14,22 +14,14 @@ namespace SwtorOptimizer.Database.Repositories
         public virtual T Add(T entity, bool saveChanges)
         {
             this.dbContext.Set<T>().Add(entity);
-            if (saveChanges)
-            {
-                this.dbContext.SaveChanges();
-            }
-
+            if (saveChanges) this.dbContext.SaveChanges();
             return entity;
         }
 
         public async Task<T> AddAsync(T entity, bool saveChanges)
         {
             await this.dbContext.Set<T>().AddAsync(entity);
-            if (saveChanges)
-            {
-                await this.dbContext.SaveChangesAsync();
-            }
-
+            if (saveChanges) await this.dbContext.SaveChangesAsync();
             return entity;
         }
 
@@ -57,10 +49,7 @@ namespace SwtorOptimizer.Database.Repositories
 
         public virtual T Reload(T entity)
         {
-            if (entity == null)
-            {
-                return null;
-            }
+            if (entity == null) return null;
 
             this.dbContext.Entry(entity).Reload();
 
@@ -86,17 +75,11 @@ namespace SwtorOptimizer.Database.Repositories
 
             var existing = this.Exists(id);
 
-            if (existing == null)
-            {
-                return null;
-            }
+            if (existing == null) return null;
 
             this.dbContext.Entry(existing).CurrentValues.SetValues(entity);
 
-            if (saveChanges)
-            {
-                this.dbContext.SaveChanges();
-            }
+            if (saveChanges) this.dbContext.SaveChanges();
 
             return existing;
         }
@@ -124,17 +107,11 @@ namespace SwtorOptimizer.Database.Repositories
 
             var existing = this.Exists(id);
 
-            if (existing == null)
-            {
-                return null;
-            }
+            if (existing == null) return null;
 
             this.dbContext.Entry(existing).CurrentValues.SetValues(entity);
 
-            if (saveChanges)
-            {
-                await this.dbContext.SaveChangesAsync();
-            }
+            if (saveChanges) await this.dbContext.SaveChangesAsync();
 
             return existing;
         }

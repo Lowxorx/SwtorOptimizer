@@ -7,10 +7,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { SetDetailsModule } from '../set-details/set-details.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatCardModule } from '@angular/material/card';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [SetsTableComponent],
-  imports: [CommonModule, MatTableModule, MatSortModule, MatButtonModule, MatPaginatorModule, SetDetailsModule, MatIconModule],
+  imports: [CommonModule, MatTableModule, MatSortModule, MatButtonModule, MatPaginatorModule, SetDetailsModule, MatIconModule, MatSliderModule, MatCardModule, FormsModule],
   exports: [SetsTableComponent],
 })
 export class SetsTableModule {}

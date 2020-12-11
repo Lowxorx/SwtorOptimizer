@@ -1,4 +1,4 @@
-import { IGearSet } from './IGearSet';
+import { IGearPieceSet } from './IGearPieceSet';
 
 export interface ICalculationTask {
   id: number;
@@ -8,5 +8,5 @@ export interface ICalculationTask {
   startDate: Date;
   lastUpdate: Date;
   endDate: Date;
-  enhancementSets: IGearSet[];
+  gearPiecesSets: IGearPieceSet[];
 }

@@ -5,6 +5,6 @@ namespace SwtorOptimizer.Calculator.Services
 {
     internal interface ISetCalculatorProcessingService
     {
-        void StartTask(CalculationTask task, List<GearPiece> gearPieces);
+        void StartTask(CalculationTask task, List<GearPiece> enhancements);
     }
 }

@@ -1,6 +1,15 @@
 <ng-container>
   <mat-card class="set-display">
     <mat-card-content>
+      <div class="stat-selector">
+        <mat-button-toggle-group *ngIf="stats" name="stat" (change)="onStatChange($event)">
+          <mat-button-toggle *ngFor="let stat of stats" [value]="stat.name" [checked]="isChecked(stat)"> {{ stat.displayName }}</mat-button-toggle>
+        </mat-button-toggle-group>
+        <div class="helper-text">
+          <mat-icon mat-list-icon>chevron_left</mat-icon>
+          <p>Choisissez la statistique que vous souhaitez afficher dans les détails</p>
+        </div>
+      </div>
       <mat-list>
         <mat-divider></mat-divider>
         <mat-list-item>
@@ -12,13 +21,13 @@
         <!-- Enhancement name -->
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{ getEnhancementNameToDisplay(element) }} </mat-cell>
           <mat-footer-cell *matFooterCellDef> <strong>Total</strong> </mat-footer-cell>
         </ng-container>
 
         <!-- Enhancement Tertiary -->
         <ng-container matColumnDef="tertiary">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Tertiaire </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ currentStat.displayName }} </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{ element.tertiary }} </mat-cell>
           <mat-footer-cell *matFooterCellDef> {{ selectedSet.threshold }} </mat-footer-cell>
         </ng-container>

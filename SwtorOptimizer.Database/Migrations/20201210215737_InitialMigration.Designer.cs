@@ -10,8 +10,8 @@ using SwtorOptimizer.Database.Database;
 namespace SwtorOptimizer.Database.Migrations
 {
     [DbContext(typeof(SwtorOptimizerContext))]
-    [Migration("20201210130458_GearType")]
-    partial class GearType
+    [Migration("20201210215737_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,13 +58,16 @@ namespace SwtorOptimizer.Database.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AccuracyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AlacrityName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CriticalName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Endurance")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GearPieceType")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Mastery")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -81,7 +84,7 @@ namespace SwtorOptimizer.Database.Migrations
                     b.ToTable("GearPieces");
                 });
 
-            modelBuilder.Entity("SwtorOptimizer.Business.Entities.GearSet", b =>
+            modelBuilder.Entity("SwtorOptimizer.Business.Entities.GearPieceSet", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -107,10 +110,10 @@ namespace SwtorOptimizer.Database.Migrations
 
                     b.HasIndex("CalculationTaskId");
 
-                    b.ToTable("GearSets");
+                    b.ToTable("GearPieceSets");
                 });
 
-            modelBuilder.Entity("SwtorOptimizer.Business.Entities.GearSetGearPiece", b =>
+            modelBuilder.Entity("SwtorOptimizer.Business.Entities.GearPieceSetGearPiece", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -120,16 +123,43 @@ namespace SwtorOptimizer.Database.Migrations
                     b.Property<int>("GearPieceId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GearSetId")
+                    b.Property<int>("GearPieceSetId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GearPieceId");
 
-                    b.HasIndex("GearSetId");
+                    b.HasIndex("GearPieceSetId");
 
-                    b.ToTable("GearSetGearPieces");
+                    b.ToTable("GearPieceSetGearPieces");
+                });
+
+            modelBuilder.Entity("SwtorOptimizer.Business.Entities.Package", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Endurance")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Mastery")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Power")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Tertiary")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Packages");
                 });
 
             modelBuilder.Entity("SwtorOptimizer.Business.Entities.User", b =>
@@ -150,26 +180,26 @@ namespace SwtorOptimizer.Database.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SwtorOptimizer.Business.Entities.GearSet", b =>
+            modelBuilder.Entity("SwtorOptimizer.Business.Entities.GearPieceSet", b =>
                 {
                     b.HasOne("SwtorOptimizer.Business.Entities.CalculationTask", "CalculationTask")
-                        .WithMany("EnhancementSets")
+                        .WithMany("GearPieceSets")
                         .HasForeignKey("CalculationTaskId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SwtorOptimizer.Business.Entities.GearSetGearPiece", b =>
+            modelBuilder.Entity("SwtorOptimizer.Business.Entities.GearPieceSetGearPiece", b =>
                 {
                     b.HasOne("SwtorOptimizer.Business.Entities.GearPiece", "GearPiece")
-                        .WithMany("GearSetEnhancements")
+                        .WithMany("GearPieceSetGearPieces")
                         .HasForeignKey("GearPieceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SwtorOptimizer.Business.Entities.GearSet", "GearSet")
-                        .WithMany("GearSetGearPieces")
-                        .HasForeignKey("GearSetId")
+                    b.HasOne("SwtorOptimizer.Business.Entities.GearPieceSet", "GearPieceSet")
+                        .WithMany("GearPieceSetGearPieces")
+                        .HasForeignKey("GearPieceSetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

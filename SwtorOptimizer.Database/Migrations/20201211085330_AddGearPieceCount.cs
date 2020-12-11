@@ -2,13 +2,13 @@
 
 namespace SwtorOptimizer.Database.Migrations
 {
-    public partial class GearStat : Migration
+    public partial class AddGearPieceCount : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "GearPieceStat",
-                table: "GearPieces",
+                name: "GearPieceCount",
+                table: "GearPieceSets",
                 nullable: false,
                 defaultValue: 0);
         }
@@ -16,8 +16,8 @@ namespace SwtorOptimizer.Database.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "GearPieceStat",
-                table: "GearPieces");
+                name: "GearPieceCount",
+                table: "GearPieceSets");
         }
     }
 }

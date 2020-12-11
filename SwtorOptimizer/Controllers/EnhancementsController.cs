@@ -10,30 +10,30 @@ namespace SwtorOptimizer.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class GearPiecesController : ControllerBase
+    public class EnhancementsController : ControllerBase
     {
         private readonly ISwtorOptimizerDatabaseService context;
-        private readonly ILogger<GearPiecesController> logger;
+        private readonly ILogger<EnhancementsController> logger;
 
-        public GearPiecesController(ILogger<GearPiecesController> logger, ISwtorOptimizerDatabaseService context)
+        public EnhancementsController(ILogger<EnhancementsController> logger, ISwtorOptimizerDatabaseService context)
         {
             this.logger = logger;
             this.context = context;
         }
 
         [HttpGet]
-        [ActionName(nameof(GetGearPieces))]
-        public async Task<IActionResult> GetGearPieces()
+        [ActionName(nameof(GetEnhancements))]
+        public async Task<IActionResult> GetEnhancements()
         {
             try
             {
-                var gearPieces = await this.context.GearPieceRepository.All().ToListAsync();
-                return this.Ok(gearPieces);
+                var enhancements = await this.context.GearPieceRepository.All().ToListAsync();
+                return this.Ok(enhancements);
             }
             catch (Exception e)
             {
                 this.logger.LogError(e.Message);
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Erreur lors de la récupération des attributs");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Erreur lors de la r�cup�ration des attributs");
             }
         }
     }

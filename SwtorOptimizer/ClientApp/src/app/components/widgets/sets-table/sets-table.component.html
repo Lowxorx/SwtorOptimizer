@@ -1,6 +1,17 @@
 <ng-container>
   <app-set-details *ngIf="selectedSet" [selectedSet]="selectedSet"></app-set-details>
 
+  <div class="mat-elevation-z8">
+  <mat-card>
+    <mat-card-content>
+      <div *ngIf="minEnhancement !== maxEnhancement">
+        <p>{{'Nombre de sophistications dans le set : ' + selectedNbEnhancement }}</p>
+        <mat-slider [min]="minEnhancement" [max]="maxEnhancement" step="1" [(ngModel)]="selectedNbEnhancement" [value]="selectedNbEnhancement" thumbLabel="true"></mat-slider>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  </div>
+
   <div class="mat-elevation-z8 table-container">
     <mat-table [dataSource]="dataSource" matSort matSortActive="power" matSortDisableClear matSortDirection="desc">
       <ng-container matColumnDef="threshold" sticky>

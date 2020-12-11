@@ -25,30 +25,30 @@
                 <e p="stim_yellow.png" t="Include" />
               </e>
             </e>
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~0a79db95-es2015.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~0a79db95-es2015.js.map" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~0a79db95-es5.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~0a79db95-es5.js.map" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~db005e25-es2015.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~db005e25-es2015.js.map" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~db005e25-es5.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~db005e25-es5.js.map" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~df14a1d9-es2015.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~df14a1d9-es2015.js.map" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~df14a1d9-es5.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~df14a1d9-es5.js.map" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~dfeae21c-es2015.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~dfeae21c-es2015.js.map" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~dfeae21c-es5.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-task-detail~dfeae21c-es5.js.map" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-tasks-calcu~3662df5b-es2015.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-tasks-calcu~3662df5b-es2015.js.map" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-tasks-calcu~3662df5b-es5.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-tasks-calcu~3662df5b-es5.js.map" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-tasks-calcu~3cac6423-es2015.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-tasks-calcu~3cac6423-es2015.js.map" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-tasks-calcu~3cac6423-es5.js" t="Include" />
-            <e p="default~src-app-components-pages-admin-admin-module~src-app-components-pages-calculation-tasks-calcu~3cac6423-es5.js.map" t="Include" />
+            <e p="common-es2015.js" t="Include" />
+            <e p="common-es2015.js.map" t="Include" />
+            <e p="common-es5.js" t="Include" />
+            <e p="common-es5.js.map" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~05ec6e42-es2015.js" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~05ec6e42-es2015.js.map" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~05ec6e42-es5.js" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~05ec6e42-es5.js.map" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~0aa76255-es2015.js" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~0aa76255-es2015.js.map" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~0aa76255-es5.js" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~0aa76255-es5.js.map" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~9d501240-es2015.js" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~9d501240-es2015.js.map" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~9d501240-es5.js" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~9d501240-es5.js.map" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~c6c56f39-es2015.js" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~c6c56f39-es2015.js.map" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~c6c56f39-es5.js" t="Include" />
+            <e p="default~src-app-components-pages-enhancement-sets-enhancement-sets-module~src-app-components-pages-f~c6c56f39-es5.js.map" t="Include" />
+            <e p="default~src-app-components-pages-find-combination-tasks-find-combination-tasks-module~src-app-compon~19336e29-es2015.js" t="Include" />
+            <e p="default~src-app-components-pages-find-combination-tasks-find-combination-tasks-module~src-app-compon~19336e29-es2015.js.map" t="Include" />
+            <e p="default~src-app-components-pages-find-combination-tasks-find-combination-tasks-module~src-app-compon~19336e29-es5.js" t="Include" />
+            <e p="default~src-app-components-pages-find-combination-tasks-find-combination-tasks-module~src-app-compon~19336e29-es5.js.map" t="Include" />
             <e p="index.html" t="Include" />
             <e p="main-es2015.js" t="Include" />
             <e p="main-es2015.js.map" t="Include" />
@@ -62,26 +62,22 @@
             <e p="runtime-es2015.js.map" t="Include" />
             <e p="runtime-es5.js" t="Include" />
             <e p="runtime-es5.js.map" t="Include" />
-            <e p="src-app-components-pages-admin-admin-module-es2015.js" t="Include" />
-            <e p="src-app-components-pages-admin-admin-module-es2015.js.map" t="Include" />
-            <e p="src-app-components-pages-admin-admin-module-es5.js" t="Include" />
-            <e p="src-app-components-pages-admin-admin-module-es5.js.map" t="Include" />
-            <e p="src-app-components-pages-calculation-task-details-calculation-task-details-module-es2015.js" t="Include" />
-            <e p="src-app-components-pages-calculation-task-details-calculation-task-details-module-es2015.js.map" t="Include" />
-            <e p="src-app-components-pages-calculation-task-details-calculation-task-details-module-es5.js" t="Include" />
-            <e p="src-app-components-pages-calculation-task-details-calculation-task-details-module-es5.js.map" t="Include" />
-            <e p="src-app-components-pages-calculation-tasks-calculation-tasks-module-es2015.js" t="Include" />
-            <e p="src-app-components-pages-calculation-tasks-calculation-tasks-module-es2015.js.map" t="Include" />
-            <e p="src-app-components-pages-calculation-tasks-calculation-tasks-module-es5.js" t="Include" />
-            <e p="src-app-components-pages-calculation-tasks-calculation-tasks-module-es5.js.map" t="Include" />
+            <e p="src-app-components-pages-enhancement-sets-enhancement-sets-module-es2015.js" t="Include" />
+            <e p="src-app-components-pages-enhancement-sets-enhancement-sets-module-es2015.js.map" t="Include" />
+            <e p="src-app-components-pages-enhancement-sets-enhancement-sets-module-es5.js" t="Include" />
+            <e p="src-app-components-pages-enhancement-sets-enhancement-sets-module-es5.js.map" t="Include" />
+            <e p="src-app-components-pages-find-combination-task-details-find-combination-task-details-module-es2015.js" t="Include" />
+            <e p="src-app-components-pages-find-combination-task-details-find-combination-task-details-module-es2015.js.map" t="Include" />
+            <e p="src-app-components-pages-find-combination-task-details-find-combination-task-details-module-es5.js" t="Include" />
+            <e p="src-app-components-pages-find-combination-task-details-find-combination-task-details-module-es5.js.map" t="Include" />
+            <e p="src-app-components-pages-find-combination-tasks-find-combination-tasks-module-es2015.js" t="Include" />
+            <e p="src-app-components-pages-find-combination-tasks-find-combination-tasks-module-es2015.js.map" t="Include" />
+            <e p="src-app-components-pages-find-combination-tasks-find-combination-tasks-module-es5.js" t="Include" />
+            <e p="src-app-components-pages-find-combination-tasks-find-combination-tasks-module-es5.js.map" t="Include" />
             <e p="src-app-components-pages-home-home-module-es2015.js" t="Include" />
             <e p="src-app-components-pages-home-home-module-es2015.js.map" t="Include" />
             <e p="src-app-components-pages-home-home-module-es5.js" t="Include" />
             <e p="src-app-components-pages-home-home-module-es5.js.map" t="Include" />
-            <e p="src-app-components-pages-login-login-module-es2015.js" t="Include" />
-            <e p="src-app-components-pages-login-login-module-es2015.js.map" t="Include" />
-            <e p="src-app-components-pages-login-login-module-es5.js" t="Include" />
-            <e p="src-app-components-pages-login-login-module-es5.js.map" t="Include" />
             <e p="styles.css" t="Include" />
             <e p="styles.css.map" t="Include" />
             <e p="vendor-es2015.js" t="Include" />
@@ -333,7 +329,6 @@
               </e>
               <e p="enums" t="Include">
                 <e p="CalculationTaskStatus.ts" t="Include" />
-                <e p="GearPieceType.ts" t="Include" />
               </e>
               <e p="guards" t="Include">
                 <e p="auth.guard.ts" t="Include" />
@@ -350,12 +345,15 @@
                 <e p="IAppUser.ts" t="Include" />
                 <e p="ICalculationTask.ts" t="Include" />
                 <e p="ICalculationTaskFront.ts" t="Include" />
+                <e p="IEnhancement.ts" t="Include" />
                 <e p="IEnhancementSet.ts" t="Include" />
                 <e p="IGearPiece.ts" t="Include" />
-                <e p="IGearSet.ts" t="Include" />
+                <e p="IGearPieceSet.ts" t="Include" />
                 <e p="ILoginData.ts" t="Include" />
                 <e p="ILoginResult.ts" t="Include" />
+                <e p="IPackage.ts" t="Include" />
                 <e p="IResultObject.ts" t="Include" />
+                <e p="IStat.ts" t="Include" />
                 <e p="IThresholdData.ts" t="Include" />
               </e>
               <e p="services" t="Include">
@@ -364,8 +362,8 @@
                 <e p="app.service.ts" t="Include" />
                 <e p="auth.service.ts" t="Include" />
                 <e p="calculation-tasks.service.ts" t="Include" />
+                <e p="enhancement-sets.service.ts" t="Include" />
                 <e p="find-combinations-tasks.service.ts" t="Include" />
-                <e p="gear-sets.service.ts" t="Include" />
               </e>
               <e p="shared.module.ts" t="Include" />
             </e>
@@ -405,8 +403,8 @@
           <e p="AdminController.cs" t="Include" />
           <e p="AppController.cs" t="Include" />
           <e p="CalculationTasksController.cs" t="Include" />
-          <e p="GearPiecesController.cs" t="Include" />
-          <e p="GearSetsController.cs" t="Include" />
+          <e p="EnhancementSetsController.cs" t="Include" />
+          <e p="EnhancementsController.cs" t="Include" />
         </e>
         <e p="Helpers" t="Include">
           <e p="JwtAuthManager.cs" t="Include" />
@@ -416,12 +414,12 @@
           <e p="Convertors" t="Include">
             <e p="CalculationTaskDtoConvertor.cs" t="Include" />
             <e p="GearPieceDtoConvertor.cs" t="Include" />
-            <e p="GearSetDtoConvertor.cs" t="Include" />
+            <e p="GearPieceSetDtoConvertor.cs" t="Include" />
           </e>
           <e p="Dto" t="Include">
             <e p="CalculationTaskDto.cs" t="Include" />
             <e p="GearPieceDto.cs" t="Include" />
-            <e p="GearSetDto.cs" t="Include" />
+            <e p="GearPieceSetDto.cs" t="Include" />
           </e>
           <e p="IJwtAuthManager.cs" t="Include" />
           <e p="IUserService.cs" t="Include" />
@@ -466,8 +464,8 @@
       <e p="SwtorOptimizer.Business" t="IncludeRecursive">
         <e p="Database" t="Include">
           <e p="IGearPieceRepository.cs" t="Include" />
-          <e p="IGearSetGearPieceRepository.cs" t="Include" />
-          <e p="IGearSetRepository.cs" t="Include" />
+          <e p="IGearPieceSetGearPieceRepository.cs" t="Include" />
+          <e p="IGearPieceSetRepository.cs" t="Include" />
           <e p="IRepository.cs" t="Include" />
           <e p="ISwtorOptimizerDatabaseService.cs" t="Include" />
         </e>
@@ -475,13 +473,10 @@
           <e p="CalculationTask.cs" t="Include" />
           <e p="CalculationTaskStatus.cs" t="Include" />
           <e p="GearPiece.cs" t="Include" />
-          <e p="GearSet.cs" t="Include" />
-          <e p="GearSetGearPiece.cs" t="Include" />
+          <e p="GearPieceSet.cs" t="Include" />
+          <e p="GearPieceSetGearPiece.cs" t="Include" />
+          <e p="Package.cs" t="Include" />
           <e p="User.cs" t="Include" />
-        </e>
-        <e p="Enums" t="Include">
-          <e p="GearPieceStat.cs" t="Include" />
-          <e p="GearPieceType.cs" t="Include" />
         </e>
         <e p="Settings" t="Include">
           <e p="DatabaseSettings.cs" t="Include" />
@@ -532,20 +527,19 @@
           <e p="SwtorOptimizerDatabaseService.cs" t="Include" />
         </e>
         <e p="Migrations" t="Include">
-          <e p="20201210102325_InitialCreate.Designer.cs" t="Include" />
-          <e p="20201210102325_InitialCreate.cs" t="Include" />
-          <e p="20201210130458_GearType.Designer.cs" t="Include" />
-          <e p="20201210130458_GearType.cs" t="Include" />
-          <e p="20201210133457_GearStat.Designer.cs" t="Include" />
-          <e p="20201210133457_GearStat.cs" t="Include" />
+          <e p="20201210215737_InitialMigration.Designer.cs" t="Include" />
+          <e p="20201210215737_InitialMigration.cs" t="Include" />
+          <e p="20201211085330_AddGearPieceCount.Designer.cs" t="Include" />
+          <e p="20201211085330_AddGearPieceCount.cs" t="Include" />
           <e p="SwtorOptimizerContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="Repositories" t="Include">
           <e p="BaseRepository.cs" t="Include" />
           <e p="CalculationTaskRepository.cs" t="Include" />
           <e p="GearPieceRepository.cs" t="Include" />
-          <e p="GearSetGearPieceRepository.cs" t="Include" />
-          <e p="GearSetRepository.cs" t="Include" />
+          <e p="GearPieceSetGearPieceRepository.cs" t="Include" />
+          <e p="GearPieceSetRepository.cs" t="Include" />
+          <e p="PackageRepository.cs" t="Include" />
           <e p="UserRepository.cs" t="Include" />
         </e>
         <e p="SwtorOptimizer.Database.csproj" t="IncludeRecursive" />

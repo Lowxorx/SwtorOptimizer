@@ -19,8 +19,7 @@ namespace SwtorOptimizer.Calculator.Services
         private readonly ISwtorOptimizerDatabaseService context;
         private readonly ILogger<TaskMonitorHostedService> logger;
         private readonly IOptions<CalculatorSettings> settings;
-        private List<GearPiece> gearPieces;
-        private IServiceProvider Services { get; }
+        private List<GearPiece> enhancements;
 
         public TaskMonitorHostedService(IServiceProvider services, ILogger<TaskMonitorHostedService> logger, IOptions<CalculatorSettings> settings, ISwtorOptimizerDatabaseService context)
         {
@@ -30,11 +29,12 @@ namespace SwtorOptimizer.Calculator.Services
             this.context = context;
         }
 
+        private IServiceProvider Services { get; }
+
         public async Task StartAsync(CancellationToken cancellationToken)
         {
             this.logger.LogInformation("TaskMonitorHostedService is starting.");
-            this.gearPieces = this.context.GearPieceRepository.All().ToList();
-            
+            this.enhancements = this.context.GearPieceRepository.All().ToList();
             while (!cancellationToken.IsCancellationRequested)
             {
                 await this.CheckAndStartTasks();
@@ -90,7 +90,7 @@ namespace SwtorOptimizer.Calculator.Services
             {
                 using var scope = this.Services.CreateScope();
                 var scopedProcessingService = scope.ServiceProvider.GetRequiredService<ISetCalculatorProcessingService>();
-                scopedProcessingService.StartTask(task, this.gearPieces);
+                scopedProcessingService.StartTask(task, this.enhancements);
             }
         }
     }

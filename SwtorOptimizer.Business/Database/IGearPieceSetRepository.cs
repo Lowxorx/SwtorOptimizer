@@ -3,8 +3,8 @@ using SwtorOptimizer.Business.Entities;
 
 namespace SwtorOptimizer.Business.Database
 {
-    public interface IGearSetRepository : IRepository<GearSet>
+    public interface IGearPieceSetRepository : IRepository<GearPieceSet>
     {
-        void AddAll(IEnumerable<GearSet> gearSets);
+        void AddAll(IEnumerable<GearPieceSet> gearPieceSets);
     }
 }

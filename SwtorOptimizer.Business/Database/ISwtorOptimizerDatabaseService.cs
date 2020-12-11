@@ -6,8 +6,9 @@ namespace SwtorOptimizer.Business.Database
     {
         IRepository<CalculationTask> CalculationTaskRepository { get; }
         IGearPieceRepository GearPieceRepository { get; }
-        IGearSetGearPieceRepository GearSetGearPieceRepository { get; }
-        IGearSetRepository GearSetRepository { get; }
+        IGearPieceSetGearPieceRepository GearPieceSetGearPieceRepository { get; }
+        IGearPieceSetRepository GearPieceSetRepository { get; }
+        IRepository<Package> PackageRepository { get; }
         IRepository<User> UserRepository { get; }
     }
 }

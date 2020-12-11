@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   public calculateMySets(): void {
     this.isCalculating = true;
     const realThreshold = this.getRealThreshold();
-    this.calculationTaskService.calculateGearSets(realThreshold).subscribe((e) => {
+    this.calculationTaskService.calculateEnhancementSets(realThreshold).subscribe((e) => {
       switch (e.statusCode) {
         case 200:
           this.snackBar.open('Le résultat pour ce cap a déjà été calculé, redirection vers les résultats dans 3 secondes...', null, { duration: 3000 });

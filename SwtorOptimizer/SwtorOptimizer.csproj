@@ -60,14 +60,14 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\components\widgets\theme-toggle\theme-toggle.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\widgets\topbar\topbar.module.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\IGearPiece.ts">
+    <TypeScriptCompile Include="ClientApp\src\app\models\IEnhancement.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\models\IEnhancementSet.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\IResultObject.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\IThresholdData.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\app.service.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\services\gear-sets.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\enhancement-sets.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\find-combinations-tasks.service.ts" />
   </ItemGroup>
 
@@ -89,7 +89,7 @@
     <Exec Command="node --version" ContinueOnError="true">
       <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
     </Exec>
-    <!-- <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." /> -->
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
     <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
   </Target>

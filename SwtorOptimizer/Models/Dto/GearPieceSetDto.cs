@@ -2,7 +2,7 @@
 
 namespace SwtorOptimizer.Models.Dto
 {
-    public class GearSetDto
+    public class GearPieceSetDto
     {
         public CalculationTaskDto CalculationTask { get; set; }
         public int CalculationTaskId { get; set; }
@@ -13,5 +13,6 @@ namespace SwtorOptimizer.Models.Dto
         public int Power { get; set; }
         public string SetName { get; set; }
         public int Threshold { get; set; }
+        public int GearPieceCount { get; set; }
     }
 }

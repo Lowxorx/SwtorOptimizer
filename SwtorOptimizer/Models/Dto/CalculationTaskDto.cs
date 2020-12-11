@@ -6,7 +6,7 @@ namespace SwtorOptimizer.Models.Dto
     public class CalculationTaskDto
     {
         public DateTime EndDate { get; set; }
-        public List<GearSetDto> EnhancementSets { get; set; }
+        public List<GearPieceSetDto> GearPieceSets { get; set; }
         public int FoundSets { get; set; }
         public int Id { get; set; }
         public DateTime StartDate { get; set; }

@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { IGearSet } from '../../../models/IGearSet';
+import { IGearPieceSet } from '../../../models/IGearPieceSet';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { GearSetsService } from '../../../services/gear-sets.service';
+import { EnhancementSetsService } from '../../../services/enhancement-sets.service';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
@@ -12,9 +12,12 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class SetsTableComponent implements OnInit {
   public displayedColumns: string[] = ['threshold', 'setName', 'power', 'endurance', 'details'];
-  public dataSource: MatTableDataSource<IGearSet> = new MatTableDataSource();
-  public selectedSet: IGearSet | null;
+  public dataSource: MatTableDataSource<IGearPieceSet> = new MatTableDataSource();
+  public selectedSet: IGearPieceSet | null;
   public setsNumber = 0;
+  public minEnhancement = 1;
+  public maxEnhancement = 1;
+  public selectedNbEnhancement = 1;
 
   @Input()
   public taskId: number;
@@ -25,7 +28,7 @@ export class SetsTableComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
-  constructor(private service: GearSetsService) {}
+  constructor(private service: EnhancementSetsService) {}
 
   public ngOnInit(): void {
     this.getData();
@@ -33,20 +36,24 @@ export class SetsTableComponent implements OnInit {
 
   private getData(): void {
     if (this.taskId != null) {
-      this.service.getGearSetsByTaskId(this.taskId).subscribe((e) => {
+      this.service.getEnhancementSetsByTaskId(this.taskId).subscribe((e) => {
         this.initDataSource(e);
       });
     }
   }
 
-  public showSetDetails(enhancementSet: IGearSet): void {
+  public showSetDetails(enhancementSet: IGearPieceSet): void {
     this.selectedSet = enhancementSet;
   }
 
-  private initDataSource(enhancementSets: IGearSet[]): void {
+  private initDataSource(enhancementSets: IGearPieceSet[]): void {
     this.setsNumber = enhancementSets.length;
     this.dataSource = new MatTableDataSource(enhancementSets);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    const max = Math.max.apply(Math, enhancementSets.map(function(o) {return o.gearPieceCount}));
+    this.minEnhancement = Math.min.apply(Math, enhancementSets.map(function(o) {return o.gearPieceCount}));
+    this.maxEnhancement = max;
+    this.selectedNbEnhancement = max;
   }
 }
