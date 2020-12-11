@@ -285,6 +285,12 @@
                     <e p="set-calculator.component.ts" t="Include" />
                     <e p="set-calculator.module.ts" t="Include" />
                   </e>
+                  <e p="set-editor" t="Include">
+                    <e p="set-editor.component.html" t="Include" />
+                    <e p="set-editor.component.scss" t="Include" />
+                    <e p="set-editor.component.ts" t="Include" />
+                    <e p="set-editor.module.ts" t="Include" />
+                  </e>
                 </e>
                 <e p="widgets" t="Include">
                   <e p="admin" t="Include">
