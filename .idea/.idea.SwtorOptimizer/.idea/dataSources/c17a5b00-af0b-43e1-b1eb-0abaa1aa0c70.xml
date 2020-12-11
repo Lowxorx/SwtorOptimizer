@@ -4,23 +4,433 @@
     <root id="1">
       <ServerVersion>14.0.3048</ServerVersion>
     </root>
-    <database id="2" parent="1" name="master">
+    <database id="2" parent="1" name="SwtorOptimizer">
+      <ObjectId>5</ObjectId>
+      <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
+      <Fingerprint>1.37717/00000000-0000-0000-0000-000000000000@b1c97255f062</Fingerprint>
+    </database>
+    <database id="3" parent="1" name="master">
       <ObjectId>1</ObjectId>
       <Current>1</Current>
       <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
       <Fingerprint>1.37717/00000000-0000-0000-0000-000000000000@b1c97255f062</Fingerprint>
     </database>
-    <database id="3" parent="1" name="model">
+    <database id="4" parent="1" name="model">
       <ObjectId>3</ObjectId>
       <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
     </database>
-    <database id="4" parent="1" name="msdb">
+    <database id="5" parent="1" name="msdb">
       <ObjectId>4</ObjectId>
       <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
     </database>
-    <database id="5" parent="1" name="tempdb">
+    <database id="6" parent="1" name="tempdb">
       <ObjectId>2</ObjectId>
       <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
     </database>
+    <schema id="7" parent="2" name="INFORMATION_SCHEMA">
+      <ObjectId>3</ObjectId>
+    </schema>
+    <schema id="8" parent="2" name="db_accessadmin">
+      <ObjectId>16385</ObjectId>
+    </schema>
+    <schema id="9" parent="2" name="db_backupoperator">
+      <ObjectId>16389</ObjectId>
+    </schema>
+    <schema id="10" parent="2" name="db_datareader">
+      <ObjectId>16390</ObjectId>
+    </schema>
+    <schema id="11" parent="2" name="db_datawriter">
+      <ObjectId>16391</ObjectId>
+    </schema>
+    <schema id="12" parent="2" name="db_ddladmin">
+      <ObjectId>16387</ObjectId>
+    </schema>
+    <schema id="13" parent="2" name="db_denydatareader">
+      <ObjectId>16392</ObjectId>
+    </schema>
+    <schema id="14" parent="2" name="db_denydatawriter">
+      <ObjectId>16393</ObjectId>
+    </schema>
+    <schema id="15" parent="2" name="db_owner">
+      <ObjectId>16384</ObjectId>
+    </schema>
+    <schema id="16" parent="2" name="db_securityadmin">
+      <ObjectId>16386</ObjectId>
+    </schema>
+    <schema id="17" parent="2" name="dbo">
+      <ObjectId>1</ObjectId>
+      <IntrospectionTimestamp>2020-12-11.10:28:44.373</IntrospectionTimestamp>
+      <Current>1</Current>
+    </schema>
+    <schema id="18" parent="2" name="guest">
+      <ObjectId>2</ObjectId>
+    </schema>
+    <schema id="19" parent="2" name="sys">
+      <ObjectId>4</ObjectId>
+    </schema>
+    <table id="20" parent="17" name="CalculationTasks">
+      <ObjectId>917578307</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.633</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.640</ModifiedTimestamp>
+    </table>
+    <table id="21" parent="17" name="GearPieceSetGearPieces">
+      <ObjectId>1093578934</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.640</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.647</ModifiedTimestamp>
+    </table>
+    <table id="22" parent="17" name="GearPieceSets">
+      <ObjectId>1045578763</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.640</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.653</ModifiedTimestamp>
+    </table>
+    <table id="23" parent="17" name="GearPieces">
+      <ObjectId>949578421</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.633</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.640</ModifiedTimestamp>
+    </table>
+    <table id="24" parent="17" name="Packages">
+      <ObjectId>981578535</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.637</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.637</ModifiedTimestamp>
+    </table>
+    <table id="25" parent="17" name="Users">
+      <ObjectId>1013578649</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.637</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.637</ModifiedTimestamp>
+    </table>
+    <table id="26" parent="17" name="__EFMigrationsHistory">
+      <ObjectId>885578193</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.567</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.567</ModifiedTimestamp>
+    </table>
+    <column id="27" parent="20" name="Id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="20" name="EndDate">
+      <Position>2</Position>
+      <DataType>datetime2|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="29" parent="20" name="FoundSets">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="30" parent="20" name="LastUpdate">
+      <Position>4</Position>
+      <DataType>datetime2|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="20" name="StartDate">
+      <Position>5</Position>
+      <DataType>datetime2|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="20" name="Status">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="20" name="Threshold">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="34" parent="20" name="PK_CalculationTasks">
+      <Position>1</Position>
+      <ColNames>Id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="35" parent="20" name="PK_CalculationTasks">
+      <ObjectId>933578364</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.633</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.633</ModifiedTimestamp>
+      <ColNames>Id</ColNames>
+      <UnderlyingIndexName>PK_CalculationTasks</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="36" parent="21" name="Id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="37" parent="21" name="GearPieceId">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="38" parent="21" name="GearPieceSetId">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="39" parent="21" name="PK_GearPieceSetGearPieces">
+      <Position>1</Position>
+      <ColNames>Id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <index id="40" parent="21" name="IX_GearPieceSetGearPieces_GearPieceId">
+      <Position>2</Position>
+      <ColNames>GearPieceId</ColNames>
+    </index>
+    <index id="41" parent="21" name="IX_GearPieceSetGearPieces_GearPieceSetId">
+      <Position>3</Position>
+      <ColNames>GearPieceSetId</ColNames>
+    </index>
+    <key id="42" parent="21" name="PK_GearPieceSetGearPieces">
+      <ObjectId>1109578991</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.640</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.640</ModifiedTimestamp>
+      <ColNames>Id</ColNames>
+      <UnderlyingIndexName>PK_GearPieceSetGearPieces</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="43" parent="21" name="FK_GearPieceSetGearPieces_GearPieces_GearPieceId">
+      <ObjectId>1125579048</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.640</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.640</ModifiedTimestamp>
+      <ColNames>GearPieceId</ColNames>
+      <RefTableId>949578421</RefTableId>
+      <RefTableName>GearPieces</RefTableName>
+      <RefKeyName>PK_GearPieces</RefKeyName>
+      <RefColNames>Id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <foreign-key id="44" parent="21" name="FK_GearPieceSetGearPieces_GearPieceSets_GearPieceSetId">
+      <ObjectId>1141579105</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.640</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.640</ModifiedTimestamp>
+      <ColNames>GearPieceSetId</ColNames>
+      <RefTableId>1045578763</RefTableId>
+      <RefTableName>GearPieceSets</RefTableName>
+      <RefKeyName>PK_GearPieceSets</RefKeyName>
+      <RefColNames>Id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <column id="45" parent="22" name="Id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="22" name="CalculationTaskId">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="22" name="IsInvalid">
+      <Position>3</Position>
+      <DataType>bit|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="22" name="SetInternalName">
+      <Position>4</Position>
+      <DataType>nvarchar(max)|0s</DataType>
+    </column>
+    <column id="49" parent="22" name="SetName">
+      <Position>5</Position>
+      <DataType>nvarchar(max)|0s</DataType>
+    </column>
+    <column id="50" parent="22" name="Threshold">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="22" name="GearPieceCount">
+      <Position>7</Position>
+      <DefaultConstraintName>DF__GearPiece__GearP__44FF419A</DefaultConstraintName>
+      <DefaultExpression>0</DefaultExpression>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="52" parent="22" name="PK_GearPieceSets">
+      <Position>1</Position>
+      <ColNames>Id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <index id="53" parent="22" name="IX_GearPieceSets_CalculationTaskId">
+      <Position>2</Position>
+      <ColNames>CalculationTaskId</ColNames>
+    </index>
+    <key id="54" parent="22" name="PK_GearPieceSets">
+      <ObjectId>1061578820</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.640</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.640</ModifiedTimestamp>
+      <ColNames>Id</ColNames>
+      <UnderlyingIndexName>PK_GearPieceSets</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="55" parent="22" name="FK_GearPieceSets_CalculationTasks_CalculationTaskId">
+      <ObjectId>1077578877</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.640</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.640</ModifiedTimestamp>
+      <ColNames>CalculationTaskId</ColNames>
+      <RefTableId>917578307</RefTableId>
+      <RefTableName>CalculationTasks</RefTableName>
+      <RefKeyName>PK_CalculationTasks</RefKeyName>
+      <RefColNames>Id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
+    <default id="56" parent="22" name="DF__GearPiece__GearP__44FF419A">
+      <ObjectId>1157579162</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2020-12-11.09:56:13.653</ModifiedTimestamp>
+      <ColNames>GearPieceCount</ColNames>
+      <DefaultExpression>0</DefaultExpression>
+    </default>
+    <column id="57" parent="23" name="Id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="23" name="AccuracyName">
+      <Position>2</Position>
+      <DataType>nvarchar(max)|0s</DataType>
+    </column>
+    <column id="59" parent="23" name="AlacrityName">
+      <Position>3</Position>
+      <DataType>nvarchar(max)|0s</DataType>
+    </column>
+    <column id="60" parent="23" name="CriticalName">
+      <Position>4</Position>
+      <DataType>nvarchar(max)|0s</DataType>
+    </column>
+    <column id="61" parent="23" name="Endurance">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="62" parent="23" name="Name">
+      <Position>6</Position>
+      <DataType>nvarchar(max)|0s</DataType>
+    </column>
+    <column id="63" parent="23" name="Power">
+      <Position>7</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="23" name="Tertiary">
+      <Position>8</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="65" parent="23" name="PK_GearPieces">
+      <Position>1</Position>
+      <ColNames>Id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="66" parent="23" name="PK_GearPieces">
+      <ObjectId>965578478</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.633</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.633</ModifiedTimestamp>
+      <ColNames>Id</ColNames>
+      <UnderlyingIndexName>PK_GearPieces</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="67" parent="24" name="Id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="68" parent="24" name="Endurance">
+      <Position>2</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="24" name="Mastery">
+      <Position>3</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="70" parent="24" name="Name">
+      <Position>4</Position>
+      <DataType>nvarchar(max)|0s</DataType>
+    </column>
+    <column id="71" parent="24" name="Power">
+      <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="24" name="Tertiary">
+      <Position>6</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="73" parent="24" name="PK_Packages">
+      <Position>1</Position>
+      <ColNames>Id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="74" parent="24" name="PK_Packages">
+      <ObjectId>997578592</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.637</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.637</ModifiedTimestamp>
+      <ColNames>Id</ColNames>
+      <UnderlyingIndexName>PK_Packages</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="75" parent="25" name="Id">
+      <Position>1</Position>
+      <SequenceIdentity>1</SequenceIdentity>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="76" parent="25" name="Password">
+      <Position>2</Position>
+      <DataType>nvarchar(max)|0s</DataType>
+    </column>
+    <column id="77" parent="25" name="Username">
+      <Position>3</Position>
+      <DataType>nvarchar(max)|0s</DataType>
+    </column>
+    <index id="78" parent="25" name="PK_Users">
+      <Position>1</Position>
+      <ColNames>Id</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="79" parent="25" name="PK_Users">
+      <ObjectId>1029578706</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.637</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.637</ModifiedTimestamp>
+      <ColNames>Id</ColNames>
+      <UnderlyingIndexName>PK_Users</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="80" parent="26" name="MigrationId">
+      <Position>1</Position>
+      <DataType>nvarchar(150 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="81" parent="26" name="ProductVersion">
+      <Position>2</Position>
+      <DataType>nvarchar(32 char)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="82" parent="26" name="PK___EFMigrationsHistory">
+      <Position>1</Position>
+      <ColNames>MigrationId</ColNames>
+      <Clustering>1</Clustering>
+      <Unique>1</Unique>
+    </index>
+    <key id="83" parent="26" name="PK___EFMigrationsHistory">
+      <ObjectId>901578250</ObjectId>
+      <CreatedTimestamp>2020-12-11.09:56:13.570</CreatedTimestamp>
+      <ModifiedTimestamp>2020-12-11.09:56:13.570</ModifiedTimestamp>
+      <ColNames>MigrationId</ColNames>
+      <UnderlyingIndexName>PK___EFMigrationsHistory</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
   </database-model>
 </dataSource>
