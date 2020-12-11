@@ -1,0 +1,53 @@
+<mat-card>
+  <mat-card-content>
+    <form (ngSubmit)="calculateMySet()" [formGroup]="formGroup" class="form">
+      <div class="form-element">
+        <mat-form-field appearance="fill">
+          <mat-label>Cap de précision</mat-label>
+          <mat-select formControlName="accuracyThresholdControl" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let threshold of thresholds" [value]="threshold.id">
+              {{threshold.threshold}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-element">
+        <mat-form-field>
+          <input [placeholder]="'Nombre d\'améliorations précision (+ 108)'" formControlName="accuracyAugments" matInput max="13" min="0"
+                 type="number"/>
+        </mat-form-field>
+      </div>
+
+      <div class="form-element">
+        <mat-form-field appearance="fill">
+          <mat-label>Cap d'alacrité</mat-label>
+          <mat-select formControlName="alacrityThresholdControl" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let threshold of thresholds" [value]="threshold.id">
+              {{threshold.threshold}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-element">
+        <mat-form-field>
+          <input [placeholder]="'Nombre d\'améliorations alacrité (+ 108)'" formControlName="alacrityAugments" matInput max="13" min="0"
+                 type="number"/>
+        </mat-form-field>
+      </div>
+
+      <div class="form-buttons">
+        <button mat-raised-button type="submit">Calculer</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -31,18 +32,29 @@ namespace SwtorOptimizer.Controllers
             var existingCalculationTask = await this.context.GearPieceSetRepository.All().FirstOrDefaultAsync(e => e.Threshold == threshold);
             if (existingCalculationTask != null)
             {
-                return this.Ok(new ResultObject<int> { StatusCode = StatusCodes.Status200OK, Message = "Le calcul a déjà été effectué.", Data = existingCalculationTask.CalculationTaskId });
+                return this.Ok(new ResultObject<int> {StatusCode = StatusCodes.Status200OK, Message = "Le calcul a déjà été effectué.", Data = existingCalculationTask.CalculationTaskId});
             }
 
-            var newTask = await this.context.CalculationTaskRepository.AddAsync(new CalculationTask { Threshold = threshold, Status = CalculationTaskStatus.Idle, FoundSets = 0 }, true);
-            return this.Accepted(new ResultObject<int> { StatusCode = StatusCodes.Status202Accepted, Message = "Une tâche a été crée.", Data = newTask.Id });
+            var newTask = await this.context.CalculationTaskRepository.AddAsync(new CalculationTask {Threshold = threshold, Status = CalculationTaskStatus.Idle, FoundSets = 0}, true);
+            return this.Accepted(new ResultObject<int> {StatusCode = StatusCodes.Status202Accepted, Message = "Une tâche a été crée.", Data = newTask.Id});
         }
 
         [HttpGet]
+        [ActionName(nameof(GetAllTasks))]
         public async Task<IActionResult> GetAllTasks()
         {
             var tasks = await this.context.CalculationTaskRepository.All().ToListAsync();
-            var tasksDto = tasks.Select(task => CalculationTaskDtoConvertor.FromEntityToDto(task, null)).ToList();
+            var tasksDto = tasks.Select(e => CalculationTaskDtoConvertor.FromEntityToDto(e, null)).ToList();
+            this.logger.LogDebug($"Return {tasksDto.Count} tasks");
+            return this.Ok(tasksDto);
+        }
+
+        [HttpGet]
+        [ActionName(nameof(GetAllCompletedTasks))]
+        public async Task<IActionResult> GetAllCompletedTasks()
+        {
+            var tasks = await this.context.CalculationTaskRepository.GetAllCompletedTasks();
+            var tasksDto = tasks.Select(e => CalculationTaskDtoConvertor.FromEntityToDto(e, null)).ToList();
             this.logger.LogDebug($"Return {tasksDto.Count} tasks");
             return this.Ok(tasksDto);
         }
@@ -56,6 +68,7 @@ namespace SwtorOptimizer.Controllers
             {
                 return this.Ok(CalculationTaskDtoConvertor.FromEntityToDto(task, null));
             }
+
             return this.NoContent();
         }
 
@@ -63,15 +76,22 @@ namespace SwtorOptimizer.Controllers
         [ActionName(nameof(GetTaskDetails))]
         public async Task<IActionResult> GetTaskDetails(int id)
         {
-            var task = await this.context.CalculationTaskRepository.All().Where(e => e.Id == id).FirstOrDefaultAsync();
-            var sets = await this.context.GearPieceSetRepository.All().Where(e => e.CalculationTaskId == id).ToListAsync();
-
-            if (task == null)
+            try
             {
-                return this.StatusCode(StatusCodes.Status204NoContent);
-            }
+                var task = await this.context.CalculationTaskRepository.GetAllWithGearPieceSets().FirstOrDefaultAsync(e => e.Id == id);
 
-            return this.Ok(CalculationTaskDtoConvertor.FromEntityToDto(task, sets));
+                if (task == null)
+                {
+                    return this.StatusCode(StatusCodes.Status204NoContent);
+                }
+
+                return this.Ok(CalculationTaskDtoConvertor.FromEntityToDto(task, task.GearPieceSets.ToList()));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return this.StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }

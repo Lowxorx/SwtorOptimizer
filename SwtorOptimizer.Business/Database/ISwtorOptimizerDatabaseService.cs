@@ -4,7 +4,7 @@ namespace SwtorOptimizer.Business.Database
 {
     public interface ISwtorOptimizerDatabaseService
     {
-        IRepository<CalculationTask> CalculationTaskRepository { get; }
+        ICalculationTaskRepository CalculationTaskRepository { get; }
         IGearPieceRepository GearPieceRepository { get; }
         IGearPieceSetGearPieceRepository GearPieceSetGearPieceRepository { get; }
         IGearPieceSetRepository GearPieceSetRepository { get; }

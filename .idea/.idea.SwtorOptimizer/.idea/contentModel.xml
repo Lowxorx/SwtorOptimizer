@@ -279,6 +279,12 @@
                     <e p="login.component.ts" t="Include" />
                     <e p="login.module.ts" t="Include" />
                   </e>
+                  <e p="set-calculator" t="Include">
+                    <e p="set-calculator.component.html" t="Include" />
+                    <e p="set-calculator.component.scss" t="Include" />
+                    <e p="set-calculator.component.ts" t="Include" />
+                    <e p="set-calculator.module.ts" t="Include" />
+                  </e>
                 </e>
                 <e p="widgets" t="Include">
                   <e p="admin" t="Include">
@@ -345,14 +351,13 @@
                 <e p="IAppUser.ts" t="Include" />
                 <e p="ICalculationTask.ts" t="Include" />
                 <e p="ICalculationTaskFront.ts" t="Include" />
-                <e p="IEnhancement.ts" t="Include" />
-                <e p="IEnhancementSet.ts" t="Include" />
                 <e p="IGearPiece.ts" t="Include" />
                 <e p="IGearPieceSet.ts" t="Include" />
                 <e p="ILoginData.ts" t="Include" />
                 <e p="ILoginResult.ts" t="Include" />
                 <e p="IPackage.ts" t="Include" />
                 <e p="IResultObject.ts" t="Include" />
+                <e p="ISetData.ts" t="Include" />
                 <e p="IStat.ts" t="Include" />
                 <e p="IThresholdData.ts" t="Include" />
               </e>
@@ -463,6 +468,7 @@
       </e>
       <e p="SwtorOptimizer.Business" t="IncludeRecursive">
         <e p="Database" t="Include">
+          <e p="ICalculationTaskRepository.cs" t="Include" />
           <e p="IGearPieceRepository.cs" t="Include" />
           <e p="IGearPieceSetGearPieceRepository.cs" t="Include" />
           <e p="IGearPieceSetRepository.cs" t="Include" />

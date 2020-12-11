@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { ICalculationTask } from '../models/ICalculationTask';
-import { IResultObject } from '../models/IResultObject';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient, HttpResponse} from '@angular/common/http';
+import {ICalculationTask} from '../models/ICalculationTask';
+import {IResultObject} from '../models/IResultObject';
 
 @Injectable({ providedIn: 'root' })
 export class CalculationTasksService {
@@ -15,11 +15,15 @@ export class CalculationTasksService {
   }
 
   public getTaskById(id: number): Observable<HttpResponse<ICalculationTask>> {
-    return this.http.get<ICalculationTask>(`${this.apiEndpoint}/GetTaskById?id=${id}`, { observe: 'response' });
+    return this.http.get<ICalculationTask>(`${this.apiEndpoint}/GetTaskById?id=${id}`, {observe: 'response'});
   }
 
   public getAllTasks(): Observable<ICalculationTask[]> {
     return this.http.get<ICalculationTask[]>(`${this.apiEndpoint}/GetAllTasks`);
+  }
+
+  public getAllCompletedTasks(): Observable<ICalculationTask[]> {
+    return this.http.get<ICalculationTask[]>(`${this.apiEndpoint}/GetAllCompletedTasks`);
   }
 
   public calculateEnhancementSets(threshold: number): Observable<IResultObject> {

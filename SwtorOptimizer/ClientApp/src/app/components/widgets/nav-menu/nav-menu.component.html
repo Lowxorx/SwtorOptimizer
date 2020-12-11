@@ -8,6 +8,9 @@
         <mat-nav-list color="primary" (click)="toggleMenu()">
           <a mat-list-item [routerLink]="['/']" class="nav-link-item"> <mat-icon>calculate</mat-icon> Calculer un cap</a>
           <a mat-list-item [routerLink]="['/tasks']" class="nav-link-item"> <mat-icon>memory</mat-icon> Liste des calculs</a>
+          <a [routerLink]="['/sets']" class="nav-link-item" mat-list-item>
+            <mat-icon>memory</mat-icon>
+            Calcul de sets</a>
           <a mat-list-item href="https://github.com/Lowxorx/SwtorOptimizer" target="_blank" class="nav-link-item"> <mat-icon svgIcon="github"></mat-icon> Code source</a>
           <a mat-list-item [routerLink]="['/admin']" class="nav-link-item"> <mat-icon>admin_panel_settings</mat-icon> Administration</a>
         </mat-nav-list>

@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: 'home', loadChildren: () => import('src/app/components/pages/home/home.module').then((mod) => mod.HomeModule) },
+  {path: 'home', loadChildren: () => import('src/app/components/pages/home/home.module').then((mod) => mod.HomeModule)},
   {
     path: 'login',
     loadChildren: () => import('src/app/components/pages/login/login.module').then((mod) => mod.LoginModule),
@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'tasks',
     loadChildren: () => import('src/app/components/pages/calculation-tasks/calculation-tasks.module').then((mod) => mod.CalculationTasksModule),
+  },
+  {
+    path: 'sets',
+    loadChildren: () => import('src/app/components/pages/set-calculator/set-calculator.module').then((mod) => mod.SetCalculatorModule),
   },
   {
     path: 'task/:value',
@@ -21,8 +25,8 @@ const routes: Routes = [
     loadChildren: () => import('src/app/components/pages/admin/admin.module').then((mod) => mod.AdminModule),
     canActivate: [AuthGuard],
   },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home', pathMatch: 'full' },
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
 
 @NgModule({
